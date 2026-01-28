@@ -7,24 +7,54 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-.DS_Store
+# Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage
+*.lcov
+.nyc_output
+
+# Dependencies
+node_modules/
+jspm_packages/
+web_modules/
+
+# Build output
 dist
 dist-ssr
-coverage
+.out
+.nuxt
+.next
+
+# Cache
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# Env
+.env
+.env.*
+!.env.example
 *.local
 
-/cypress/videos/
-/cypress/screenshots/
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
 
-# Editor directories and files
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# OS
+.DS_Store
+
+# Editor
+.idea
 .vscode/*
 !.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-*.tsbuildinfo
