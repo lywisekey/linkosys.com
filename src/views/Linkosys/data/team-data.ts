@@ -4,6 +4,7 @@ import francis from '@/assets/images/team/francis.png'
 import felixuy from '@/assets/images/team/felix-uy.png'
 import dongmp from '@/assets/images/team/dong-mp.png'
 import hoangnghiem from '@/assets/images/team/hoang-nghiem.png'
+import vincentrosso from '@/assets/images/team/vincent-rosso.png'
 import lyvv from '@/assets/images/team/lyvv.png'
 import quochoang from '@/assets/images/team/quoc-hoang.png'
 import georgeegho from '@/assets/images/team/George-Egho.png'
@@ -33,8 +34,8 @@ export const team: UserType[] = [
   {
     username: 'Vincent Rosso',
     role: 'Solution Architect',
-    experience: '“Retired IT professional with 36 years experience in people and project management, training, systems administration, and writing code for IBM mainframe environments.',
-    avatar: francis
+    experience: 'Vincent Rosso designs and delivers scalable software solutions, working closely with teams to turn complex requirements into reliable, real-world systems.',
+    avatar: vincentrosso
   },
   {
     username: 'Felix Uy',
