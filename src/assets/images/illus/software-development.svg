@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="480" height="300" fill="none" role="presentation">
+  <style>
+    .fl-software { animation: fl-software 6s ease-in-out infinite; transform-origin: center; }
+    @keyframes fl-software { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
+    .pulse-software { animation: pulse-software 3.2s ease-in-out infinite; transform-origin: center; }
+    @keyframes pulse-software { 0%,100% { opacity: .35 } 50% { opacity: 1 } }
+    .draw-software { stroke-dasharray: 220; animation: draw-software 5s ease-in-out infinite; }
+    @keyframes draw-software { 0% { stroke-dashoffset: 220 } 45%,100% { stroke-dashoffset: 0 } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fl-software, .pulse-software, .draw-software { animation: none; }
+      .draw-software { stroke-dasharray: none; }
+    }
+  </style>
+<polygon points="240.0,67.4 383.1,150.0 240.0,232.6 96.9,150.0" fill="none" stroke="#dde4ed" stroke-width="1" stroke-dasharray="4 5"/>
+<polygon points="188.9,78.0 240.0,107.5 240.0,138.2 188.9,108.7" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="291.1,78.0 240.0,107.5 240.0,138.2 291.1,108.7" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="240.0,48.5 291.1,78.0 240.0,107.5 188.9,78.0" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="117.4,119.3 168.5,148.8 168.5,179.5 117.4,150.0" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="219.6,119.3 168.5,148.8 168.5,179.5 219.6,150.0" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="168.5,89.8 219.6,119.3 168.5,148.8 117.4,119.3" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="260.4,119.3 311.5,148.8 311.5,179.5 260.4,150.0" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="362.6,119.3 311.5,148.8 311.5,179.5 362.6,150.0" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="311.5,89.8 362.6,119.3 311.5,148.8 260.4,119.3" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="188.9,160.6 240.0,190.1 240.0,220.8 188.9,191.3" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="291.1,160.6 240.0,190.1 240.0,220.8 291.1,191.3" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="240.0,131.1 291.1,160.6 240.0,190.1 188.9,160.6" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="188.9,52.1 240.0,81.6 240.0,107.5 188.9,78.0" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="291.1,52.1 240.0,81.6 240.0,107.5 291.1,78.0" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="240.0,22.6 291.1,52.1 240.0,81.6 188.9,52.1" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="188.9,134.7 240.0,164.2 240.0,190.1 188.9,160.6" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="291.1,134.7 240.0,164.2 240.0,190.1 291.1,160.6" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="240.0,105.2 291.1,134.7 240.0,164.2 188.9,134.7" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
+<g class="fl-software"><polygon points="260.4,39.1 311.5,68.6 311.5,94.5 260.4,65.0" fill="#fde8e6" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/><polygon points="362.6,39.1 311.5,68.6 311.5,94.5 362.6,65.0" fill="#f9d9d5" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/><polygon points="311.5,9.6 362.6,39.1 311.5,68.6 260.4,39.1" fill="#fde8e6" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/></g>
+<path class="pulse-software" d="M312 79V115" stroke="#ea3324" stroke-width="1.4" stroke-dasharray="3 4"/>
+</svg>

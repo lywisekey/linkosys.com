@@ -615,3 +615,110 @@ nav[aria-label='Breadcrumb'] a {
   background: rgba(6, 15, 26, 0.72);
   backdrop-filter: blur(2px);
 }
+
+// --- Service cards ------------------------------------------------------------
+// Illustration panel above the copy, in the manner of a product marketing grid:
+// the artwork carries the idea, the text carries the detail.
+
+.lk-service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--lk-line);
+  border-radius: var(--lk-radius);
+  background: #fff;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover,
+  &:focus-within {
+    border-color: #c6d0dc;
+    transform: translateY(-2px);
+
+    .lk-service-card-art img {
+      transform: scale(1.035);
+    }
+
+    .lk-service-card-arrow {
+      transform: translateX(3px);
+    }
+  }
+}
+
+.lk-service-card-art {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: #f4f6f9;
+  border-bottom: 1px solid var(--lk-line);
+
+  img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    transition: transform 0.35s ease;
+  }
+}
+
+.lk-service-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.75rem;
+
+  h3 {
+    font-size: 1.1875rem;
+    margin-bottom: 0.75rem;
+    color: var(--lk-ink);
+  }
+
+  p {
+    color: var(--lk-ink-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+.lk-service-card-arrow {
+  transition: transform 0.2s ease;
+}
+
+// On dark sections the panel would glare, so it takes the surface tone instead.
+.lk-dark .lk-service-card {
+  background: var(--lk-navy-700);
+  border-color: var(--lk-line-dark);
+
+  .lk-service-card-body h3 {
+    color: var(--lk-ink-invert);
+  }
+
+  .lk-service-card-art {
+    background: #eef2f7;
+    border-bottom-color: var(--lk-line-dark);
+  }
+
+  .lk-service-card-body p {
+    color: var(--lk-ink-invert-muted);
+  }
+
+  .lk-link-accent {
+    color: var(--lk-accent-on-dark);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lk-service-card,
+  .lk-service-card-art img,
+  .lk-service-card-arrow {
+    transition: none;
+  }
+
+  .lk-service-card:hover {
+    transform: none;
+
+    .lk-service-card-art img {
+      transform: none;
+    }
+  }
+}
