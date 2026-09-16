@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="flow"
       eyebrow="Solutions"
       title="Start from the problem, not the technology"
       lead="Each of these is a business outcome we are regularly brought in to deliver. The engineering follows from the problem."

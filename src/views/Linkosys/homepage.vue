@@ -1,7 +1,7 @@
 <template>
   <DefaultLayout>
     <!-- Hero ---------------------------------------------------------------->
-    <section class="lk-dark lk-grid-bg pt-8 pb-7">
+    <section class="lk-dark lk-grid-bg lk-hero-art pt-8 pb-7" :style="{ backgroundImage: `url(${heroArt.arch})` }">
       <b-container>
         <div style="max-width: 56rem">
           <p class="lk-eyebrow">Technology consulting &amp; engineering</p>
@@ -84,7 +84,7 @@
     </section>
 
     <!-- Government ------------------------------------------------------------>
-    <section class="lk-dark lk-grid-bg lk-section">
+    <section class="lk-dark lk-grid-bg lk-hero-art lk-section" :style="{ backgroundImage: `url(${heroArt.secure})` }">
       <b-container>
         <b-row class="g-5 align-items-center">
           <b-col lg="6">
@@ -227,6 +227,7 @@ import { services } from '@/content/services'
 import { solutions } from '@/content/solutions'
 import { industries, industryBySlug } from '@/content/industries'
 import { approach, verifiedCredentials } from '@/content/company'
+import { heroArt } from '@/components/linkosys/heroArt'
 
 // Only the four credentials with supporting documents already on this site.
 const trustFacts = [

@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="flow"
       eyebrow="Industries"
       title="Industries we work in"
       lead="The engineering is consistent; the constraints are not. These are the environments we know well enough to be useful in quickly."

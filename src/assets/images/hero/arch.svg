@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" width="1440" height="620" fill="none" role="presentation">
+  <defs>
+    <linearGradient id="fade-arch" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.54" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.72" stop-color="#fff" stop-opacity="0.55"/>
+      <stop offset="0.88" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+    </linearGradient>
+    <mask id="mask-arch"><rect width="1440" height="620" fill="url(#fade-arch)"/></mask>
+  </defs>
+  <g mask="url(#mask-arch)">
+    <path d="M0 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M72 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M144 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M216 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M288 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M360 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M432 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M504 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M576 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M648 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M720 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M792 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M864 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M936 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1008 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1080 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1152 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1224 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1296 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1368 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1440 0V620" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 0H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 72H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 144H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 216H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 288H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 360H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 432H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 504H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M0 576H1440" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="880" y="110" width="150" height="74" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M892 170h63" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M892 160h39" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="1076" y="86" width="132" height="64" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M1088 136h55" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M1088 126h34" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="1258" y="150" width="150" height="74" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M1270 210h63" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M1270 200h39" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="930" y="286" width="168" height="80" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M942 352h70" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M942 342h43" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="1152" y="262" width="150" height="74" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M1164 322h63" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M1164 312h39" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="1286" y="380" width="132" height="64" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M1298 430h55" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M1298 420h34" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="886" y="452" width="150" height="70" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M898 508h63" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M898 498h39" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <rect x="1090" y="442" width="168" height="78" rx="3" stroke="rgba(255,255,255,0.13)" stroke-width="1.25"/>
+    <path d="M1102 506h70" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <path d="M1102 496h43" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <path d="M1030 147H1053V118H1076" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <circle cx="1030" cy="147" r="2.5" fill="rgba(255,255,255,0.28)"/>
+    <path d="M1208 118H1233V187H1258" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <circle cx="1208" cy="118" r="2.5" fill="rgba(255,255,255,0.28)"/>
+    <path d="M1014 326H1083V299H1152" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <circle cx="1014" cy="326" r="2.5" fill="rgba(255,255,255,0.28)"/>
+    <path d="M1098 326H1192V412H1286" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <circle cx="1098" cy="326" r="2.5" fill="rgba(255,255,255,0.28)"/>
+    <path d="M1036 487H1063V481H1090" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <circle cx="1036" cy="487" r="2.5" fill="rgba(255,255,255,0.28)"/>
+    <path d="M1258 481H1272V444H1286" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+    <circle cx="1258" cy="481" r="2.5" fill="rgba(255,255,255,0.28)"/>
+    <path d="M930 326H1014V299H1152" stroke="rgba(240,90,73,0.42)" stroke-width="1.5"/>
+    <circle cx="1152" cy="299" r="3.5" fill="rgba(240,90,73,0.42)"/>
+  </g>
+</svg>

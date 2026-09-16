@@ -1,13 +1,14 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="signal"
       eyebrow="Contact"
       title="Talk to an expert"
       lead="Tell us the problem and the constraint. We will tell you how we would approach it, who would run it, and whether we are the right fit."
       :crumbs="[{ label: 'Contact' }]"
     >
       <template #aside>
-        <div class="p-4" style="border: 1px solid var(--lk-line-dark); border-radius: var(--lk-radius)">
+        <div class="lk-hero-panel">
           <p class="lk-eyebrow mb-3">Direct contact</p>
           <dl class="mb-0">
             <div class="lk-fact pt-0">

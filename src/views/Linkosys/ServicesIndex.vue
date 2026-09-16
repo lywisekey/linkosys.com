@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="arch"
       eyebrow="Services"
       title="Technology services built around delivery"
       lead="Six practices covering engineering, data, infrastructure, security, people and the management structure that holds a program together."

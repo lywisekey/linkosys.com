@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="flow"
       eyebrow="Partners &amp; clients"
       title="Who we work with"
       lead="Linkosys delivers alongside technology partners and for client organizations across government, manufacturing, financial services, media and commercial sectors."

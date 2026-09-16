@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="signal"
       eyebrow="Leadership &amp; team"
       title="The people who deliver the work"
       lead="Engagements are run by the same people who scope them. These are the leaders and senior engineers clients work with directly."

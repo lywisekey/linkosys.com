@@ -1,5 +1,5 @@
 <template>
-  <section class="lk-dark lk-grid-bg pt-8 pb-7">
+  <section class="lk-dark lk-grid-bg lk-hero-art pt-8 pb-7" :style="artStyle">
     <b-container>
       <nav v-if="crumbs?.length" aria-label="Breadcrumb" class="mb-4">
         <ol class="list-unstyled d-flex flex-wrap gap-2 mb-0 small">
@@ -34,12 +34,20 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
+import { heroArt, type HeroArt } from '@/components/linkosys/heroArt'
 
-defineProps<{
+const props = defineProps<{
   eyebrow?: string
   title: string
   lead?: string
   crumbs?: { label: string; to?: RouteLocationRaw }[]
+  /** Themed line artwork behind the hero. Omit for a plain grid. */
+  art?: HeroArt
 }>()
+
+const artStyle = computed(() =>
+  props.art ? { backgroundImage: `url(${heroArt[props.art]})` } : undefined
+)
 </script>

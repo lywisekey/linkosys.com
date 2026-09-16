@@ -2,6 +2,7 @@
   <DefaultLayout>
     <template v-if="industry">
       <PageHero
+        :art="industry.slug === 'manufacturing' ? 'plant' : 'flow'"
         eyebrow="Industry"
         :title="industry.headline"
         :lead="industry.summary"

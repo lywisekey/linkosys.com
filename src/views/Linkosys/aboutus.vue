@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="arch"
       eyebrow="About"
       title="A U.S. technology firm built around delivery"
       lead="Linkosys Inc. is a California-incorporated technology consulting and engineering company. We build and modernize software, connect data, secure systems and provide the engineers and management structure that get technology programs finished."

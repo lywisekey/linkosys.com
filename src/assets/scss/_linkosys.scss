@@ -581,3 +581,37 @@ nav[aria-label='Breadcrumb'] a {
     transition: none;
   }
 }
+
+// --- Hero artwork -------------------------------------------------------------
+// SVG line art anchored right, behind the text column. The files carry their own
+// left-to-right fade, so no extra scrim is needed.
+
+.lk-hero-art {
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+}
+
+@media (min-width: 1600px) {
+  .lk-hero-art {
+    background-size: cover;
+  }
+}
+
+// Below the lg breakpoint the text fills the width, so the artwork would sit
+// underneath it.
+@media (max-width: 991.98px) {
+  .lk-hero-art {
+    background-image: none !important;
+  }
+}
+
+// Panels that sit inside a hero need their own surface, otherwise the artwork
+// reads through the content behind them.
+.lk-hero-panel {
+  padding: 1.5rem;
+  border: 1px solid var(--lk-line-dark);
+  border-radius: var(--lk-radius);
+  background: rgba(6, 15, 26, 0.72);
+  backdrop-filter: blur(2px);
+}

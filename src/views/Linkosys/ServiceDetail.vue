@@ -2,6 +2,7 @@
   <DefaultLayout>
     <template v-if="service">
       <PageHero
+      art="arch"
         eyebrow="Service"
         :title="service.headline"
         :lead="service.intro"

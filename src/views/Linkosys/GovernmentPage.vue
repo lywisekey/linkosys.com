@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="secure"
       eyebrow="Government"
       title="Technology Solutions for Government"
       lead="Software engineering, IT consulting, data, cloud, cybersecurity, staffing and technology delivery support for government organizations and government contractors."
@@ -12,7 +13,7 @@
       </template>
 
       <template #aside>
-        <div class="p-4" style="border: 1px solid var(--lk-line-dark); border-radius: var(--lk-radius)">
+        <div class="lk-hero-panel">
           <p class="lk-eyebrow mb-3">At a glance</p>
           <dl class="mb-0">
             <div v-for="fact in glanceFacts" :key="fact.label" class="lk-fact pt-0">

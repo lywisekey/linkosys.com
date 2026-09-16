@@ -1,6 +1,6 @@
 <template>
   <DefaultLayout>
-    <section class="lk-dark lk-grid-bg pt-8 pb-8">
+    <section class="lk-dark lk-grid-bg lk-hero-art pt-8 pb-8" :style="{ backgroundImage: `url(${heroArt.signal})` }">
       <b-container>
         <div style="max-width: 44rem">
           <p class="lk-eyebrow">Error 404</p>
@@ -34,6 +34,7 @@
 
 <script lang="ts" setup>
 import DefaultLayout from '@/layouts/Default.vue'
+import { heroArt } from '@/components/linkosys/heroArt'
 
 const quickLinks = [
   { label: 'Services', to: { name: 'services' } },

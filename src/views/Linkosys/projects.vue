@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="plant"
       eyebrow="Our work"
       title="Selected work"
       lead="Projects delivered by the Linkosys engineering team, grouped by the capability each one demonstrates."

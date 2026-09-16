@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="signal"
       eyebrow="Case studies"
       title="Case studies"
       lead="Work delivered by the Linkosys engineering team, described by the problem it solved and how it was approached."

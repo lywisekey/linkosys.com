@@ -1,6 +1,7 @@
 <template>
   <DefaultLayout>
     <PageHero
+      art="signal"
       eyebrow="Insights"
       title="Insights"
       lead="Notes from the Linkosys engineering and delivery team on modernization, data, security and getting technology programs delivered."
