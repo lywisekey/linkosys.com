@@ -33,3 +33,7 @@ coverage
 # Lockfile khac (Vercel chi dung package-lock.json)
 yarn.lock
 bun.lockb
+
+# PHPMailer cu (da thay bang api/send-email.ts dung Resend)
+composer.json
+composer.lock
