@@ -36,7 +36,7 @@ export const navSections: NavSection[] = [
     columns: 2,
     links: solutions.map((solution) => ({
       label: solution.title,
-      to: { name: 'solutions' }
+      to: { name: 'solutions', hash: `#${solution.slug}` }
     })),
     footer: { label: 'All solutions', to: { name: 'solutions' } }
   },

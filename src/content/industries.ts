@@ -47,6 +47,31 @@ export const industries: IndustryEntry[] = [
       'Quality issues found after the fact instead of at the station',
       'Paper travelers and spreadsheets holding the process together'
     ],
+    deliverables: [
+      'Shop floor data collection from equipment, PLCs and historians',
+      'Work order release, routing and status tracking against real capacity',
+      'OEE, downtime and scrap reporting with one agreed definition per metric',
+      'In-process quality checks and non-conformance handling',
+      'Genealogy and traceability from input lot to finished unit',
+      'Interfaces between MES, ERP, quality and maintenance systems'
+    ],
+    considerations: [
+      {
+        title: 'The line does not stop for a deployment',
+        description:
+          'Changes are staged and reversible, and cutover is planned around production schedules rather than sprint boundaries.'
+      },
+      {
+        title: 'OT and IT have different rules',
+        description:
+          'Plant networks, equipment vendors and support contracts constrain what can be touched. We work within them instead of around them.'
+      },
+      {
+        title: 'Operators are the real users',
+        description:
+          'Interfaces are built for gloved hands, poor lighting and shift handover, not for a manager\'s dashboard.'
+      }
+    ],
     capabilities: [
       {
         title: 'Manufacturing execution (MES)',
@@ -101,6 +126,25 @@ export const industries: IndustryEntry[] = [
       'Reporting across fragmented sources',
       'Modernizing systems that cannot be taken offline'
     ],
+    deliverables: [
+      'Interfaces between clinical, scheduling, billing and administrative systems',
+      'Governed reporting across fragmented operational data',
+      'Access control, audit trails and retention aligned to policy',
+      'Patient- and staff-facing applications built to accessibility standards',
+      'Incremental modernization of systems that cannot be taken offline'
+    ],
+    considerations: [
+      {
+        title: 'Regulated data changes the design',
+        description:
+          'Access, logging and retention are architectural decisions here, not features added before an audit.'
+      },
+      {
+        title: 'Availability is not negotiable',
+        description:
+          'Migration and release plans assume the system stays reachable throughout.'
+      }
+    ],
     capabilities: [
       { title: 'Systems integration', description: 'Interfaces between clinical, scheduling and billing platforms.' },
       { title: 'Data and reporting', description: 'Governed reporting across operational and administrative data.' },
@@ -122,6 +166,25 @@ export const industries: IndustryEntry[] = [
       'Integration between operational and planning systems',
       'Field and offline-capable applications',
       'Reporting for operational and regulatory needs'
+    ],
+    deliverables: [
+      'Dispatch, scheduling and asset tracking applications',
+      'Field and driver applications that work with intermittent connectivity',
+      'Integration between operational, asset management and planning systems',
+      'Utilization, exception and regulatory reporting',
+      'Public-facing status and information services'
+    ],
+    considerations: [
+      {
+        title: 'Connectivity cannot be assumed',
+        description:
+          'Field applications are built offline-first, with conflict handling designed in rather than discovered later.'
+      },
+      {
+        title: 'Operations run continuously',
+        description:
+          'There is no quiet window, so releases are incremental and independently reversible.'
+      }
     ],
     capabilities: [
       { title: 'Operational applications', description: 'Dispatch, scheduling and field tooling.' },
@@ -145,6 +208,25 @@ export const industries: IndustryEntry[] = [
       'Security controls evidenced on demand',
       'Modernization without interrupting service'
     ],
+    deliverables: [
+      'Application engineering with traceable, reviewable change control',
+      'Governed data pipelines with documented lineage per reported figure',
+      'Identity, entitlement and privileged access review workflows',
+      'Automation of reconciliation and regulatory reporting steps',
+      'Control evidence that can be produced on request rather than assembled'
+    ],
+    considerations: [
+      {
+        title: 'Every change needs a trail',
+        description:
+          'Delivery is set up so that who changed what, when, and who approved it is answerable without a reconstruction exercise.'
+      },
+      {
+        title: 'Numbers must agree',
+        description:
+          'Metric definitions live in one place with lineage attached, because two versions of a figure is an audit finding.'
+      }
+    ],
     capabilities: [
       { title: 'Application engineering', description: 'Systems built with traceable change control.' },
       { title: 'Data and lineage', description: 'Governed pipelines with auditable definitions.' },
@@ -166,6 +248,25 @@ export const industries: IndustryEntry[] = [
       'Working inside existing architecture and standards',
       'Adding capability alongside an internal team',
       'Managing multi-vendor delivery'
+    ],
+    deliverables: [
+      'Applications built to your existing architecture, standards and toolchain',
+      'Staged replacement of systems that still carry production load',
+      'Integration and API layers between platforms that were never designed to connect',
+      'Automated test coverage and a repeatable release path',
+      'Engineers embedded in your process, tooling and reporting line'
+    ],
+    considerations: [
+      {
+        title: 'We work inside your standards',
+        description:
+          'Your architecture board, security review and toolchain set the constraints. We do not ask for an exception to be productive.'
+      },
+      {
+        title: 'Handover is part of the job',
+        description:
+          'Documentation, tests and knowledge transfer are delivered with the system, not promised after it.'
+      }
     ],
     capabilities: [
       { title: 'Application delivery', description: 'Building into an existing estate and its standards.' },

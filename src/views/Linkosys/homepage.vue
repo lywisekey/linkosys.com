@@ -71,7 +71,7 @@
           <b-col v-for="solution in solutions.slice(0, 6)" :key="solution.slug" md="6" lg="4">
             <Reveal>
               <router-link
-                :to="{ name: 'solutions' }"
+                :to="{ name: 'solutions', hash: `#${solution.slug}` }"
                 class="lk-card h-100 text-decoration-none"
               >
                 <h3 class="h5 heading-color">{{ solution.title }}</h3>

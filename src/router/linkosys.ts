@@ -155,7 +155,8 @@ const legacyRedirects: RouteRecordRaw[] = [
   { path: '/services/blockchain', redirect: '/services/software-development' },
   { path: '/services/ai', redirect: '/services/ai-and-data' },
   { path: '/services/data', redirect: '/services/ai-and-data' },
-  { path: '/manufacturing', redirect: '/industries/manufacturing' }
+  { path: '/manufacturing', redirect: '/industries/manufacturing' },
+  { path: '/industries/government', redirect: '/government' }
 ]
 
 const companyRoutes: RouteRecordRaw[] = [

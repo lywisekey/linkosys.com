@@ -13,6 +13,7 @@
 
     <section class="lk-section">
       <b-container>
+        <SectionHeader eyebrow="Services" title="Six core practices" size="sm" />
         <b-row class="g-4">
           <b-col v-for="service in services" :key="service.slug" md="6" xl="4">
             <ServiceCard :service="service" />
@@ -26,7 +27,10 @@
         <SectionHeader eyebrow="Solutions" title="Or start from the problem" />
         <b-row class="g-4">
           <b-col v-for="solution in solutions" :key="solution.slug" md="6" lg="4">
-            <router-link :to="{ name: 'solutions' }" class="lk-card h-100 text-decoration-none">
+            <router-link
+              :to="{ name: 'solutions', hash: `#${solution.slug}` }"
+              class="lk-card h-100 text-decoration-none"
+            >
               <h3 class="h6 heading-color">{{ solution.title }}</h3>
               <p class="mb-0">{{ solution.summary }}</p>
             </router-link>

@@ -13,7 +13,12 @@
 
     <section class="lk-section">
       <b-container>
-        <div v-for="solution in solutions" :key="solution.slug" class="py-5 border-top">
+        <div
+          v-for="solution in solutions"
+          :key="solution.slug"
+          :id="solution.slug"
+          class="py-5 border-top"
+        >
           <b-row class="g-4 g-lg-5">
             <b-col lg="5">
               <h2 class="lk-display h3 mb-3">{{ solution.title }}</h2>

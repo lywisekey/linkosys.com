@@ -20,7 +20,6 @@ export const quickLinks: FooterLinkType[] = [
   { name: 'Our Approach', to: { name: 'company.aboutus', hash: '#approach' } },
   { name: 'Leadership & Team', to: { name: 'company.team' } },
   { name: 'Partners & Clients', to: { name: 'company.partners' } },
-  { name: 'Case Studies', to: { name: 'case-studies' } },
   { name: 'Insights', to: { name: 'company.blog' } }
 ]
 
@@ -31,6 +30,8 @@ export const quickLinks: FooterLinkType[] = [
  */
 export const communityLinks: FooterLinkType[] = [
   { name: 'Government', to: { name: 'government' } },
+  { name: 'Case Studies', to: { name: 'case-studies' } },
+  { name: 'Our Work', to: { name: 'projects' } },
   { name: 'Industries', to: { name: 'industries' } },
   { name: 'Solutions', to: { name: 'solutions' } },
   { name: 'Contact', to: { name: 'contact' } }

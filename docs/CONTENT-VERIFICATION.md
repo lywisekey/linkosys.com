@@ -1,8 +1,13 @@
 # Content requiring verification
 
 Everything listed here is either **missing** or **unconfirmed**. None of it has been
-invented or filled with a plausible guess. Items marked in the UI render a visible
-`VERIFY` marker so nothing unconfirmed can quietly ship as fact.
+invented or filled with a plausible guess.
+
+Unconfirmed credentials are shown **only in development builds**. Visitors never see
+them. An earlier revision printed rows reading "UEI to confirm" and "CAGE code to
+confirm" on the public Government page — a contracting officer reads that as a
+company that is not registered in SAM.gov, which is worse than an absent row. This
+file is the durable tracker.
 
 Owner: Linkosys. Update `src/content/company.ts` and `src/content/solutions.ts`
 once each item is confirmed, then remove the `verify: true` flag.
@@ -40,21 +45,21 @@ Needs a one-page PDF containing: legal name, UEI, CAGE, NAICS codes, contract
 vehicles, core competencies, differentiators, past performance and a point of
 contact. Everything must match the SAM.gov registration exactly.
 
-## 3. Case studies and past performance — highest commercial impact
+## 3. Case study metrics — highest commercial impact
 
-Three case studies are structured and rendered on `/case-studies`, the Government
-page and each service page. All three are empty by design.
+`/case-studies` now publishes six real engagements drawn from the project list
+Linkosys already displays, each with challenge, approach, solution and technology.
+The one field deliberately left empty on every entry is **results**.
 
-For each, Linkosys needs to supply, **with client approval to publish**:
+To publish results, Linkosys needs to supply, **with client approval**:
 
+- The measured outcome (throughput, cycle time, error rate, cost — whatever was
+  actually tracked)
 - Client name, or an agreed anonymised description ("a California state agency")
-- Challenge — the situation before the work
-- Approach — what Linkosys did
-- Solution — what was implemented
-- Technology — platforms and languages actually used
-- Results — only metrics the client has confirmed and approved
+- Confirmation that the client approves publication
 
-Populate `caseStudies` in `src/content/solutions.ts` and remove `placeholder: true`.
+Set `results` on the relevant entry in `src/content/solutions.ts`. The card renders
+the Results block automatically once the field is non-null.
 
 Nothing here should be estimated. A single unverifiable metric undermines every
 other claim on the site.
@@ -68,14 +73,24 @@ Stixis, Letcore, Tran Creative, FAT, ITMS and Cyber Eye.
 - Three testimonials are attributed to named individuals at ANC, Bresatech and
   Eleganza Tiles. Confirm each quote is real and approved for publication.
 - Those testimonials were paired with **stock photography** from the site template.
-  Using a stock portrait beside a real person's name is a misrepresentation. Supply
-  real photographs or approve removing the images and keeping name, role and company.
+  They are no longer rendered anywhere on the site. Supply real photographs, or
+  approve publishing the quotes with name, role and company and no portrait.
+
+### Team photographs
+
+The headshots on `/company/team` are cut-outs composited onto unrelated stock
+backgrounds — city skylines, neon network graphics, a world map. They are rendered
+in greyscale so the grid reads as one set rather than a collage, but the
+composites are still visible at full size and they undercut the positioning.
+
+Replace with plain headshots on a neutral background. This is the single highest
+-value image change on the site.
 
 ## 5. Company facts
 
 | Item | Status | Notes |
 |---|---|---|
-| Founded 2016 | Unconfirmed | Drives the "years in business" counter on the contact page (`currentYear - 2016`) |
+| Founded 2016 | Stated by the company | The CEO bio in `team-data.ts` states Linkosys was founded in 2016, which matches the contact page counter (`currentYear - 2016`) |
 | Employee count | Not published | Not shown anywhere; do not add without a source |
 | Office locations | Partially confirmed | Irvine, California published. Confirm whether the Virginia registration implies an office |
 | Leadership biographies | Thin | Team page needs real roles and background |

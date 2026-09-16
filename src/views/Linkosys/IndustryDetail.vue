@@ -43,6 +43,44 @@
         </b-container>
       </section>
 
+      <!-- What we build -->
+      <section v-if="industry.deliverables?.length" class="lk-section pt-0">
+        <b-container>
+          <SectionHeader
+            eyebrow="What we build"
+            title="Systems we deliver in this sector"
+            size="sm"
+          />
+          <b-row class="g-0">
+            <b-col v-for="item in industry.deliverables" :key="item" md="6">
+              <p class="py-3 mb-0 d-flex gap-3 border-top pe-md-5">
+                <span aria-hidden="true" style="color: var(--lk-accent)">&#8212;</span>
+                <span class="heading-color">{{ item }}</span>
+              </p>
+            </b-col>
+          </b-row>
+        </b-container>
+      </section>
+
+      <!-- Sector constraints -->
+      <section v-if="industry.considerations?.length" class="lk-section pt-0">
+        <b-container>
+          <SectionHeader
+            eyebrow="Constraints we design around"
+            title="What makes this sector different"
+            size="sm"
+          />
+          <b-row class="g-4">
+            <b-col v-for="item in industry.considerations" :key="item.title" md="4">
+              <div class="lk-card h-100">
+                <h3 class="h6">{{ item.title }}</h3>
+                <p class="mb-0">{{ item.description }}</p>
+              </div>
+            </b-col>
+          </b-row>
+        </b-container>
+      </section>
+
       <!-- Services that apply -->
       <section class="lk-dark lk-section">
         <b-container>

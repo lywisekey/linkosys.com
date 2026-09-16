@@ -65,8 +65,8 @@
               Schedule. Supporting documents are published on this site.
             </p>
             <p class="small mb-0" style="color: var(--lk-ink-invert-muted)">
-              Items marked for verification have not yet been confirmed against SAM.gov and are shown
-              as gaps rather than as fact.
+              For registration identifiers, labour categories or pricing against either schedule,
+              contact us directly and we will respond with the current documentation.
             </p>
           </b-col>
 
@@ -160,16 +160,18 @@
     <section class="lk-darkest lk-section-tight">
       <b-container>
         <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
-          <div style="max-width: 44rem">
-            <h2 class="lk-display h3 text-white mb-2">Capabilities statement</h2>
+          <div style="max-width: 46rem">
+            <h2 class="lk-display h3 text-white mb-2">Capability statement</h2>
             <p class="mb-0" style="color: var(--lk-ink-invert-muted)">
-              A one-page capability statement carrying the UEI, CAGE code, NAICS codes and contract
-              vehicles is what contracting officers ask for first. Linkosys needs to supply the
-              approved document before it can be offered for download.
+              Request our capability statement with registration identifiers, NAICS codes, contract
+              vehicles and labour categories. Tell us the solicitation or agency and we will send the
+              version that matches it.
             </p>
           </div>
           <div class="flex-shrink-0">
-            <VerifyTag label="Capabilities statement required" />
+            <router-link :to="{ name: 'contact' }" class="btn btn-primary mb-0">
+              Request Capability Statement
+            </router-link>
           </div>
         </div>
       </b-container>
@@ -191,7 +193,6 @@ import ServiceCard from '@/components/linkosys/ServiceCard.vue'
 import CredentialList from '@/components/linkosys/CredentialList.vue'
 import CaseStudyCard from '@/components/linkosys/CaseStudyCard.vue'
 import CtaBand from '@/components/linkosys/CtaBand.vue'
-import VerifyTag from '@/components/linkosys/VerifyTag.vue'
 
 import { services } from '@/content/services'
 import { caseStudies } from '@/content/solutions'

@@ -16,19 +16,19 @@ export const team: UserType[] = [
   {
     username: 'Tri Nghiem',
     role: 'President & CEO',
-    experience: 'Linkosys was founded in 2016 by Tri Nghiem, a wonderful man with a special passion and long-term vision.',
+    experience: 'Founded Linkosys in 2016 and leads the company as President and CEO.',
     avatar: tringhiem
   },
   {
     username: 'Phong Nghiem',
     role: 'Executive Advisor',
-    experience: 'With many years of experience in the industry and a dedication to exceeding expectations, Phong Nghiem and Linkosys Team are sure to make you happy and improve things.',
+    experience: 'Executive advisor to the Linkosys leadership team.',
     avatar: phongnghiem
   },
   {
     username: 'Francis Pease',
     role: 'Executive Advisor',
-    experience: '“Retired IT professional with 36 years experience in people and project management, training, systems administration, and writing code for IBM mainframe environments.',
+    experience: 'Retired IT professional with 36 years of experience in people and project management, training, systems administration, and writing code for IBM mainframe environments.',
     avatar: francis
   },
   {
@@ -69,7 +69,7 @@ export const team: UserType[] = [
   },
   {
     username: 'George Egho',
-    role: 'Art director',
+    role: 'Art Director',
     experience: 'George Egho is a seasoned visual design and creative leadership expert with over 15 years of experience. He excels at leading the artistic vision of projects, ensuring brand consistency and delivering high-quality visuals.',
     avatar: georgeegho
   }

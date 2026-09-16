@@ -75,6 +75,10 @@ export type IndustryEntry = {
   summary: string
   needs: string[]
   capabilities: Capability[]
+  /** Concrete systems we build in this sector — what, not merely which discipline. */
+  deliverables?: string[]
+  /** Constraints specific to the sector that shape how work is delivered. */
+  considerations?: { title: string; description: string }[]
   seoTitle: string
   seoDescription: string
 }

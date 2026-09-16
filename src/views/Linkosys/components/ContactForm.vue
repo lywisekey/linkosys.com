@@ -4,38 +4,28 @@
       <div class="position-relative overflow-hidden p-5 p-md-7" data-bs-theme="dark">
         <b-row class="position-relative">
           <b-col lg="5" class="order-1">
-            <h3 class="text-primary">Let’s Get to Work</h3>
-            <p>Drop us a message, and we'll get back to you within three business days.</p>
+            <p class="lk-eyebrow">Send an enquiry</p>
+            <h2 class="lk-display h2 mb-3 text-white">What to include</h2>
+            <p class="mb-4" style="color: var(--lk-ink-invert-muted)">
+              The more specific the message, the more useful the first reply. These are the details
+              that let us answer properly instead of asking four follow-up questions.
+            </p>
 
-            <dl class="mt-5 mb-0">
-              <div class="lk-fact">
-                <dt>Head office</dt>
-                <dd class="fw-semibold">{{ contact.address }}</dd>
-              </div>
-              <div class="lk-fact">
-                <dt>Phone</dt>
-                <dd>
-                  <a :href="contact.phoneHref" class="text-white text-decoration-none">{{ contact.phone }}</a>
-                </dd>
-              </div>
-              <div class="lk-fact">
-                <dt>Email</dt>
-                <dd>
-                  <a :href="contact.emailHref" class="text-white text-decoration-none">{{ contact.email }}</a>
-                </dd>
-              </div>
-              <div class="lk-fact">
-                <dt>Federal contract vehicle</dt>
-                <dd>GSA MAS 47QTCA21D004X</dd>
-              </div>
-            </dl>
+            <ul class="list-unstyled mb-0">
+              <li v-for="hint in hints" :key="hint" class="py-3 d-flex gap-3" style="border-top: 1px solid var(--lk-line-dark)">
+                <span aria-hidden="true" style="color: var(--lk-accent)">&#8212;</span>
+                <span style="color: var(--lk-ink-invert-muted)">{{ hint }}</span>
+              </li>
+            </ul>
 
             <div class="d-flex mt-5">
               <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center flex-column h-150px w-150px">
-                <h4 class="purecounter mb-0">
+                <p class="purecounter h4 mb-0" aria-hidden="true">
                   <Vue3Autocounter :startAmount="0" :endAmount="yearsExperience" :duration="3" />
-                </h4>
-                <p class="text-center heading-color mb-0">Years in <br />business</p>
+                </p>
+                <p class="text-center heading-color mb-0">
+                  <span class="visually-hidden">{{ yearsExperience }} </span>Years in <br />business
+                </p>
               </div>
             </div>
           </b-col>
@@ -134,7 +124,12 @@
 <script setup>
 import { reactive, ref, onMounted, computed } from 'vue'
 import Vue3Autocounter from 'vue3-autocounter'
-import { contact } from '@/content/company'
+const hints = [
+  'The system or process involved, and what it runs on today',
+  'What is actually constraining you — time, cost, risk or capability',
+  'Whether this is a contract vehicle, a solicitation or a direct engagement',
+  'Your timeline, and any fixed date you are working to'
+]
 
 const yearsExperience = computed(() => new Date().getFullYear() - 2016)
 

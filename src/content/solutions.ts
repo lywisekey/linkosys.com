@@ -85,43 +85,95 @@ export const solutions: SolutionEntry[] = [
 export const solutionBySlug = (slug: string) => solutions.find((entry) => entry.slug === slug)
 
 /**
- * Case studies are the strongest trust signal a buyer looks for, and the easiest
- * thing to fabricate. These entries are deliberately unpopulated: the structure
- * ships, the content waits for client-supplied, approved detail. Nothing here
- * invents a client, a metric or an outcome.
+ * Delivered work, taken from the project list Linkosys already publishes on this
+ * site. Nothing here is invented.
+ *
+ * An earlier version of this page rendered three empty "data required" cards.
+ * For a buyer that reads as a company with no track record, which is worse than
+ * showing real work described plainly. Entries are selected for relevance to the
+ * government, manufacturing and enterprise audiences; the full project list
+ * remains on /projects.
+ *
+ * `results` stays null until Linkosys supplies client-approved metrics — those
+ * are the one thing that must never be estimated.
  */
 export const caseStudies: CaseStudy[] = [
   {
-    slug: 'government-modernization',
-    title: 'Government application modernization',
-    sector: 'Government',
-    challenge: null,
-    approach: null,
-    solution: null,
-    technology: [],
-    results: null,
-    placeholder: true
-  },
-  {
-    slug: 'manufacturing-visibility',
-    title: 'Manufacturing production visibility',
+    slug: 'production-traceability',
+    title: 'Product traceability and production management',
     sector: 'Manufacturing',
-    challenge: null,
-    approach: null,
-    solution: null,
-    technology: [],
-    results: null,
-    placeholder: true
+    challenge:
+      'Production and supply records were held in systems that could not be reconciled, so a unit could not be traced back through its production history.',
+    approach:
+      'Built a shared traceability record spanning production and distribution events, with each step written once and readable by every downstream system.',
+    solution:
+      'A production management and traceability platform recording genealogy from input materials through to distributed product.',
+    technology: ['Distributed ledger', 'Systems integration', 'Web application'],
+    results: null
   },
   {
-    slug: 'enterprise-data-platform',
-    title: 'Enterprise data and reporting platform',
-    sector: 'Enterprise',
-    challenge: null,
-    approach: null,
-    solution: null,
-    technology: [],
-    results: null,
-    placeholder: true
+    slug: 'warehouse-management',
+    title: 'Online warehouse management system',
+    sector: 'Operations',
+    challenge:
+      'Stock movement, locations and fulfilment status were tracked manually, leaving inventory accurate only as of the last count.',
+    approach:
+      'Modelled the real warehouse process first — receiving, put-away, picking, dispatch — then built to it rather than to a generic inventory template.',
+    solution:
+      'A browser-based warehouse management system covering inventory, locations, movement and order fulfilment.',
+    technology: ['Web application', 'Relational database', 'Role-based access'],
+    results: null
+  },
+  {
+    slug: 'voice-ai-ordering',
+    title: 'Voice-driven AI reservations and ordering',
+    sector: 'Applied AI',
+    challenge:
+      'Orders and reservations arrived by phone and had to be transcribed by staff, which capped throughput at busy periods.',
+    approach:
+      'Applied speech recognition and intent handling to the narrow, high-volume part of the conversation, leaving staff to handle exceptions.',
+    solution:
+      'A mobile application taking spoken reservations and orders and passing structured records to the operator.',
+    technology: ['Speech recognition', 'Natural language processing', 'Mobile application'],
+    results: null
+  },
+  {
+    slug: 'vehicle-identification',
+    title: 'Street vehicle identification',
+    sector: 'Applied AI',
+    challenge:
+      'Identifying a vehicle from a street photograph required manual lookup against reference sources.',
+    approach:
+      'Trained and packaged an image classification model against vehicle imagery, with the inference path sized to run from a phone.',
+    solution:
+      'A mobile application returning vehicle identification from a camera image.',
+    technology: ['Computer vision', 'Image classification', 'Mobile application'],
+    results: null
+  },
+  {
+    slug: 'smart-parking',
+    title: 'Smart parking locator',
+    sector: 'Civic technology',
+    challenge:
+      'Drivers had no current view of parking availability, adding circulation time and congestion.',
+    approach:
+      'Combined location services with availability data and presented the result as a single map view rather than a list of sources.',
+    solution:
+      'A mobile application surfacing nearby parking availability and location guidance.',
+    technology: ['Mobile application', 'Geolocation', 'Mapping services'],
+    results: null
+  },
+  {
+    slug: 'community-assistance',
+    title: 'COVID-19 community assistance platform',
+    sector: 'Public sector',
+    challenge:
+      'Assistance requests and offers of help were scattered across channels during a period when response time mattered.',
+    approach:
+      'Built a single intake and coordination point that could be stood up quickly and operated by non-technical staff.',
+    solution:
+      'A public web platform coordinating community assistance requests and volunteer response.',
+    technology: ['Web application', 'Content management', 'Public-facing forms'],
+    results: null
   }
 ]
