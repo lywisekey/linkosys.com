@@ -33,19 +33,25 @@ What moved the numbers:
 
 ## Production, as deployed
 
-Measured against `https://linkosys.com/`, Lighthouse 12.8.2, single run.
+Measured against `https://linkosys.com/`, Lighthouse 12.8.2, mobile.
 
-| | Mobile | Desktop |
+| | Baseline redesign (`6a21868`) | After critical-path work |
 |---|---|---|
-| Performance | **74** | **96** |
-| FCP | 4.1 s | 1.1 s |
-| LCP | 4.4 s | 1.1 s |
-| TBT | 110 ms | 0 ms |
-| CLS | 0 | 0 |
-| Transferred | 398 KB | 400 KB |
+| Performance | 74 | **98** |
+| FCP | 4.1 s | **1.4 s** |
+| LCP | 4.4 s | **2.3 s** |
+| TBT | 110 ms | **0 ms** |
+| CLS | 0 | **0** |
 
-Production mobile (74) corroborates the local after-build measurement (77); the
-small gap is normal run-to-run variance plus real network latency.
+The after column is the consistent figure across three consecutive runs, and it
+matches the local measurement (98 / 2.29 s), so the local test server is a fair
+proxy for production.
+
+The *first* run after a deploy is not. It measured 87 / LCP 4.0 s / CLS 0.014
+against the same build that the next three runs put at 98 / 2.3 s / CLS 0: the
+Vercel edge cache was cold and TTFB carried 863 ms of it, with a 3,134 ms render
+delay behind it. Discard the first post-deploy run rather than reading it as a
+regression.
 
 ## Critical path work
 
@@ -85,6 +91,16 @@ Three changes, in the order they were found to matter:
 Deferring hydration is safe here specifically because every route is
 prerendered and every internal link is a real `<a href>`: a click before Vue
 boots is an ordinary navigation to another prerendered page.
+
+What it is *not* safe for is anything that styles itself from JavaScript.
+`@fortawesome/fontawesome-svg-core` injects its own stylesheet at runtime, so
+`.svg-inline--fa` existed in no stylesheet we build and therefore in no critical
+CSS. That was harmless while the bundle ran during the paint; once it moved to
+the `load` event, every prerendered icon spent the whole first paint with no
+width or height and stretched to fill its parent — the top banner rendered as a
+full-screen red block. The rule now lives in `_linkosys.scss`. When adding a
+library, check whether it styles itself from JS; if it does, the styles have to
+be in the stylesheet or the prerendered markup is unstyled until `load`.
 
 Bundle work done along the way: the mock auth backend was initialised in
 `App.vue`, pulling axios and axios-mock-adapter into the chunk every visitor
