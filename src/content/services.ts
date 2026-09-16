@@ -269,7 +269,7 @@ export const services: ServicePage[] = [
       label: 'Review Your Infrastructure',
       sub: 'Bring the current architecture and the constraint you are working against.'
     },
-    seoTitle: 'Cloud Consulting and Infrastructure Modernization | Linkosys',
+    seoTitle: 'Cloud and Infrastructure Consulting | Linkosys',
     seoDescription:
       'Cloud migration, infrastructure as code, DevOps and reliability engineering for government and enterprise workloads on AWS, Azure and Google Cloud.'
   },

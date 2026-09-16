@@ -13,7 +13,12 @@ const title = (value: string) => `${value} | ${SUFFIX}`
 const metaFor = (path: string) => {
   const entry = seoRouteByPath(path)
   if (!entry) throw new Error(`No SEO entry for route ${path} in seo-routes.ts`)
-  return { title: entry.title, description: entry.description, jsonLd: entry.jsonLd }
+  return {
+    title: entry.title,
+    description: entry.description,
+    jsonLd: entry.jsonLd,
+    ogImage: entry.ogImage
+  }
 }
 
 const coreRoutes: RouteRecordRaw[] = [
@@ -86,6 +91,7 @@ const serviceDetailRoute: RouteRecordRaw = {
     to.meta.title = entry.title
     to.meta.description = entry.description
     to.meta.jsonLd = entry.jsonLd
+    to.meta.ogImage = entry.ogImage
     return true
   }
 }
@@ -101,6 +107,7 @@ const industryDetailRoute: RouteRecordRaw = {
 
     to.meta.title = entry.title
     to.meta.description = entry.description
+    to.meta.ogImage = entry.ogImage
     return true
   }
 }

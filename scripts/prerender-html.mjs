@@ -42,6 +42,7 @@ function replaceMeta(html, pattern, replacement, label) {
 
 function renderRoute(template, route, siteUrl) {
   const canonical = `${siteUrl}${route.path === '/' ? '/' : route.path}`
+  const image = `${siteUrl}${route.ogImage ?? '/images/og-default.png'}`
   let html = template
 
   html = replaceMeta(html, /<title>[\s\S]*?<\/title>/, `<title>${escapeText(route.title)}</title>`, 'title')
@@ -80,6 +81,26 @@ function renderRoute(template, route, siteUrl) {
     /<meta name="robots" content="[^"]*">/,
     `<meta name="robots" content="${route.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}">`,
     'robots'
+  )
+
+  for (const [pattern, label] of [
+    [/<meta property="og:image" content="[^"]*">/, 'og:image'],
+    [/<meta property="og:image:secure_url" content="[^"]*">/, 'og:image:secure_url'],
+    [/<meta name="twitter:image" content="[^"]*">/, 'twitter:image']
+  ]) {
+    const tag = pattern.source.includes('twitter')
+      ? `<meta name="twitter:image" content="${escapeAttr(image)}">`
+      : pattern.source.includes('secure_url')
+        ? `<meta property="og:image:secure_url" content="${escapeAttr(image)}">`
+        : `<meta property="og:image" content="${escapeAttr(image)}">`
+    html = replaceMeta(html, pattern, tag, label)
+  }
+
+  html = replaceMeta(
+    html,
+    /<meta property="og:image:alt" content="[^"]*">/,
+    `<meta property="og:image:alt" content="${escapeAttr(`${route.title} — Linkosys`)}">`,
+    'og:image:alt'
   )
 
   html = replaceMeta(

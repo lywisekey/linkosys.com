@@ -192,7 +192,7 @@ export const industries: IndustryEntry[] = [
       { title: 'Analytics', description: 'Performance, utilization and exception reporting.' },
       { title: 'Mobile and field systems', description: 'Applications that work in poor connectivity.' }
     ],
-    seoTitle: 'Transportation and Logistics Technology Consulting | Linkosys',
+    seoTitle: 'Transportation & Logistics Technology | Linkosys',
     seoDescription:
       'Operational software, systems integration, mobile field applications and analytics for transportation, logistics and infrastructure organizations.'
   },
