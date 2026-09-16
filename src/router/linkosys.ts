@@ -1,107 +1,68 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { services } from '@/content/services'
-import { industries } from '@/content/industries'
-import { SITE_URL } from '@/helpers/seo'
+import { seoRouteByPath } from '@/content/seo-routes'
 
 const SUFFIX = 'Linkosys'
 
 const title = (value: string) => `${value} | ${SUFFIX}`
 
-/** Service offering markup helps search engines associate a page with a service. */
-const serviceLd = (name: string, description: string, path: string) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name,
-  description,
-  serviceType: name,
-  provider: { '@id': `${SITE_URL}/#organization` },
-  url: `${SITE_URL}${path}`
-})
+/**
+ * Route meta comes from src/content/seo-routes.ts, the same list the build uses
+ * to bake per-route head tags and to generate the sitemap. A missing entry is a
+ * programming error, so it throws rather than silently serving the default.
+ */
+const metaFor = (path: string) => {
+  const entry = seoRouteByPath(path)
+  if (!entry) throw new Error(`No SEO entry for route ${path} in seo-routes.ts`)
+  return { title: entry.title, description: entry.description, jsonLd: entry.jsonLd }
+}
 
 const coreRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'homepage',
-    meta: {
-      title: 'Linkosys | Technology Consulting and Engineering for Government and Enterprise',
-      description:
-        'Linkosys delivers software engineering, AI and data, cloud, cybersecurity, IT staffing and program management for U.S. government and enterprise organizations. GSA Schedule 47QTCA21D004X.'
-    },
+    meta: metaFor('/'),
     component: () => import('@/views/Linkosys/homepage.vue')
   },
   {
     path: '/services',
     name: 'services',
-    meta: {
-      title: title('Technology Services'),
-      description:
-        'Software development, AI and data, cloud and infrastructure, cybersecurity, IT staffing and program management services for government and enterprise organizations.'
-    },
+    meta: metaFor('/services'),
     component: () => import('@/views/Linkosys/ServicesIndex.vue')
   },
   {
     path: '/solutions',
     name: 'solutions',
-    meta: {
-      title: title('Solutions'),
-      description:
-        'Legacy modernization, process automation, connected data, digital products, manufacturing modernization and secure delivery — business outcomes Linkosys is brought in to deliver.'
-    },
+    meta: metaFor('/solutions'),
     component: () => import('@/views/Linkosys/SolutionsPage.vue')
   },
   {
     path: '/industries',
     name: 'industries',
-    meta: {
-      title: title('Industries'),
-      description:
-        'Linkosys works across government, manufacturing, healthcare, transportation, financial services and enterprise organizations.'
-    },
+    meta: metaFor('/industries'),
     component: () => import('@/views/Linkosys/IndustriesPage.vue')
   },
   {
     path: '/government',
     name: 'government',
-    meta: {
-      title: 'Government IT Services and Technology Consulting | Linkosys',
-      description:
-        'Software engineering, data, cloud, cybersecurity, IT staffing and program management for government agencies and prime contractors. GSA Multiple Award Schedule 47QTCA21D004X.',
-      jsonLd: serviceLd(
-        'Government IT Services',
-        'Technology consulting, software engineering, cybersecurity and staffing services for government organizations and government contractors.',
-        '/government'
-      )
-    },
+    meta: metaFor('/government'),
     component: () => import('@/views/Linkosys/GovernmentPage.vue')
   },
   {
     path: '/case-studies',
     name: 'case-studies',
-    meta: {
-      title: title('Case Studies'),
-      description:
-        'Structured case studies covering the challenge, approach, technology and results of Linkosys engagements.'
-    },
+    meta: metaFor('/case-studies'),
     component: () => import('@/views/Linkosys/CaseStudiesPage.vue')
   },
   {
     path: '/contact',
     name: 'contact',
-    meta: {
-      title: 'Contact Linkosys | Talk to an Expert',
-      description:
-        'Talk to a Linkosys expert about software engineering, data and AI, cloud, cybersecurity, technology staffing or a government requirement.'
-    },
+    meta: metaFor('/contact'),
     component: () => import('@/views/Linkosys/contact.vue')
   },
   {
     path: '/projects',
     name: 'projects',
-    meta: {
-      title: title('Our Work'),
-      description:
-        'Selected software, mobile, data and systems work delivered by the Linkosys engineering team across web applications, operations platforms and integrations.'
-    },
+    meta: metaFor('/projects'),
     component: () => import('@/views/Linkosys/projects.vue')
   },
   {
@@ -119,12 +80,12 @@ const serviceDetailRoute: RouteRecordRaw = {
   meta: { title: title('Services') },
   component: () => import('@/views/Linkosys/ServiceDetail.vue'),
   beforeEnter: (to) => {
-    const service = services.find((entry) => entry.slug === to.params.slug)
-    if (!service) return { name: 'not-found', params: { pathMatch: ['services', String(to.params.slug)] } }
+    const entry = seoRouteByPath(`/services/${to.params.slug}`)
+    if (!entry) return { name: 'not-found', params: { pathMatch: ['services', String(to.params.slug)] } }
 
-    to.meta.title = service.seoTitle
-    to.meta.description = service.seoDescription
-    to.meta.jsonLd = serviceLd(service.name, service.summary, `/services/${service.slug}`)
+    to.meta.title = entry.title
+    to.meta.description = entry.description
+    to.meta.jsonLd = entry.jsonLd
     return true
   }
 }
@@ -135,11 +96,11 @@ const industryDetailRoute: RouteRecordRaw = {
   meta: { title: title('Industries') },
   component: () => import('@/views/Linkosys/IndustryDetail.vue'),
   beforeEnter: (to) => {
-    const industry = industries.find((entry) => entry.slug === to.params.slug)
-    if (!industry) return { name: 'not-found', params: { pathMatch: ['industries', String(to.params.slug)] } }
+    const entry = seoRouteByPath(`/industries/${to.params.slug}`)
+    if (!entry) return { name: 'not-found', params: { pathMatch: ['industries', String(to.params.slug)] } }
 
-    to.meta.title = industry.seoTitle
-    to.meta.description = industry.seoDescription
+    to.meta.title = entry.title
+    to.meta.description = entry.description
     return true
   }
 }
@@ -163,40 +124,25 @@ const companyRoutes: RouteRecordRaw[] = [
   {
     path: '/company/aboutus',
     name: 'company.aboutus',
-    meta: {
-      title: 'About Linkosys | U.S. Technology Consulting Firm',
-      description:
-        'Linkosys Inc. is a California-incorporated technology consulting and engineering firm serving government and enterprise organizations across the United States.'
-    },
+    meta: metaFor('/company/aboutus'),
     component: () => import('@/views/Linkosys/aboutus.vue')
   },
   {
     path: '/company/team',
     name: 'company.team',
-    meta: {
-      title: title('Leadership and Team'),
-      description:
-        'The engineers, delivery leads and consultants who staff Linkosys engagements across government, manufacturing and enterprise clients.'
-    },
+    meta: metaFor('/company/team'),
     component: () => import('@/views/Linkosys/team.vue')
   },
   {
     path: '/company/partners',
     name: 'company.partners',
-    meta: {
-      title: title('Partners and Clients'),
-      description:
-        'Technology partners and client organizations Linkosys works with across government, manufacturing, legal, retail and commercial sectors.'
-    },
+    meta: metaFor('/company/partners'),
     component: () => import('@/views/Linkosys/partners.vue')
   },
   {
     path: '/company/blog',
     name: 'company.blog',
-    meta: {
-      title: title('Insights'),
-      description: 'Notes and perspective from the Linkosys engineering and delivery team.'
-    },
+    meta: metaFor('/company/blog'),
     component: () => import('@/views/Linkosys/blog.vue')
   }
 ]

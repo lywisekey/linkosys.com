@@ -1,7 +1,7 @@
 import type { RouteLocationNormalized } from 'vue-router'
+import { SITE_NAME, SITE_URL } from '@/content/seo-routes'
 
-export const SITE_URL = 'https://linkosys.com'
-export const SITE_NAME = 'Linkosys'
+export { SITE_NAME, SITE_URL }
 
 // Single source of truth for the company facts we are confident about. Anything
 // not verifiable from the company's own published documents is intentionally
