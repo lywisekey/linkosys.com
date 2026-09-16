@@ -121,7 +121,7 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref, onMounted, computed } from 'vue'
 import Vue3Autocounter from 'vue3-autocounter'
 const hints = [
@@ -167,7 +167,7 @@ const toast = reactive({
   type: 'success'
 })
 
-const showToast = (message, type = 'success') => {
+const showToast = (message: string, type: 'success' | 'danger' = 'success') => {
   toast.message = message
   toast.type = type
   toast.show = true

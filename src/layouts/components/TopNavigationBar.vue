@@ -19,13 +19,6 @@
         <AppMenu ulClass="mx-auto" showContactUs showDocs />
 
         <ul class="nav align-items-center dropdown-hover ms-sm-2">
-          <!-- <ThemeToggleDropdown /> 
-
-          <li class="nav-item me-2 d-none d-sm-block">
-            <router-link :to="{ name: 'auth.sign-in' }" class="btn btn-sm btn-light mb-0"
-              ><BIconPersonCircle class="me-1" />Sign in</router-link
-            >
-          </li-->
 
           <li class="nav-item">
             <router-link :to="{ name: 'contact' }" class="btn btn-sm btn-primary mb-0">
@@ -44,7 +37,6 @@
 
 <script lang="ts" setup>
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
-import { BIconPersonCircle } from 'bootstrap-icons-vue'
 import StickyHeader from '@/components/topbar/StickyHeader.vue'
 import LogoBox from '@/components/topbar/LogoBox.vue'
 import ThemeToggleDropdown from '@/components/topbar/ThemeToggleDropdown.vue'

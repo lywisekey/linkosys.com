@@ -166,7 +166,6 @@ import {
   BIconYoutube,
 } from 'bootstrap-icons-vue'
 
-import 'bs-stepper/dist/css/bs-stepper.min.css'
 import 'swiper/swiper-bundle.css'
 import 'glightbox/dist/css/glightbox.min.css'
 import 'aos/dist/aos.css'

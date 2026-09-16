@@ -1,6 +1,5 @@
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { linkosysRoutes } from '@/router/linkosys'
-import { useAuthStore } from '@/stores/auth'
 import { applySeo } from '@/helpers/seo'
 
 const router = createRouter({
@@ -15,16 +14,6 @@ const router = createRouter({
     if (to.hash) return { el: to.hash, top: 96, behavior: 'smooth' }
     return { top: 0 }
   }
-})
-
-router.beforeEach((routeTo, routeFrom, next) => {
-  const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
-  if (!authRequired) return next()
-
-  const useAuth = useAuthStore()
-  if (useAuth.isAuthenticated()) return next()
-
-  next({ name: 'auth.sign-in', query: { redirectedFrom: routeTo.fullPath } })
 })
 
 // Title, description, canonical, Open Graph and JSON-LD are applied after the

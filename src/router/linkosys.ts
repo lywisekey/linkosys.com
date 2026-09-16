@@ -154,29 +154,6 @@ const companyRoutes: RouteRecordRaw[] = [
   }
 ]
 
-// Retained so existing links keep working, but kept out of the index: there is no
-// customer portal behind them.
-const authRoutes: RouteRecordRaw[] = [
-  {
-    path: '/auth/sign-in',
-    name: 'auth.sign-in',
-    meta: { title: title('Sign In'), noindex: true },
-    component: () => import('@/views/pages/auth/SignIn/index.vue')
-  },
-  {
-    path: '/auth/sign-up',
-    name: 'auth.sign-up',
-    meta: { title: title('Sign Up'), noindex: true },
-    component: () => import('@/views/pages/auth/SignUp/index.vue')
-  },
-  {
-    path: '/auth/forgot-password',
-    name: 'auth.forgot-password',
-    meta: { title: title('Forgot Password'), noindex: true },
-    component: () => import('@/views/pages/auth/ForgotPassword/index.vue')
-  }
-]
-
 const notFoundRoute: RouteRecordRaw = {
   path: '/:pathMatch(.*)*',
   name: 'not-found',
@@ -194,6 +171,5 @@ export const linkosysRoutes: RouteRecordRaw[] = [
   serviceDetailRoute,
   industryDetailRoute,
   ...companyRoutes,
-  ...authRoutes,
   notFoundRoute
 ]

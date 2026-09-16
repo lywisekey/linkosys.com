@@ -53,11 +53,18 @@ Applied after the baseline above, targeting the render delay it identified.
 
 | Metric | Before | After | Change |
 |---|---|---|---|
-| **Performance** | 77 | **99** | +22 |
-| **LCP** | 4.2 s | **1.96 s** | −53% |
-| **FCP** | 3.9 s | **1.21 s** | −69% |
-| **Speed Index** | 3.9 s | **1.38 s** | −65% |
+| **Performance** | 77 | **98** | +21 |
+| **LCP** | 4.2 s | **2.29 s** | −45% |
+| **FCP** | 3.9 s | **1.81 s** | −54% |
+| **Speed Index** | 3.9 s | **1.81 s** | −54% |
 | **TBT** | 54 ms | **0 ms** | — |
+
+The after figures are the median of **eight** runs, not three. LCP is bimodal
+here — eight runs gave 1.97, 2.04, 2.26, 2.26, 2.33, 2.63, 2.63, 2.63 s — so a
+three-run sample can land anywhere from 2.0 s to 2.6 s and read as a much
+better or worse result than the build actually delivers. Three runs is enough
+for a coarse before/after; it is not enough once the numbers are close to a
+threshold.
 
 Three changes, in the order they were found to matter:
 
@@ -93,13 +100,13 @@ Thresholds are LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms.
 
 | | Mobile | Desktop |
 |---|---|---|
-| LCP | **1.96 s** — good | good |
+| LCP | **2.29 s** median — good | 0.67 s — good |
 | CLS | 0 — good | 0 — good |
 | TBT (INP proxy) | 0 ms — good | 0 ms — good |
 
-Both pass. Re-measure against production after deploying; the figures above are
-from the local gzipped server, which matched production to within a few points
-on the previous round.
+Both pass, but mobile LCP sits close to the 2.5 s line and individual runs do
+cross it. Treat a single run above 2.5 s as noise; treat the median moving above
+it as a regression.
 
 ## What was holding mobile back — resolved
 
