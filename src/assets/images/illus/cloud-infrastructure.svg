@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13.4 -63.0 539.9 353.0" width="520" height="340" fill="none" role="presentation">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-26.9 -63.0 539.9 353.0" width="520" height="340" fill="none" role="presentation">
   <style>
     .flow-cloud { stroke-dasharray: 5 7; animation: flow-cloud 3.4s linear infinite; }
     @keyframes flow-cloud { to { stroke-dashoffset: -24 } }
@@ -12,9 +12,24 @@
       .flow-cloud { stroke-dasharray: none; }
     }
   </style>
-<polygon points="239.2,78.0 422.8,184.0 273.9,270.0 90.3,164.0" fill="none" stroke="#e2e6ec" stroke-width="1" stroke-linejoin="round" stroke-dasharray="3 5"/>
 <path transform="matrix(0.8660,0.5000,-0.8660,0.5000,260.00,54.00)" d="M-86 12c-20 0-32-14-32-29 0-15 12-27 27-27 5-19 22-32 42-32 22 0 41 16 44 37 17 2 30 15 30 30 0 13-11 21-25 21z" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/>
 <text x="268.7" y="23.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">CLOUD</text>
+<path d="M239.2 78.0L422.8 184.0" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M214.4 92.3L398.0 198.3" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path class="flow-cloud" d="M189.6 106.7L373.2 212.7" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M164.7 121.0L348.3 227.0" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path class="flow-cloud" d="M139.9 135.3L323.5 241.3" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M115.1 149.7L298.7 255.7" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M90.3 164.0L273.9 270.0" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M239.2 78.0L90.3 164.0" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M262.2 91.2L113.2 177.2" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M285.1 104.5L136.2 190.5" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M308.1 117.8L159.1 203.8" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M331.0 131.0L182.1 217.0" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M354.0 144.2L205.0 230.2" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M376.9 157.5L228.0 243.5" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M399.9 170.8L250.9 256.8" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M422.8 184.0L273.9 270.0" stroke="#2563eb" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
 <g><polygon points="199.4,107.0 237.5,129.0 237.5,155.0 199.4,133.0" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="275.6,107.0 237.5,129.0 237.5,155.0 275.6,133.0" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="237.5,85.0 275.6,107.0 237.5,129.0 199.4,107.0" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
 <g><polygon points="270.4,142.0 308.5,164.0 308.5,196.0 270.4,174.0" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="346.6,142.0 308.5,164.0 308.5,196.0 346.6,174.0" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="308.5,120.0 346.6,142.0 308.5,164.0 270.4,142.0" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
 <g><polygon points="128.4,148.0 166.5,170.0 166.5,196.0 128.4,174.0" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="204.6,148.0 166.5,170.0 166.5,196.0 204.6,174.0" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="166.5,126.0 204.6,148.0 166.5,170.0 128.4,148.0" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
@@ -24,8 +39,7 @@
 <path d="M237.5 123.0L237.5 181.0" stroke="#e2e6ec" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 5"/>
 <g class="rise-cloud"><polygon points="199.4,183.0 237.5,205.0 237.5,237.0 199.4,215.0" fill="#fbdad7" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/><polygon points="275.6,183.0 237.5,205.0 237.5,237.0 275.6,215.0" fill="#f7c9c5" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/><polygon points="237.5,161.0 275.6,183.0 237.5,205.0 199.4,183.0" fill="#fdeceb" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/></g>
 <g><path d="M319.7 186.0V216.0A26.9 15.6 0 0 0 373.5 216.0V186.0Z" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15"/><ellipse cx="346.6" cy="186.0" rx="26.9" ry="15.6" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15"/></g>
-<path class="flow-cloud" d="M104.1 170.0L322.4 224.0" stroke="#2563eb" stroke-width="1.2" stroke-linecap="round"/>
-<text x="185.5" y="119.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="end" letter-spacing="0.8">COMPUTE</text>
+<text x="183.8" y="108.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="end" letter-spacing="0.8">COMPUTE</text>
 <text x="346.6" y="168.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">DB</text>
-<text x="192.5" y="221.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">NETWORK</text>
+<text x="90.3" y="182.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="start" letter-spacing="0.8">NETWORK</text>
 </svg>

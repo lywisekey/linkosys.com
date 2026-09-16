@@ -261,7 +261,6 @@ def data():
 def cloud():
     """A cloud platform: compute replicas, storage and networking beneath it."""
     s = Scene()
-    s.back(ground(-104, -80, 212, 172))
 
     cloud_d = ('M-86 12c-20 0-32-14-32-29 0-15 12-27 27-27 5-19 22-32 42-32 '
                '22 0 41 16 44 37 17 2 30 15 30 30 0 13-11 21-25 21z')
@@ -274,12 +273,31 @@ def cloud():
         s.add(line(iso(x + 22, y + 22, 92), iso(x + 22, y + 22, 34), STROKE_SOFT, 1, dash='3 5'), -1)
         s.add(block(x, y, 0, 44, 44, 26 + (i % 2) * 6, coral=newest,
                     cls=('rise-cloud' if newest else '')), x + y)
-    s.front(label(-72, 14, 26, 'COMPUTE', 11, INK, anchor='end', dy=4))
+    s.front(label(-78, 10, 30, 'COMPUTE', 11, INK, anchor='end', dy=2))
 
     s.add(cylinder(96, -4, 0, 22, 30), 96 - 4)
     s.front(label(96, -4, 40, 'DB', 11, INK, dy=-8))
-    s.add(line(iso(-84, 96, 6), iso(96, 24, 6), BLUE, 1.2, cls='flow-cloud'), 1e5)
-    s.front(label(-4, 74, 6, 'NETWORK', 11, INK, dy=22))
+    # The network is the fabric every node sits on, so it is drawn as a mesh
+    # filling the ground plane rather than as a line laid across the scene. A
+    # single stroke read as a stray diagonal: to stay visible it had to be
+    # painted over the solids, and anything crossing the picture on top of
+    # everything else looks like a scratch, not a connection. A mesh works the
+    # other way round — it sits behind the solids, and the racks occluding part
+    # of it is exactly what makes them look like they stand on it. It also
+    # survives that occlusion, because enough of a grid shows in the open areas
+    # to still read as a grid.
+    gx0, gy0, gw, gd = -104, -80, 212, 172
+    cols, rows = 8, 6
+    for i in range(rows + 1):
+        gy = gy0 + gd * i / rows
+        flow = 'flow-cloud' if i in (2, 4) else ''
+        s.back(line(iso(gx0, gy, 0), iso(gx0 + gw, gy, 0), BLUE, 0.9, cls=flow,
+                    extra=' opacity="0.3"'))
+    for i in range(cols + 1):
+        gx = gx0 + gw * i / cols
+        s.back(line(iso(gx, gy0, 0), iso(gx, gy0 + gd, 0), BLUE, 0.9,
+                    extra=' opacity="0.3"'))
+    s.front(label(gx0, gy0 + gd, 0, 'NETWORK', 11, INK, anchor='start', dy=18))
     return wrap(s.render(), 'cloud')
 
 
