@@ -424,7 +424,7 @@
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: var(--lk-radius);
+  border-radius: 50%;
   background: #eef2f6;
 
   img {
@@ -524,7 +524,7 @@ nav[aria-label='Breadcrumb'] a {
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: var(--lk-radius);
+  border-radius: 50%;
   background: var(--lk-navy-700);
   filter: hue-rotate(var(--lk-monogram-shift, 0deg));
   transition: background 0.25s ease;
@@ -545,11 +545,9 @@ nav[aria-label='Breadcrumb'] a {
   &::after {
     content: '';
     position: absolute;
-    top: 0.625rem;
-    left: 0.625rem;
-    width: 1rem;
-    height: 2px;
-    background: var(--lk-accent-on-dark);
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(240, 90, 73, 0.45);
   }
 
   &:hover {
@@ -561,7 +559,8 @@ nav[aria-label='Breadcrumb'] a {
 // bios down the page. A fixed tile keeps the grid tidy and puts the words first.
 .lk-monogram,
 .lk-portrait {
-  width: 96px;
+  // Source headshots are 250x250, so 120px stays crisp on a 2x display.
+  width: 120px;
   aspect-ratio: 1;
 }
 
@@ -575,15 +574,7 @@ nav[aria-label='Breadcrumb'] a {
   font-variant-numeric: tabular-nums;
 }
 
-.lk-monogram-rule {
-  position: absolute;
-  bottom: 0.75rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1.5rem;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.24);
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   .lk-monogram {

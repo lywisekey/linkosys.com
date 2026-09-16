@@ -76,14 +76,16 @@ Stixis, Letcore, Tran Creative, FAT, ITMS and Cyber Eye.
   They are no longer rendered anywhere on the site. Supply real photographs, or
   approve publishing the quotes with name, role and company and no portrait.
 
-### Team photographs — action required
+### Team photographs — replacement recommended
 
-The previous headshots were head cut-outs composited onto unrelated stock
-backgrounds (city skylines, neon network art, a world map). They have been removed
-and replaced with monogram tiles built from the site's own design language.
+The company's own photographs are in use, as published on linkosys.com. Several
+are head cut-outs placed over stock imagery — a city skyline, neon network art, a
+world map. They render through a uniform circular crop in greyscale, which holds
+the grid together at 120px and keeps the backgrounds from competing, but the
+composites are still what a buyer is looking at.
 
-**A monogram is a placeholder, not a decision.** Supply plain headshots on a
-neutral background and set `photo` on the relevant entry in
+Plain headshots on a neutral background remain the highest-value image change on
+the site. To swap them in, replace the file or point `photo` at a new import in
 `src/views/Linkosys/data/team-data.ts`:
 
 ```ts
@@ -92,8 +94,9 @@ import triNghiem from '@/assets/images/team/tri-nghiem.jpg'
 { username: 'Tri Nghiem', role: 'President & CEO', experience: '…', photo: triNghiem }
 ```
 
-`TeamAvatar` renders the photograph instead of the monogram automatically, per
-person — a partial set is fine.
+`photo` is optional per person. Anyone without one falls back to a monogram tile
+built from the same design language, so a partial set of new headshots can be
+dropped in as it arrives rather than waiting for all ten.
 
 AI-generated portraits are not an option here. A generated face published under a
 real employee's name misrepresents who the buyer would be working with, and it
