@@ -1,10 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { linkosysRoutes } from '@/router/linkosys'
 import { useAuthStore } from '@/stores/auth'
 import { applySeo } from '@/helpers/seo'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // Prerendering runs this module in Node, where there is no browser history.
+  history: import.meta.env.SSR
+    ? createMemoryHistory(import.meta.env.BASE_URL)
+    : createWebHistory(import.meta.env.BASE_URL),
   routes: [...linkosysRoutes],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition

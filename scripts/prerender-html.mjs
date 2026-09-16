@@ -1,5 +1,5 @@
 /**
- * Bakes per-route head tags into static HTML files after the Vite build.
+ * Prerenders every route to static HTML after the Vite build.
  *
  * The app is a client-rendered SPA, so every URL was served the same index.html.
  * That meant every page carried `canonical: https://linkosys.com/` — telling
@@ -7,16 +7,23 @@
  * Slack, LinkedIn and Teams, which do not run JavaScript, showed the homepage
  * title for every shared URL.
  *
- * This writes dist/<route>/index.html with the correct title, description,
- * canonical, Open Graph, Twitter and JSON-LD. Vercel checks the filesystem
- * before applying the SPA rewrite in vercel.json, so these files win for exact
- * paths and the rewrite still handles everything else. The app hydrates as
- * normal and applySeo() keeps the tags right on client-side navigation.
+ * This writes dist/<route>/index.html with the page's real markup rendered by
+ * vue/server-renderer, plus the correct title, description, canonical, Open
+ * Graph, Twitter and JSON-LD. Crawlers and link unfurlers now receive the
+ * content itself rather than an empty <div id="app">, and the first paint no
+ * longer waits on the JavaScript bundle.
+ *
+ * Vercel checks the filesystem before applying the SPA rewrite in vercel.json,
+ * so these files win for exact paths and the rewrite still handles everything
+ * else. The app hydrates over the markup and applySeo() keeps the head right on
+ * client-side navigation.
  *
  * Runs automatically from `npm run build`.
  */
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { loadSeoRoutes } from './load-seo-routes.mjs'
 
 const escapeAttr = (value) =>
@@ -103,17 +110,39 @@ function renderRoute(template, route, siteUrl) {
 
 const { routes: seoRoutes, siteUrl: SITE_URL, root } = await loadSeoRoutes()
 const dist = join(root, 'dist')
+const ssrDir = join(root, 'node_modules/.cache/ssr')
+
+// A separate SSR bundle of the same app, built here so `npm run build` stays a
+// single command.
+execFileSync(
+  'npx',
+  ['vite', 'build', '--ssr', 'src/entry-server.ts', '--outDir', ssrDir, '--logLevel', 'error'],
+  { cwd: root, stdio: 'inherit' }
+)
+
+const { render } = await import(pathToFileURL(join(ssrDir, 'entry-server.js')).href)
 
 const template = readFileSync(join(dist, 'index.html'), 'utf8')
+
+if (!template.includes('<div id="app"></div>')) {
+  throw new Error('prerender: could not find the app mount point in dist/index.html')
+}
+
 let written = 0
 
 for (const route of seoRoutes) {
-  const html = renderRoute(template, route, SITE_URL)
+  const body = await render(route.path)
+  const html = renderRoute(template, route, SITE_URL).replace(
+    '<div id="app"></div>',
+    `<div id="app">${body}</div>`
+  )
   const outDir = route.path === '/' ? dist : join(dist, route.path)
   mkdirSync(outDir, { recursive: true })
   writeFileSync(join(outDir, 'index.html'), html)
   written += 1
 }
+
+rmSync(ssrDir, { recursive: true, force: true })
 
 // Anything not matching a known route falls through to the SPA rewrite. Pointing
 // that at index.html made every unknown URL claim `canonical: /` and advertise
@@ -127,4 +156,4 @@ const fallback = template
 
 writeFileSync(join(dist, 'spa-fallback.html'), fallback)
 
-console.log(`prerendered head tags: ${written} routes + SPA fallback`)
+console.log(`prerendered: ${written} routes + SPA fallback`)

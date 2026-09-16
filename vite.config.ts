@@ -29,6 +29,13 @@ export default defineConfig({
         },
      },
   },
+  ssr: {
+    // Bundle dependencies into the prerender build instead of leaving them as
+    // Node imports: several ship directory imports or CJS entry points that
+    // Node's ESM resolver rejects (oh-vue-icons is one). Build-time only, so
+    // the client bundle is unaffected.
+    noExternal: true
+  },
   server: {
     proxy: {
       '/send-submit.php': {

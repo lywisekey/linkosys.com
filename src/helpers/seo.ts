@@ -85,6 +85,11 @@ function breadcrumbLd(route: RouteLocationNormalized, title: string) {
  * instead of the single static title the site shipped with.
  */
 export function applySeo(route: RouteLocationNormalized) {
+  // During prerendering the head is written by scripts/prerender-html.mjs from
+  // the same seo-routes list, so there is nothing to do and no document to do
+  // it to.
+  if (typeof document === 'undefined') return
+
   const meta = route.meta as {
     title?: string
     description?: string

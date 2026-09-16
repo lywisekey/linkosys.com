@@ -7,20 +7,18 @@ import { changeHTMLAttribute } from '@/helpers/layout'
 export const useLayoutStore = defineStore('layout_store', () => {
   const theme = useLocalStorage<LayoutState['theme']>('Mizzle_VUE_THEME', 'light')
 
+  const prefersDark = () =>
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+
   if (theme.value === 'auto') {
-    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-    changeHTMLAttribute('data-bs-theme', preferredTheme)
+    changeHTMLAttribute('data-bs-theme', prefersDark() ? 'dark' : 'light')
   }
 
   const setTheme = (nTheme: LayoutState['theme']) => {
     if (nTheme === 'auto') {
-      const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
       theme.value = 'auto'
-      changeHTMLAttribute('data-bs-theme', preferredTheme)
+      changeHTMLAttribute('data-bs-theme', prefersDark() ? 'dark' : 'light')
       return
     }
     theme.value = nTheme
