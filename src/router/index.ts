@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { allRoutes } from '@/router/router'
 import { linkosysRoutes } from '@/router/linkosys'
 import { useAuthStore } from '@/stores/auth'
 

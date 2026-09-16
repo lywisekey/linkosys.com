@@ -158,7 +158,7 @@ const handleSubmit = async () => {
       captcha_expected: captcha.a + captcha.b
     }
 
-    const response = await fetch('https://api.linkosys.com/send-submit.php', {
+    const response = await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postData)

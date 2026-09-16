@@ -7,54 +7,29 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Runtime
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage
-coverage
-*.lcov
-.nyc_output
-
-# Dependencies
-node_modules/
-jspm_packages/
-web_modules/
-
-# Build output
+node_modules
+/vendor
+.DS_Store
 dist
 dist-ssr
-.out
-.nuxt
-.next
-
-# Cache
-.cache
-.parcel-cache
-.eslintcache
-.stylelintcache
-*.tsbuildinfo
-
-# Env
-.env
-.env.*
-!.env.example
+coverage
 *.local
 
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+/cypress/videos/
+/cypress/screenshots/
 
-# Cypress
-cypress/videos/
-cypress/screenshots/
-
-# OS
-.DS_Store
-
-# Editor
-.idea
+# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
+
+# Lockfile khac (Vercel chi dung package-lock.json)
+yarn.lock
+bun.lockb
