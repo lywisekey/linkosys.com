@@ -1,0 +1,362 @@
+// ===========================================================================
+// Linkosys design system
+// ---------------------------------------------------------------------------
+// Enterprise/government visual language layered on top of the Bootstrap theme.
+// Brand red (#EA3324, taken from the logo) stays the action colour; deep navy
+// carries structure and authority so the site reads as engineering, not agency.
+// ===========================================================================
+
+:root {
+  // Surfaces
+  --lk-navy-900: #060f1a;
+  --lk-navy-800: #0a1928;
+  --lk-navy-700: #102437;
+  --lk-navy-600: #17334b;
+  --lk-steel-500: #244b6b;
+
+  // Ink
+  --lk-ink: #0d1926;
+  --lk-ink-muted: #56677c;
+  --lk-ink-invert: #ffffff;
+  --lk-ink-invert-muted: #a9bdd1;
+
+  // Lines + accents
+  --lk-line: #dfe5ec;
+  --lk-line-dark: rgba(255, 255, 255, 0.14);
+  --lk-accent: #ea3324;
+  // Brand red measures 4.20:1 on white — fine for fills and large type, short of
+  // WCAG AA (4.5:1) for small text. This darker tone measures 5.68:1 and is used
+  // wherever the accent carries actual words.
+  --lk-accent-text: #c42a1c;
+  --lk-accent-soft: rgba(234, 51, 36, 0.12);
+
+  // Rhythm — one spacing scale everywhere
+  --lk-section-y: 6rem;
+  --lk-gutter: 1rem;
+  --lk-radius: 4px;
+}
+
+@media (max-width: 767.98px) {
+  :root {
+    --lk-section-y: 3.5rem;
+  }
+}
+
+// --- Typography -------------------------------------------------------------
+// Tighter tracking + heavier weights read as engineered rather than decorative.
+
+.lk-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lk-accent-text);
+  margin-bottom: 1rem;
+
+  &::before {
+    content: '';
+    width: 1.75rem;
+    height: 2px;
+    background: var(--lk-accent);
+  }
+}
+
+.lk-display {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.lk-lead {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--lk-ink-muted);
+  max-width: 60ch;
+}
+
+.lk-section {
+  padding-block: var(--lk-section-y);
+}
+
+.lk-section-tight {
+  padding-block: calc(var(--lk-section-y) * 0.6);
+}
+
+// --- Dark surfaces ----------------------------------------------------------
+
+.lk-dark {
+  background: var(--lk-navy-800);
+  color: var(--lk-ink-invert);
+
+  .lk-eyebrow {
+    color: var(--lk-accent);
+  }
+
+  .lk-lead,
+  p {
+    color: var(--lk-ink-invert-muted);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--lk-ink-invert);
+  }
+}
+
+.lk-darkest {
+  background: var(--lk-navy-900);
+  color: var(--lk-ink-invert);
+}
+
+// Precision grid overlay — evokes schematics without stock imagery.
+.lk-grid-bg {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--lk-line-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--lk-line-dark) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    opacity: 0.5;
+  }
+}
+
+// --- Cards ------------------------------------------------------------------
+
+.lk-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid var(--lk-line);
+  border-radius: var(--lk-radius);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  // Hairline that fills on hover — restraint instead of shadow stacking.
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: -1px;
+    top: -1px;
+    height: 3px;
+    background: var(--lk-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover,
+  &:focus-within {
+    border-color: #c6d0dc;
+    transform: translateY(-2px);
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  h3 {
+    font-size: 1.1875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: var(--lk-ink-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+.lk-card-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--lk-radius);
+  background: var(--lk-accent-soft);
+  color: var(--lk-accent);
+  font-size: 1.25rem;
+}
+
+.lk-dark .lk-card {
+  background: var(--lk-navy-700);
+  border-color: var(--lk-line-dark);
+
+  p {
+    color: var(--lk-ink-invert-muted);
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+}
+
+// --- Credential / fact rows -------------------------------------------------
+
+.lk-fact {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--lk-line);
+
+  dt {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lk-ink-muted);
+    margin-bottom: 0.35rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.lk-dark .lk-fact {
+  border-top-color: var(--lk-line-dark);
+
+  dt {
+    color: var(--lk-ink-invert-muted);
+  }
+}
+
+// Marks content that still needs client confirmation. Deliberately visible in
+// review builds so unverified copy cannot quietly ship as fact.
+.lk-verify {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border: 1px dashed currentColor;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  vertical-align: middle;
+}
+
+// --- Accessibility ----------------------------------------------------------
+
+.lk-skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: var(--lk-accent);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--lk-radius);
+  transition: top 0.15s ease;
+
+  &:focus {
+    top: 0.5rem;
+    color: #fff;
+  }
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--lk-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.lk-dark :where(a, button):focus-visible {
+  outline-color: #fff;
+}
+
+// --- Motion -----------------------------------------------------------------
+
+.lk-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lk-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .lk-card:hover {
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// --- Buttons on dark surfaces ------------------------------------------------
+// The theme's outline-light button resolved to grey-on-navy (2.88:1), well under
+// the 4.5:1 AA threshold. Forced to white, which measures 17.8:1.
+
+.lk-dark,
+.lk-darkest {
+  .btn-outline-light {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.55);
+    background-color: transparent;
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+      background-color: #fff;
+      border-color: #fff;
+      color: var(--lk-navy-900);
+    }
+  }
+}
+
+// Accent-coloured link text on light surfaces.
+.lk-link-accent {
+  color: var(--lk-accent-text);
+  font-weight: 600;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--lk-accent);
+  }
+}
+
+// --- Small-viewport gutters --------------------------------------------------
+// Bootstrap's g-5 applies a -1.5rem horizontal row margin while the container
+// only pads 0.75rem, so those rows spill past the viewport on phones (measured
+// 5px of horizontal page scroll at 320px and 375px). Cap the horizontal gutter
+// below the sm breakpoint; vertical spacing (--bs-gutter-y) is left alone.
+@media (max-width: 575.98px) {
+  .row.g-5,
+  .row.gx-5 {
+    --bs-gutter-x: 1.5rem;
+  }
+
+  .row.g-4,
+  .row.gx-4 {
+    --bs-gutter-x: 1.25rem;
+  }
+}

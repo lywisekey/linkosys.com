@@ -74,38 +74,38 @@ export const services: ServiceType[] = [
     title: 'Custom Software Development',
     description: 'Tailored solutions for your unique business challenges.',
     image: serviceImg7,
-    route: { name: 'services.custom' }
+    route: { name: 'services.detail', params: { slug: 'software-development' } }
   },
   {
     title: 'Data and Analytics',
     description: 'We assist organizations in developing and implementing robust enterprise data management strategies.',
     image: serviceImg8,
-    route: { name: 'services.data' }
+    route: { name: 'services.detail', params: { slug: 'ai-and-data' } }
   },
   
   {
     title: 'Mobile Application Development',
     description: 'Cross-platform apps to engage your customers anywhere.',
     image: serviceImg1,
-    route: { name: 'services.mobile' }
+    route: { name: 'services.detail', params: { slug: 'software-development' } }
   },
   {
     title: 'Web Development & Design',
     description: 'Modern, responsive, and high-converting websites.',
     image: serviceImg2,
-    route: { name: 'services.webapp' }
+    route: { name: 'services.detail', params: { slug: 'software-development' } }
   },
   {
     title: 'Artificial Intelligence',
     description: 'Unlock insights and drive smarter decisions.',
     image: serviceImg3,
-    route: { name: 'services.ai' }
+    route: { name: 'services.detail', params: { slug: 'ai-and-data' } }
   },
   {
     title: 'Blockchain Development',
     description: 'Build secure, decentralized solutions that transform processes and drive innovation.',
     image: serviceImg4,
-    route: { name: 'services.blockchain' }
+    route: { name: 'services.detail', params: { slug: 'software-development' } }
   }
 ]
 

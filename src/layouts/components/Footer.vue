@@ -12,11 +12,8 @@
             <b-col lg="12">
               <ul class="nav flex-column">
                 <li class="nav-item" v-for="(item, idx) in footerServices3" :key="idx">
-                  <router-link class="nav-link" :class="!idx && 'pt-0'" :to="{ name: item.link }"
-                    >{{ item.name }}
-                    <span v-if="item.badge" class="badge text-bg-danger ms-2">{{
-                      item.badge
-                    }}</span></router-link
+                  <router-link class="nav-link" :class="!idx && 'pt-0'" :to="item.to"
+                    >{{ item.name }}</router-link
                   >
                 </li>
               </ul>
@@ -29,10 +26,9 @@
           <h6 class="mb-2 mb-md-4">Quick links</h6>
           <ul class="nav flex-column">
             <li class="nav-item" v-for="(item, idx) in quickLinks" :key="idx">
-              <router-link class="nav-link" :class="!idx && 'pt-0'" :to="{ name: item.link }"
-                >{{ item.name }}
-                <component :is="item.icon" class="small ms-1" />
-              </router-link>
+              <router-link class="nav-link" :class="!idx && 'pt-0'" :to="item.to"
+                >{{ item.name }}</router-link
+              >
             </li>
           </ul>
         </b-col>
@@ -51,7 +47,7 @@
               <h6 class="mb-2">
                 <router-link
                   class="stretched-link p-0"
-                  :to="{ name: item.link }"
+                  :to="item.to"
                 >
                   {{ item.title }}
                 </router-link>

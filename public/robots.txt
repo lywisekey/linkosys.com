@@ -1,0 +1,9 @@
+# https://linkosys.com
+User-agent: *
+Allow: /
+
+# No customer portal sits behind these; keep them out of the index.
+Disallow: /auth/
+Disallow: /commingsoon
+
+Sitemap: https://linkosys.com/sitemap.xml

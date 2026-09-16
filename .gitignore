@@ -37,3 +37,4 @@ bun.lockb
 # PHPMailer cu (da thay bang api/send-email.ts dung Resend)
 composer.json
 composer.lock
+.gstack/

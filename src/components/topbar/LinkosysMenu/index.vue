@@ -1,25 +1,16 @@
 <template>
   <b-collapse id="topbar-appmenu-collapse" class="navbar-collapse">
     <ul class="navbar-nav navbar-nav-scroll dropdown-hover" :class="ulClass">
-      <ServicesMenuDropdown :menuItems="menuItems[0].children!" />
-      <!-- <TechstackMenuDropdown :menu-items="menuItems[1].children!" /> -->
-      <li v-if="showDocs" class="nav-item">
-        <router-link
-          class="nav-link"
-          :to="{ name: 'projects' }"
-        >
-          Projects
+      <NavDropdown v-for="section in navSections" :key="section.label" :section="section" />
+
+      <li v-for="link in primaryLinks" :key="link.label" class="nav-item">
+        <router-link class="nav-link" :to="link.to" active-class="active">
+          {{ link.label }}
         </router-link>
       </li>
-      <ResourcesMenuDropdown v-if="showResources" />
-      <CompanyMenuDropdown :menu-items="menuItems[2].children!" />
-      <MegaMenu v-if="showMegaMenu" />
-      
-      <li v-if="showDocs" class="nav-item">
-        <router-link
-          class="nav-link"
-          :to="{ name: 'contact' }"
-        >
+
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'contact' }" active-class="active">
           Contact
         </router-link>
       </li>
@@ -28,21 +19,8 @@
 </template>
 
 <script lang="ts" setup>
-import { getAppMenuItems, type MenuItemType } from '@/helpers/linkosys-menu'
-import ServicesMenuDropdown from './ServicesMenuDropdown.vue'
-import TechstackMenuDropdown from './TechstackMenuDropdown.vue'
-import MegaMenu from './MegaMenu.vue'
-import CompanyMenuDropdown from './CompanyMenuDropdown.vue'
-import ResourcesMenuDropdown from './ResourcesMenu.vue'
+import NavDropdown from './NavDropdown.vue'
+import { navSections, primaryLinks } from './menu'
 
-type AppMenuProps = {
-  showMegaMenu?: boolean
-  showResources?: boolean
-  showContactUs?: boolean
-  showDocs?: boolean
-  ulClass?: string
-}
-const menuItems: MenuItemType[] = getAppMenuItems()
-
-defineProps<AppMenuProps>()
+defineProps<{ ulClass?: string }>()
 </script>

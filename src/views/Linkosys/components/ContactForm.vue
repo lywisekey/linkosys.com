@@ -7,19 +7,30 @@
             <h3 class="text-primary">Let’s Get to Work</h3>
             <p>Drop us a message, and we'll get back to you within three business days.</p>
 
-            <div
-              class="mt-5 border border-white border-opacity-50 rounded-circle d-flex align-items-center justify-content-center flex-column h-200px w-200px"
-            >
-              <div class="d-flex">
-                <h4 class="purecounter text-white mb-0">
-                  <Vue3Autocounter ref="counter" :startAmount="0" :endAmount="100" :duration="3" />
-                </h4>
-                <span class="h4 text-primary mb-0">+</span>
+            <dl class="mt-5 mb-0">
+              <div class="lk-fact">
+                <dt>Head office</dt>
+                <dd class="fw-semibold">{{ contact.address }}</dd>
               </div>
-              <p class="text-center text-white mb-0">Projects done</p>
-            </div>
+              <div class="lk-fact">
+                <dt>Phone</dt>
+                <dd>
+                  <a :href="contact.phoneHref" class="text-white text-decoration-none">{{ contact.phone }}</a>
+                </dd>
+              </div>
+              <div class="lk-fact">
+                <dt>Email</dt>
+                <dd>
+                  <a :href="contact.emailHref" class="text-white text-decoration-none">{{ contact.email }}</a>
+                </dd>
+              </div>
+              <div class="lk-fact">
+                <dt>Federal contract vehicle</dt>
+                <dd>GSA MAS 47QTCA21D004X</dd>
+              </div>
+            </dl>
 
-            <div class="d-flex justify-content-end mt-n6 mt-lg-0 mt-xl-n7 me-n3">
+            <div class="d-flex mt-5">
               <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center flex-column h-150px w-150px">
                 <h4 class="purecounter mb-0">
                   <Vue3Autocounter :startAmount="0" :endAmount="yearsExperience" :duration="3" />
@@ -38,26 +49,37 @@
               </b-col>
 
               <b-col md="6">
-                <b-form-group label="Email address *" label-class="heading-color">
-                  <b-form-input v-model="form.email" type="email" size="lg" placeholder="name@example.com" required />
+                <b-form-group label="Work email *" label-class="heading-color">
+                  <b-form-input v-model="form.email" type="email" size="lg" autocomplete="email" placeholder="name@company.com" required />
                 </b-form-group>
               </b-col>
 
               <b-col md="6">
-                <b-form-group label="Phone number *" label-class="heading-color">
-                  <b-form-input v-model="form.phone" size="lg" placeholder="+x xxx xxx xxxx" required />
+                <b-form-group label="Phone number" label-class="heading-color">
+                  <b-form-input v-model="form.phone" type="tel" size="lg" autocomplete="tel" placeholder="Optional" />
                 </b-form-group>
               </b-col>
 
               <b-col md="6">
-                <b-form-group label="Company *" label-class="heading-color">
-                  <b-form-input v-model="form.company" size="lg" placeholder="Company name" required />
+                <b-form-group label="Company / agency *" label-class="heading-color">
+                  <b-form-input v-model="form.company" size="lg" autocomplete="organization" placeholder="Organization name" required />
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
-                <b-form-group label="Tell us about your project *" label-class="heading-color">
-                  <b-form-textarea v-model="form.message" style="height: 150px" required />
+                <b-form-group label="Area of interest *" label-class="heading-color">
+                  <b-form-select v-model="form.interest" size="lg" :options="interestOptions" required />
+                </b-form-group>
+              </b-col>
+
+              <b-col cols="12">
+                <b-form-group label="Project or requirement *" label-class="heading-color">
+                  <b-form-textarea
+                    v-model="form.message"
+                    style="height: 150px"
+                    placeholder="What are you trying to achieve, and what is in the way?"
+                    required
+                  />
                 </b-form-group>
               </b-col>
 
@@ -66,6 +88,12 @@
                   <b-form-input v-model="form.captchaAnswer" size="lg" placeholder="Enter result" required />
                 </b-form-group>
               </b-col>
+
+              <!-- Honeypot: hidden from users, attractive to bots. -->
+              <div class="d-none" aria-hidden="true">
+                <label for="lk-website">Website</label>
+                <input id="lk-website" v-model="form.website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
 
               <b-col cols="12" class="d-grid">
                 <b-button
@@ -88,6 +116,9 @@
       </div>
     </b-container>
 
+    <!-- Screen readers get the same success/failure feedback as the toast. -->
+    <p class="visually-hidden" role="status" aria-live="polite">{{ toast.show ? toast.message : '' }}</p>
+
     <!-- Toast Notification -->
     <transition name="fade">
       <div
@@ -103,6 +134,7 @@
 <script setup>
 import { reactive, ref, onMounted, computed } from 'vue'
 import Vue3Autocounter from 'vue3-autocounter'
+import { contact } from '@/content/company'
 
 const yearsExperience = computed(() => new Date().getFullYear() - 2016)
 
@@ -112,8 +144,23 @@ const form = reactive({
   phone: '',
   company: '',
   message: '',
+  interest: '',
+  website: '',
   captchaAnswer: ''
 })
+
+const interestOptions = [
+  { value: '', text: 'Select an area', disabled: true },
+  'Software Development',
+  'AI & Data',
+  'Cloud & Infrastructure',
+  'Cybersecurity',
+  'IT Staffing',
+  'Project & Program Management',
+  'Government / Contract Vehicles',
+  'Manufacturing / MES',
+  'Other'
+]
 
 const captcha = reactive({ a: 0, b: 0 })
 const loading = ref(false)
@@ -175,6 +222,8 @@ const handleSubmit = async () => {
         phone: '',
         company: '',
         message: '',
+        interest: '',
+        website: '',
         captchaAnswer: ''
       })
       generateCaptcha()

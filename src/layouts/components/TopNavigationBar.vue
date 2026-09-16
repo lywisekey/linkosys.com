@@ -7,7 +7,8 @@
       class="d-none d-sm-block py-2 m-0 bg-primary border-0 rounded-0 text-center overflow-hidden"
     >
       <p class="text-white small m-0">
-        <font-awesome-icon :icon="faMessage" class="me-2" />We Help You Build Smarter, Faster, and Better Tech Solutions.
+        <font-awesome-icon :icon="faMessage" class="me-2" />GSA Multiple Award Schedule 47QTCA21D004X &middot; California CMAS &middot;
+        <a :href="contact.phoneHref" class="text-white text-decoration-underline">{{ contact.phone }}</a>
       </p>
     </b-alert>
 
@@ -26,9 +27,9 @@
             >
           </li-->
 
-          <li class="nav-item d-none d-sm-block">
+          <li class="nav-item">
             <router-link :to="{ name: 'contact' }" class="btn btn-sm btn-primary mb-0">
-              Book a Consultation
+              Talk to an Expert
             </router-link>
           </li>
 
@@ -50,7 +51,7 @@ import ThemeToggleDropdown from '@/components/topbar/ThemeToggleDropdown.vue'
 import MobileNavbarToggler from '@/components/topbar/MobileNavbarToggler.vue'
 import AppMenu from '@/components/topbar/LinkosysMenu/index.vue'
 import { ref } from 'vue'
-import { buyLink } from '@/helpers'
+import { contact } from '@/content/company'
 
 const dismissibleAlert = ref(true)
 </script>

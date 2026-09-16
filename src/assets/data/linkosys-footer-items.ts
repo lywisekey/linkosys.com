@@ -1,4 +1,4 @@
-import type { BSIconType } from '@/types'
+import type { RouteLocationRaw } from 'vue-router'
 import {
   faFacebookF,
   faInstagram,
@@ -6,63 +6,47 @@ import {
   faTwitter,
   faYoutube
 } from '@fortawesome/free-brands-svg-icons'
-import {
-  BIconBoxArrowUpRight,
-  BIconLightbulb,
-  BIconFileEarmarkTextFill,
-  BIconPuzzleFill,
-  BIconStickiesFill
-} from 'bootstrap-icons-vue'
+import { BIconLightbulb } from 'bootstrap-icons-vue'
+import { services } from '@/content/services'
+import { contact } from '@/content/company'
 
-type FooterLinkType = {
+export type FooterLinkType = {
   name: string
-  link?: string
-  badge?: string
-  icon?: BSIconType
+  to: RouteLocationRaw
 }
 
 export const quickLinks: FooterLinkType[] = [
-  {
-    name: 'About Us',
-    link: 'company.aboutus'
-  },
-  {
-    name: 'Team',
-    link: 'company.team'
-  },
-  {
-    name: 'Partners & Main Clients',
-    link: 'company.partners',
-    badge: '2 Job'
-  },
-  {
-    name: 'Blog',
-    link: 'company.blog'
-  }
+  { name: 'About Linkosys', to: { name: 'company.aboutus' } },
+  { name: 'Our Approach', to: { name: 'company.aboutus', hash: '#approach' } },
+  { name: 'Leadership & Team', to: { name: 'company.team' } },
+  { name: 'Partners & Clients', to: { name: 'company.partners' } },
+  { name: 'Case Studies', to: { name: 'case-studies' } },
+  { name: 'Insights', to: { name: 'company.blog' } }
 ]
 
+/**
+ * Previously this column held unlinked labels ("Documents", "Privacy Policy") and
+ * a link to a `terms-conditions` route that was never defined. Only destinations
+ * that exist are listed; the missing legal pages are tracked for the client.
+ */
 export const communityLinks: FooterLinkType[] = [
+  { name: 'Government', to: { name: 'government' } },
+  { name: 'Industries', to: { name: 'industries' } },
+  { name: 'Solutions', to: { name: 'solutions' } },
+  { name: 'Contact', to: { name: 'contact' } }
+]
+
+export const footerServices3: FooterLinkType[] = services.map((service) => ({
+  name: service.name,
+  to: { name: 'services.detail', params: { slug: service.slug } }
+}))
+
+export const footerCommunityLinks3 = [
   {
-    name: 'Documents'
-  },
-  {
-    name: 'Supports',
-    icon: BIconBoxArrowUpRight
-  },
-  {
-    name: 'Faqs',
-    link: 'commingsoon'
-  },
-  {
-    name: 'Privacy Policy'
-  },
-  {
-    name: 'News and blogs',
-    link: 'commingsoon'
-  },
-  {
-    name: 'Terms & condition',
-    link: 'terms-conditions'
+    title: 'Case Studies',
+    icon: BIconLightbulb,
+    to: { name: 'case-studies' },
+    variant: 'bg-warning'
   }
 ]
 
@@ -75,47 +59,9 @@ export const followOnIcons = [
 ]
 
 export const contactDetails = {
-  address: '100 Spectrum Center Dr, Irvine, California - USA',
-  number: '+1 949 354 4225',
-  email: 'Info@linkosys.com',
+  address: contact.address,
+  number: contact.phone,
+  email: contact.email,
   open: 'Mon - Fri: 09:00 - 21:00',
   close: 'Sat - Sun: Closed'
 }
-
-export const footerServices3: FooterLinkType[] = [
-  {
-    name: 'Custom Software Development',
-    link: 'services.custom'
-  },
-  {
-    name: 'Mobile App Development',
-    link: 'services.mobile'
-  },
-  {
-    name: 'Web-App Development',
-    link: 'services.webapp'
-  },
-  {
-    name: 'Artificial Intelligence',
-    link: 'services.ai',
-    badge: 'new'
-  },
-  {
-    name: 'Blockchain Development',
-    link: 'services.blockchain',
-  },
-  {
-    name: 'Data & Analytics',
-    link: 'services.data',
-  }
-]
-
-export const footerCommunityLinks3 = [
-  {
-    title: 'Awesome Works',
-    icon: BIconLightbulb,
-    link: "projects",
-    variant: 'bg-warning'
-  }
-]
-

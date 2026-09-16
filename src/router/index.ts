@@ -1,54 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { linkosysRoutes } from '@/router/linkosys'
 import { useAuthStore } from '@/stores/auth'
+import { applySeo } from '@/helpers/seo'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    // ...allRoutes,
-    ...linkosysRoutes
-  ],
+  routes: [...linkosysRoutes],
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      // Nếu user bấm nút back/forward
-      return savedPosition
-    } else {
-      // Luôn cuộn lên đầu trang
-      return { top: 0 }
-    }
+    if (savedPosition) return savedPosition
+    // Anchor links inside a page (for example /government#partnerships).
+    if (to.hash) return { el: to.hash, top: 96, behavior: 'smooth' }
+    return { top: 0 }
   }
-})
-
-// Before each route evaluates...
-router.beforeEach((to, from, next) => {
-  const title = to.meta.title
-  if (title) {
-    document.title = title.toString()
-  }
-  next()
 })
 
 router.beforeEach((routeTo, routeFrom, next) => {
-  // Check if auth is required on this route
-  // (including nested routes).
   const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
-
-  // If auth isn't required for the route, just continue.
   if (!authRequired) return next()
 
-  // If auth is required and the user is logged in...
   const useAuth = useAuthStore()
-  if (useAuth.isAuthenticated()) {
-    return next()
-  }
+  if (useAuth.isAuthenticated()) return next()
 
-  // If auth is required and the user is NOT currently logged in,
-  // redirect to login.
-  redirectToLogin()
-
-  function redirectToLogin() {
-    // Pass the original route to the login component
-    next({ name: 'auth.sign-in', query: { redirectedFrom: routeTo.fullPath } })
-  }
+  next({ name: 'auth.sign-in', query: { redirectedFrom: routeTo.fullPath } })
 })
+
+// Title, description, canonical, Open Graph and JSON-LD are applied after the
+// route resolves so per-route beforeEnter hooks can populate meta first.
+router.afterEach((to) => {
+  applySeo(to)
+})
+
 export default router
