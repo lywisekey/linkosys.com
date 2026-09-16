@@ -1,35 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="14.4 -25.1 443.0 276.9" width="480" height="300" fill="none" role="presentation">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13.4 -63.0 539.9 353.0" width="520" height="340" fill="none" role="presentation">
   <style>
-    .fl-cloud { animation: fl-cloud 6s ease-in-out infinite; transform-origin: center; }
-    @keyframes fl-cloud { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
-    .pulse-cloud { animation: pulse-cloud 3.2s ease-in-out infinite; transform-origin: center; }
-    @keyframes pulse-cloud { 0%,100% { opacity: .35 } 50% { opacity: 1 } }
-    .draw-cloud { stroke-dasharray: 220; animation: draw-cloud 5s ease-in-out infinite; }
-    @keyframes draw-cloud { 0% { stroke-dashoffset: 220 } 45%,100% { stroke-dashoffset: 0 } }
-
+    .flow-cloud { stroke-dasharray: 5 7; animation: flow-cloud 3.4s linear infinite; }
+    @keyframes flow-cloud { to { stroke-dashoffset: -24 } }
+    .beat-cloud { animation: beat-cloud 3.6s ease-in-out infinite; }
+    @keyframes beat-cloud { 0%,100% { opacity: .32 } 50% { opacity: 1 } }
+    .rise-cloud { animation: rise-cloud 5s ease-in-out infinite; }
+    @keyframes rise-cloud { 0%,12% { opacity: 0; transform: translateY(9px) } 30%,88% { opacity: 1; transform: none } 100% { opacity: 0; transform: translateY(9px) } }
     @media (prefers-reduced-motion: reduce) {
-      .fl-cloud, .pulse-cloud, .draw-cloud { animation: none; }
-      .draw-cloud { stroke-dasharray: none; }
+      .flow-cloud, .beat-cloud, .rise-cloud { animation: none; }
+      .rise-cloud { opacity: 1; transform: none; }
+      .flow-cloud { stroke-dasharray: none; }
     }
   </style>
-    <path d="M0 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M72 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M144 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M216 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M288 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M360 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M432 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 0H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 72H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 144H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 216H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 288H480" stroke="#dde4ed" stroke-width="1"/>
-<polygon points="180.7,75.7 356.5,177.1 287.0,217.3 111.2,115.8" fill="none" stroke="#dde4ed" stroke-width="1" stroke-dasharray="4 5"/>
-<polygon points="127.6,92.2 160.3,111.1 160.3,134.7 127.6,115.8" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="213.4,80.4 160.3,111.1 160.3,134.7 213.4,104.0" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="180.7,61.5 213.4,80.4 160.3,111.1 127.6,92.2" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
-<polygon points="170.5,105.2 203.2,124.0 203.2,159.4 170.5,140.6" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="256.4,93.4 203.2,124.0 203.2,159.4 256.4,128.8" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="223.6,74.5 256.4,93.4 203.2,124.0 170.5,105.2" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
-<polygon points="213.4,113.4 246.1,132.3 246.1,184.2 213.4,165.3" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="299.3,101.6 246.1,132.3 246.1,184.2 299.3,153.5" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="266.6,82.7 299.3,101.6 246.1,132.3 213.4,113.4" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
-<polygon points="256.4,121.7 289.1,140.6 289.1,209.0 256.4,190.1" fill="#fde8e6" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/><polygon points="342.2,109.9 289.1,140.6 289.1,209.0 342.2,178.3" fill="#f9d9d5" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/><polygon points="309.5,91.0 342.2,109.9 289.1,140.6 256.4,121.7" fill="#fde8e6" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/>
-<path d="M181 17L361 120" stroke="#ea3324" stroke-width="1.4" stroke-dasharray="6 5"/>
-<g transform="translate(227.7,17.8) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" font-weight="600" fill="#b3231a" text-anchor="middle" letter-spacing="0.5">DEMAND</text></g>
-<polygon points="119.4,165.3 225.7,226.7 225.7,233.8 119.4,172.4" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.1" stroke-linejoin="round"/><polygon points="252.3,211.4 225.7,226.7 225.7,233.8 252.3,218.4" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.1" stroke-linejoin="round"/><polygon points="146.0,150.0 252.3,211.4 225.7,226.7 119.4,165.3" fill="#ffffff" stroke="#c3cedd" stroke-width="1.1" stroke-linejoin="round"/><g transform="translate(185.8,183.6) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="600" fill="#8497ad" text-anchor="middle" letter-spacing="0.5">AUTO SCALING</text></g>
+<polygon points="239.2,78.0 422.8,184.0 273.9,270.0 90.3,164.0" fill="none" stroke="#e2e6ec" stroke-width="1" stroke-linejoin="round" stroke-dasharray="3 5"/>
+<path transform="matrix(0.8660,0.5000,-0.8660,0.5000,260.00,54.00)" d="M-86 12c-20 0-32-14-32-29 0-15 12-27 27-27 5-19 22-32 42-32 22 0 41 16 44 37 17 2 30 15 30 30 0 13-11 21-25 21z" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/>
+<text x="268.7" y="23.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">CLOUD</text>
+<g><polygon points="199.4,107.0 237.5,129.0 237.5,155.0 199.4,133.0" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="275.6,107.0 237.5,129.0 237.5,155.0 275.6,133.0" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="237.5,85.0 275.6,107.0 237.5,129.0 199.4,107.0" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
+<g><polygon points="270.4,142.0 308.5,164.0 308.5,196.0 270.4,174.0" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="346.6,142.0 308.5,164.0 308.5,196.0 346.6,174.0" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="308.5,120.0 346.6,142.0 308.5,164.0 270.4,142.0" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
+<g><polygon points="128.4,148.0 166.5,170.0 166.5,196.0 128.4,174.0" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="204.6,148.0 166.5,170.0 166.5,196.0 204.6,174.0" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="166.5,126.0 204.6,148.0 166.5,170.0 128.4,148.0" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
+<path d="M237.5 41.0L237.5 99.0" stroke="#e2e6ec" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 5"/>
+<path d="M308.5 82.0L308.5 140.0" stroke="#e2e6ec" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 5"/>
+<path d="M166.5 82.0L166.5 140.0" stroke="#e2e6ec" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 5"/>
+<path d="M237.5 123.0L237.5 181.0" stroke="#e2e6ec" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 5"/>
+<g class="rise-cloud"><polygon points="199.4,183.0 237.5,205.0 237.5,237.0 199.4,215.0" fill="#fbdad7" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/><polygon points="275.6,183.0 237.5,205.0 237.5,237.0 275.6,215.0" fill="#f7c9c5" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/><polygon points="237.5,161.0 275.6,183.0 237.5,205.0 199.4,183.0" fill="#fdeceb" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/></g>
+<g><path d="M319.7 186.0V216.0A26.9 15.6 0 0 0 373.5 216.0V186.0Z" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15"/><ellipse cx="346.6" cy="186.0" rx="26.9" ry="15.6" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15"/></g>
+<path class="flow-cloud" d="M104.1 170.0L322.4 224.0" stroke="#2563eb" stroke-width="1.2" stroke-linecap="round"/>
+<text x="185.5" y="119.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="end" letter-spacing="0.8">COMPUTE</text>
+<text x="346.6" y="168.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">DB</text>
+<text x="192.5" y="221.0" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">NETWORK</text>
 </svg>

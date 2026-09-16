@@ -1,44 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5.6 3.1 431.9 269.9" width="480" height="300" fill="none" role="presentation">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="51.2 32.6 441.8 288.9" width="520" height="340" fill="none" role="presentation">
   <style>
-    .fl-program { animation: fl-program 6s ease-in-out infinite; transform-origin: center; }
-    @keyframes fl-program { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
-    .pulse-program { animation: pulse-program 3.2s ease-in-out infinite; transform-origin: center; }
-    @keyframes pulse-program { 0%,100% { opacity: .35 } 50% { opacity: 1 } }
-    .draw-program { stroke-dasharray: 220; animation: draw-program 5s ease-in-out infinite; }
-    @keyframes draw-program { 0% { stroke-dashoffset: 220 } 45%,100% { stroke-dashoffset: 0 } }
-
+    .flow-program { stroke-dasharray: 5 7; animation: flow-program 3.4s linear infinite; }
+    @keyframes flow-program { to { stroke-dashoffset: -24 } }
+    .beat-program { animation: beat-program 3.6s ease-in-out infinite; }
+    @keyframes beat-program { 0%,100% { opacity: .32 } 50% { opacity: 1 } }
+    .rise-program { animation: rise-program 5s ease-in-out infinite; }
+    @keyframes rise-program { 0%,12% { opacity: 0; transform: translateY(9px) } 30%,88% { opacity: 1; transform: none } 100% { opacity: 0; transform: translateY(9px) } }
     @media (prefers-reduced-motion: reduce) {
-      .fl-program, .pulse-program, .draw-program { animation: none; }
-      .draw-program { stroke-dasharray: none; }
+      .flow-program, .beat-program, .rise-program { animation: none; }
+      .rise-program { opacity: 1; transform: none; }
+      .flow-program { stroke-dasharray: none; }
     }
   </style>
-    <path d="M0 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M72 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M144 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M216 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M288 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M360 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M432 0V300" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 0H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 72H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 144H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 216H480" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M0 288H480" stroke="#dde4ed" stroke-width="1"/>
-<polygon points="246.1,59.1 399.4,147.6 213.4,255.0 60.1,166.5" fill="none" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M246 59L60 167" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M284 81L98 189" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M323 103L137 211" stroke="#dde4ed" stroke-width="1"/>
-    <path d="M361 126L175 233" stroke="#dde4ed" stroke-width="1"/>
-<polygon points="215.5,66.2 280.9,104.0 280.9,119.3 215.5,81.6" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="307.4,88.6 280.9,104.0 280.9,119.3 307.4,104.0" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="242.0,50.9 307.4,88.6 280.9,104.0 215.5,66.2" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
-<g transform="translate(214.5,47.9) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="600" fill="#8497ad" text-anchor="end" letter-spacing="0.5">DISCOVER</text></g>
-<polygon points="166.4,94.5 213.4,121.7 213.4,137.0 166.4,109.9" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="240.0,106.3 213.4,121.7 213.4,137.0 240.0,121.7" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="193.0,79.2 240.0,106.3 213.4,121.7 166.4,94.5" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
-<g transform="translate(165.4,76.2) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="600" fill="#8497ad" text-anchor="end" letter-spacing="0.5">BUILD</text></g>
-<polygon points="117.4,122.9 207.3,174.8 207.3,190.1 117.4,138.2" fill="#fde8e6" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/><polygon points="233.9,159.4 207.3,174.8 207.3,190.1 233.9,174.8" fill="#f9d9d5" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/><polygon points="143.9,107.5 233.9,159.4 207.3,174.8 117.4,122.9" fill="#fde8e6" stroke="#ea3324" stroke-width="1.2" stroke-linejoin="round"/>
-<g transform="translate(116.3,104.6) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="600" fill="#b3231a" text-anchor="end" letter-spacing="0.5">INTEGRATE</text></g>
-<polygon points="68.3,151.2 105.1,172.4 105.1,187.8 68.3,166.5" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="131.7,157.1 105.1,172.4 105.1,187.8 131.7,172.4" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/><polygon points="94.9,135.8 131.7,157.1 105.1,172.4 68.3,151.2" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2" stroke-linejoin="round"/>
-<g transform="translate(67.3,132.9) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="600" fill="#8497ad" text-anchor="end" letter-spacing="0.5">RELEASE</text></g>
-    <path d="M227 112L131 113" stroke="#c3cedd" stroke-width="1.2" stroke-dasharray="4 4"/>
-    <g class="pulse-program"><path d="M221 138l9 9-9 9-9-9z" fill="#fff" stroke="#ea3324" stroke-width="1.6"/></g>
-<g transform="translate(249.2,158.8) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="600" fill="#b3231a" text-anchor="start" letter-spacing="0.5">MILESTONE</text></g>
-<polygon points="21.3,186.6 127.6,247.9 127.6,255.0 21.3,193.7" fill="#f5f8fb" stroke="#c3cedd" stroke-width="1.1" stroke-linejoin="round"/><polygon points="154.2,232.6 127.6,247.9 127.6,255.0 154.2,239.7" fill="#eaeff6" stroke="#c3cedd" stroke-width="1.1" stroke-linejoin="round"/><polygon points="47.9,171.2 154.2,232.6 127.6,247.9 21.3,186.6" fill="#ffffff" stroke="#c3cedd" stroke-width="1.1" stroke-linejoin="round"/><g transform="translate(87.7,204.9) rotate(30)"><text x="0" y="0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="600" fill="#8497ad" text-anchor="middle" letter-spacing="0.5">CRITICAL PATH</text></g>
+<polygon points="150.9,61.0 473.0,247.0 393.4,293.0 71.2,107.0" fill="none" stroke="#e2e6ec" stroke-width="1" stroke-linejoin="round" stroke-dasharray="3 5"/>
+<g><polygon points="110.2,79.5 139.6,96.5 139.6,117.5 110.2,100.5" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="169.1,79.5 139.6,96.5 139.6,117.5 169.1,100.5" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="139.6,62.5 169.1,79.5 139.6,96.5 110.2,79.5" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
+<path class="flow-program" d="M154.3 100.0L211.5 133.0" stroke="#c9ced6" stroke-width="1.2" stroke-linecap="round"/>
+<g><polygon points="196.8,129.5 226.2,146.5 226.2,167.5 196.8,150.5" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="255.7,129.5 226.2,146.5 226.2,167.5 255.7,150.5" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="226.2,112.5 255.7,129.5 226.2,146.5 196.8,129.5" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
+<path class="flow-program" d="M240.9 150.0L298.1 183.0" stroke="#c9ced6" stroke-width="1.2" stroke-linecap="round"/>
+<g class="beat-program"><polygon points="283.4,168.5 312.8,185.5 312.8,217.5 283.4,200.5" fill="#fbdad7" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/><polygon points="342.3,168.5 312.8,185.5 312.8,217.5 342.3,200.5" fill="#f7c9c5" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/><polygon points="312.8,151.5 342.3,168.5 312.8,185.5 283.4,168.5" fill="#fdeceb" stroke="#ea3324" stroke-width="1.15" stroke-linejoin="round"/></g>
+<path class="flow-program" d="M327.5 200.0L384.7 233.0" stroke="#c9ced6" stroke-width="1.2" stroke-linecap="round"/>
+<g><polygon points="370.0,229.5 399.4,246.5 399.4,267.5 370.0,250.5" fill="#eef1f5" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="428.9,229.5 399.4,246.5 399.4,267.5 428.9,250.5" fill="#e4e9f0" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/><polygon points="399.4,212.5 428.9,229.5 399.4,246.5 370.0,229.5" fill="#ffffff" stroke="#c9ced6" stroke-width="1.15" stroke-linejoin="round"/></g>
+<text x="139.6" y="73.5" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">PLAN</text>
+<text x="226.2" y="123.5" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">BUILD</text>
+<text x="312.8" y="162.5" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#ea3324" text-anchor="middle" letter-spacing="0.8">TEST</text>
+<text x="399.4" y="223.5" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#667085" text-anchor="middle" letter-spacing="0.8">RELEASE</text>
+<g class="beat-program"><path d="M410.7 171.0l10 10-10 10-10-10z" fill="#ffffff" stroke="#ea3324" stroke-width="1.5"/></g>
 </svg>
