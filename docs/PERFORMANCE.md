@@ -101,43 +101,26 @@ Both pass. Re-measure against production after deploying; the figures above are
 from the local gzipped server, which matched production to within a few points
 on the previous round.
 
-## What is holding mobile back
+## What was holding mobile back — resolved
 
-From the production mobile run:
-
-| Opportunity | Estimated saving |
-|---|---|
-| Eliminate render-blocking resources | 1,730 ms |
-| Reduce unused JavaScript | 99 KB |
-| Reduce unused CSS | 64 KB |
-
-The LCP breakdown shows where the time actually goes:
+Kept for the record, because the diagnosis is what made the fix obvious. The
+production mobile run at 4.4 s LCP broke down as:
 
 ```
 TTFB           875 ms
 Load Delay       0 ms
 Load Time        0 ms
-Render Delay  3,538 ms   <-- the whole problem
+Render Delay  3,538 ms
 ```
 
-Load Delay and Load Time are zero because the LCP element is text already present
-in the HTML. Almost all of the 4.4 s is **render delay**: the browser has the
-markup but cannot paint until the render-blocking stylesheet and the Google Fonts
-request resolve.
+Load delay and load time were zero: the LCP element is text already present in
+the prerendered HTML, so nothing was being fetched for it. The page was not slow
+because it was heavy — it was waiting for permission to paint.
 
-So the remaining work is not about making the page smaller. It is about not
-blocking the first paint:
-
-1. **Inline critical CSS** and load the rest asynchronously. The stylesheet is
-   ~450 KB uncompressed and mostly unused Bootstrap; the above-the-fold rules are
-   a small fraction of it.
-2. **Self-host the two fonts** with `font-display: swap` and preload the weights
-   the hero uses, removing a third-party round trip from the critical path.
-3. **Trim unused Bootstrap** at build time, which shrinks whatever CSS remains
-   blocking.
-
-Together these target the 1,730 ms render-blocking estimate, which is what stands
-between 4.4 s and the 2.5 s threshold.
+The three items Lighthouse listed (render-blocking resources 1,730 ms, unused JS
+99 KB, unused CSS 64 KB) are addressed above. The one that mattered most was not
+on that list: the bundle was not blocking the paint, it was competing with it for
+bandwidth. Blocking JS outright was what exposed it.
 
 ---
 
