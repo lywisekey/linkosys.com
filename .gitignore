@@ -38,3 +38,8 @@ bun.lockb
 composer.json
 composer.lock
 .gstack/
+
+# Unreferenced video assets (198MB). public/ copies are deployed verbatim,
+# so they shipped to production on every build without a single reference.
+public/videos/
+src/assets/videos/

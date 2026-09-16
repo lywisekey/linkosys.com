@@ -16,14 +16,12 @@
         <b-row class="g-5">
           <b-col v-for="member in team" :key="member.username" md="6" xl="4">
             <article class="h-100">
-              <div class="lk-portrait mb-3">
-                <img
-                  :src="member.avatar"
-                  :alt="`${member.username}, ${member.role}`"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <TeamAvatar
+                class="mb-3"
+                :name="member.username"
+                :role="member.role"
+                :photo="member.photo"
+              />
               <h2 class="h5 mb-1">{{ member.username }}</h2>
               <p class="lk-eyebrow mb-3" style="margin-top: 0">{{ member.role }}</p>
               <!-- Bios already existed in the content data; the previous page showed
@@ -51,5 +49,6 @@
 import DefaultLayout from '@/layouts/Default.vue'
 import PageHero from '@/components/linkosys/PageHero.vue'
 import CtaBand from '@/components/linkosys/CtaBand.vue'
+import TeamAvatar from '@/components/linkosys/TeamAvatar.vue'
 import { team } from '@/views/Linkosys/data/team-data'
 </script>

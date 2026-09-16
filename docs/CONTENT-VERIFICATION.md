@@ -76,15 +76,28 @@ Stixis, Letcore, Tran Creative, FAT, ITMS and Cyber Eye.
   They are no longer rendered anywhere on the site. Supply real photographs, or
   approve publishing the quotes with name, role and company and no portrait.
 
-### Team photographs
+### Team photographs — action required
 
-The headshots on `/company/team` are cut-outs composited onto unrelated stock
-backgrounds — city skylines, neon network graphics, a world map. They are rendered
-in greyscale so the grid reads as one set rather than a collage, but the
-composites are still visible at full size and they undercut the positioning.
+The previous headshots were head cut-outs composited onto unrelated stock
+backgrounds (city skylines, neon network art, a world map). They have been removed
+and replaced with monogram tiles built from the site's own design language.
 
-Replace with plain headshots on a neutral background. This is the single highest
--value image change on the site.
+**A monogram is a placeholder, not a decision.** Supply plain headshots on a
+neutral background and set `photo` on the relevant entry in
+`src/views/Linkosys/data/team-data.ts`:
+
+```ts
+import triNghiem from '@/assets/images/team/tri-nghiem.jpg'
+// ...
+{ username: 'Tri Nghiem', role: 'President & CEO', experience: '…', photo: triNghiem }
+```
+
+`TeamAvatar` renders the photograph instead of the monogram automatically, per
+person — a partial set is fine.
+
+AI-generated portraits are not an option here. A generated face published under a
+real employee's name misrepresents who the buyer would be working with, and it
+fails the moment anyone meets the team.
 
 ## 5. Company facts
 
