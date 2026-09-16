@@ -19,14 +19,14 @@
         <h2 class="fs-1 mb-0 me-3">
           <font-awesome-icon v-if="item.icon" :icon="item.icon" :class="`text-${item.iconText}`" />
           <template v-else>
-            <v-icon
+            <VIcon
               name="fc-google"
               scale="1"
               class="text-google-icon d-none d-md-block"
               height="64"
               width="64"
             />
-            <v-icon
+            <VIcon
               name="fc-google"
               scale="1"
               class="text-google-icon d-md-none"
@@ -52,6 +52,10 @@
 </template>
 
 <script setup lang="ts">
+import { OhVueIcon as VIcon, addIcons } from 'oh-vue-icons'
+import { FcGoogle } from 'oh-vue-icons/icons'
+addIcons(FcGoogle)
+
 import { account } from '@/views/pages/accounts/Security/data'
 import { BIconCheckCircleFill } from 'bootstrap-icons-vue'
 </script>

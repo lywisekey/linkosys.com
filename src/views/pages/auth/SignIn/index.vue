@@ -50,6 +50,10 @@
 </template>
 
 <script setup lang="ts">
+// The demo auth pages are the only consumer of the mock backend.
+import configureFakeBackend from '@/helpers/fake-backend'
+configureFakeBackend()
+
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import type { AxiosResponse } from 'axios'

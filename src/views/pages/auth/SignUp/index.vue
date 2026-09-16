@@ -10,7 +10,7 @@
           <b-row class="mt-5">
             <b-col xxl="6" class="d-grid">
               <a href="#" class="btn border bg-light mb-2 mb-xxl-0 flex-centered">
-                <v-icon
+                <VIcon
                   name="fc-google"
                   scale="1"
                   class="text-google-icon me-2"
@@ -81,6 +81,10 @@
 </template>
 
 <script lang="ts" setup>
+import { OhVueIcon as VIcon, addIcons } from 'oh-vue-icons'
+import { FcGoogle } from 'oh-vue-icons/icons'
+addIcons(FcGoogle)
+
 import { ref } from 'vue'
 import AuthLayuot from '@/layouts/AuthLayuot.vue'
 import LogoBox from '@/components/topbar/LogoBox.vue'

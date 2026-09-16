@@ -165,9 +165,6 @@ import {
   BIconXLg,
   BIconYoutube,
 } from 'bootstrap-icons-vue'
-import { OhVueIcon, addIcons } from 'oh-vue-icons'
-import Toast, { type PluginOptions } from 'vue-toastification'
-import { FcGoogle } from 'oh-vue-icons/icons'
 
 import 'bs-stepper/dist/css/bs-stepper.min.css'
 import 'swiper/swiper-bundle.css'
@@ -175,10 +172,7 @@ import 'glightbox/dist/css/glightbox.min.css'
 import 'aos/dist/aos.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import '@/assets/scss/style.scss'
-import 'vue-toastification/dist/index.css'
 
-const toastOptions: PluginOptions = {}
-addIcons(FcGoogle)
 const bootstrapIcons = {
   BIconAppIndicator,
   BIconArrowLeft,
@@ -339,7 +333,6 @@ export function createLinkosysApp() {
   const app = createApp(App)
 
   app.component('font-awesome-icon', FontAwesomeIcon)
-  app.component('v-icon', OhVueIcon)
   app.use(createPinia())
   app.use(router)
   app.use(createBootstrap())
@@ -349,8 +342,6 @@ export function createLinkosysApp() {
   Object.entries(bootstrapIcons).forEach(([name, component]) => {
     app.component(name, component)
   })
-
-  app.use(Toast, toastOptions)
 
   return { app, router }
 }

@@ -47,17 +47,59 @@ Measured against `https://linkosys.com/`, Lighthouse 12.8.2, single run.
 Production mobile (74) corroborates the local after-build measurement (77); the
 small gap is normal run-to-run variance plus real network latency.
 
+## Critical path work
+
+Applied after the baseline above, targeting the render delay it identified.
+
+| Metric | Before | After | Change |
+|---|---|---|---|
+| **Performance** | 77 | **99** | +22 |
+| **LCP** | 4.2 s | **1.96 s** | −53% |
+| **FCP** | 3.9 s | **1.21 s** | −69% |
+| **Speed Index** | 3.9 s | **1.38 s** | −65% |
+| **TBT** | 54 ms | **0 ms** | — |
+
+Three changes, in the order they were found to matter:
+
+1. **Self-hosted fonts.** The Google Fonts stylesheet plus a second host sat on
+   the critical path. The woff2 files are served from `/fonts`, the `@font-face`
+   rules are inlined in the head — not in the deferred stylesheet, or the first
+   paint has no font to use — and the two faces the first screen needs are
+   preloaded.
+2. **Critical CSS inlined.** `beasties` extracts the above-the-fold rules per
+   prerendered route and defers the rest behind `rel=preload`+`onload`, with a
+   `<noscript>` fallback. Render-blocking resources went to zero.
+3. **The app bundle moved off the critical path.** This was the large one. With
+   JS blocked entirely, LCP measured 2.78 s against 4.35 s with it — the bundle
+   was costing 1.5 s by competing for bandwidth during the paint, not by
+   blocking. It now loads on the `load` event, and `modulepreload` is downgraded
+   to `prefetch` so it does not re-enter the race.
+
+Deferring hydration is safe here specifically because every route is
+prerendered and every internal link is a real `<a href>`: a click before Vue
+boots is an ordinary navigation to another prerendered page.
+
+Bundle work done along the way: the mock auth backend was initialised in
+`App.vue`, pulling axios and axios-mock-adapter into the chunk every visitor
+downloads for pages only the demo auth routes use. Moving it, and registering
+`oh-vue-icons` and the toast plugin locally instead of globally, took the main
+chunk from 208 KB to 168 KB gzipped. That also surfaced a real bug: the
+`<v-icon>` on the sign-up page had been rendering nothing, silently, because
+production Vue does not warn about unresolved components.
+
 ## Core Web Vitals status
 
 Thresholds are LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms.
 
 | | Mobile | Desktop |
 |---|---|---|
-| LCP | 4.4 s — **needs improvement** | 1.1 s — good |
+| LCP | **1.96 s** — good | good |
 | CLS | 0 — good | 0 — good |
-| TBT (INP proxy) | 110 ms — good | 0 ms — good |
+| TBT (INP proxy) | 0 ms — good | 0 ms — good |
 
-Desktop passes. Mobile LCP is the one metric still outside the good band.
+Both pass. Re-measure against production after deploying; the figures above are
+from the local gzipped server, which matched production to within a few points
+on the previous round.
 
 ## What is holding mobile back
 

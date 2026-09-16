@@ -18,8 +18,15 @@
  * else. The app hydrates over the markup and applySeo() keeps the head right on
  * client-side navigation.
  *
+ * It also inlines the critical CSS for each page and defers the rest. The
+ * stylesheet is ~450KB of mostly unused Bootstrap and was render-blocking:
+ * Lighthouse attributed 3,538ms of the 4.4s mobile LCP to render delay, with
+ * load delay and load time both at zero. The markup was already there; the
+ * browser was waiting for permission to paint it.
+ *
  * Runs automatically from `npm run build`.
  */
+import Beasties from 'beasties'
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -38,6 +45,31 @@ function replaceMeta(html, pattern, replacement, label) {
     throw new Error(`prerender: could not find ${label} in dist/index.html`)
   }
   return html.replace(pattern, replacement)
+}
+
+/**
+ * Moves the app bundle off the critical path.
+ *
+ * Every route is prerendered and every internal link is a real <a href>, so the
+ * page is readable and navigable before Vue boots — a click before hydration is
+ * a normal document navigation to another prerendered page. Letting the module
+ * download at default priority cost 1.25s of LCP by competing with the fonts and
+ * stylesheet for bandwidth; deferring it to the load event gives the paint the
+ * bandwidth first.
+ */
+function deferBundle(html) {
+  const script = html.match(/<script type="module"[^>]*src="([^"]+)"[^>]*><\/script>/)
+  if (!script) throw new Error('prerender: module script tag not found')
+
+  const loader =
+    `<script>addEventListener('load',function(){var s=document.createElement('script');` +
+    `s.type='module';s.crossOrigin='anonymous';s.src=${JSON.stringify(script[1])};` +
+    `document.head.appendChild(s)})</script>`
+
+  return html
+    .replace(script[0], loader)
+    // Preloading the same modules at high priority would undo the deferral.
+    .replace(/<link rel="modulepreload"/g, '<link rel="prefetch" as="script"')
 }
 
 function renderRoute(template, route, siteUrl) {
@@ -149,7 +181,24 @@ if (!template.includes('<div id="app"></div>')) {
   throw new Error('prerender: could not find the app mount point in dist/index.html')
 }
 
+// pruneSource stays off: the full stylesheet is still needed once the page is
+// interactive and for every client-side route change.
+const beasties = new Beasties({
+  path: dist,
+  publicPath: '/',
+  preload: 'swap',
+  pruneSource: false,
+  inlineFonts: false,
+  preloadFonts: false,
+  // The head carries a hand-written @font-face block. Beasties prunes inline
+  // styles by default and drops it, because @font-face has no selector to match
+  // against the document.
+  reduceInlineStyles: false,
+  logLevel: 'silent'
+})
+
 let written = 0
+let inlined = 0
 
 for (const route of seoRoutes) {
   const body = await render(route.path)
@@ -157,10 +206,17 @@ for (const route of seoRoutes) {
     '<div id="app"></div>',
     `<div id="app">${body}</div>`
   )
+  const critical = deferBundle(await beasties.process(html))
+  if (critical.includes('<style>') || critical.includes('<style ')) inlined += 1
+
   const outDir = route.path === '/' ? dist : join(dist, route.path)
   mkdirSync(outDir, { recursive: true })
-  writeFileSync(join(outDir, 'index.html'), html)
+  writeFileSync(join(outDir, 'index.html'), critical)
   written += 1
+}
+
+if (inlined !== written) {
+  throw new Error(`prerender: critical CSS inlined for only ${inlined}/${written} routes`)
 }
 
 rmSync(ssrDir, { recursive: true, force: true })
@@ -177,4 +233,4 @@ const fallback = template
 
 writeFileSync(join(dist, 'spa-fallback.html'), fallback)
 
-console.log(`prerendered: ${written} routes + SPA fallback`)
+console.log(`prerendered: ${written} routes + SPA fallback, critical CSS inlined`)
