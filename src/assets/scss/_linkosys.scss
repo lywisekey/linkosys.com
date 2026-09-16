@@ -722,3 +722,21 @@ nav[aria-label='Breadcrumb'] a {
     }
   }
 }
+
+// --- Inline icon sizing -------------------------------------------------------
+// @fortawesome/fontawesome-svg-core injects its stylesheet from JavaScript at
+// runtime. With the bundle deferred to the load event, every <svg> it renders
+// had no dimensions until then and expanded to fill its parent — the banner's
+// message icon stretched the alert to the full viewport, which read as a red
+// screen with a large white rounded shape on it.
+//
+// Declaring the same sizing here puts it in the stylesheet, and therefore in
+// the extracted critical CSS, so the icons are sized from the first paint.
+
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
