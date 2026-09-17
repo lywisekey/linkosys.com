@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.linkosys.com" }],
-      "destination": "https://linkosys.com/$1",
+      "has": [{ "type": "host", "value": "www\\.(?<apex>.*)" }],
+      "destination": "https://:apex/$1",
       "permanent": true
     }
   ],
