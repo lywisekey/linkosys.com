@@ -1,0 +1,46 @@
+# Linkosys
+
+> Linkosys delivers software engineering, AI and data, cloud, cybersecurity, IT staffing and program management for U.S. government and enterprise organizations. GSA Schedule 47QTCA21D004X.
+
+## Services
+
+- [Technology Services](https://linkosys.com/services): Software development, AI and data, cloud and infrastructure, cybersecurity, IT staffing and program management services for government and enterprise organizations.
+- [Software Development Services](https://linkosys.com/services/software-development): Enterprise software development and application modernization for government and commercial organizations. Custom applications, API integration, mobile and quality engineering.
+- [AI and Data Analytics Consulting](https://linkosys.com/services/ai-and-data): Data engineering, analytics, applied AI and process automation for government and enterprise organizations. Governed pipelines, production models and measurable outcomes.
+- [Cloud and Infrastructure Consulting](https://linkosys.com/services/cloud-infrastructure): Cloud migration, infrastructure as code, DevOps and reliability engineering for government and enterprise workloads on AWS, Azure and Google Cloud.
+- [Cybersecurity Consulting Services](https://linkosys.com/services/cybersecurity): Application, cloud and identity security, vulnerability management, compliance support and incident readiness for government and enterprise organizations.
+- [IT Staffing and Staff Augmentation Services](https://linkosys.com/services/it-staffing): Technology staffing and staff augmentation for government and enterprise teams. Contract, contract-to-hire and direct placement with engineer-led technical screening.
+- [Project and Program Management Services](https://linkosys.com/services/program-management): Program governance, project delivery, agile leadership, vendor coordination and business analysis for complex government and enterprise technology initiatives.
+
+## Government
+
+- [Government IT Services & Consulting](https://linkosys.com/government): Software engineering, data, cloud, cybersecurity, IT staffing and program management for government agencies and prime contractors. GSA Multiple Award Schedule 47QTCA21D004X.
+
+## Solutions
+
+- [Solutions](https://linkosys.com/solutions): Legacy modernization, process automation, connected data, digital products, manufacturing modernization and secure delivery — business outcomes Linkosys is brought in to deliver.
+
+## Industries
+
+- [Industries](https://linkosys.com/industries): Linkosys works across government, manufacturing, healthcare, transportation, financial services and enterprise organizations.
+- [Manufacturing Technology and MES Consulting](https://linkosys.com/industries/manufacturing): MES, production visibility, machine integration, IT/OT convergence and quality systems for manufacturers. Connect production systems, machines, people and data.
+- [Healthcare Technology Consulting](https://linkosys.com/industries/healthcare): Application development, systems integration, data and security engineering for healthcare organizations operating in regulated environments.
+- [Transportation & Logistics Technology](https://linkosys.com/industries/transportation): Operational software, systems integration, mobile field applications and analytics for transportation, logistics and infrastructure organizations.
+- [Financial Services Technology Consulting](https://linkosys.com/industries/financial-services): Application engineering, governed data pipelines, security and automation for financial services organizations with audit and control obligations.
+- [Enterprise Technology Consulting](https://linkosys.com/industries/enterprise): Software engineering, modernization, cloud, data and program management for enterprise organizations with established systems and internal delivery teams.
+
+## Work
+
+- [Case Studies](https://linkosys.com/case-studies): Delivered work described by the problem it solved: challenge, approach, solution and technology across manufacturing, operations, applied AI and public sector engagements.
+- [Our Work](https://linkosys.com/projects): Selected software, data and systems work delivered by the Linkosys engineering team across operations platforms, applied AI, public services and commercial platforms.
+
+## Company
+
+- [About Linkosys](https://linkosys.com/company/aboutus): Linkosys Inc. is a California-incorporated technology consulting and engineering firm serving government and enterprise organizations across the United States.
+- [Leadership and Team](https://linkosys.com/company/team): The engineers, delivery leads and consultants who staff Linkosys engagements across government, manufacturing and enterprise clients.
+- [Partners and Clients](https://linkosys.com/company/partners): Technology partners and client organizations Linkosys works with across government, manufacturing, financial services, media and commercial sectors.
+- [Insights](https://linkosys.com/company/blog): Notes from the Linkosys engineering and delivery team on modernization, data, security and getting technology programs delivered.
+
+## Contact
+
+- [Contact Linkosys](https://linkosys.com/contact): Talk to a Linkosys expert about software engineering, data and AI, cloud, cybersecurity, technology staffing or a government requirement.

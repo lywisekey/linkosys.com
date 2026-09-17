@@ -63,7 +63,7 @@
         <b-col sm="6" md="4" xl="3" class="d-flex justify-content-md-center">
           <div class="position-relative d-flex align-items-center">
             <div class="icon-lg bg-body rounded-circle flex-shrink-0 flex-centered">
-              <BIconTelephone class="heading-color" />
+              <BIconTelephone class="heading-color" :role="null" aria-hidden="true" />
             </div>
             <div class="nav flex-column ps-3">
               <div class="small text-body-secondary">Give us a call</div>
@@ -81,7 +81,7 @@
         <b-col sm="6" md="4" xl="3" class="d-flex justify-content-md-center">
           <div class="position-relative d-flex align-items-center">
             <div class="icon-lg bg-body rounded-circle flex-shrink-0 flex-centered">
-              <BIconEnvelope class="heading-color" />
+              <BIconEnvelope class="heading-color" :role="null" aria-hidden="true" />
             </div>
             <div class="nav flex-column ps-3">
               <div class="small text-body-secondary">Send us an email</div>
@@ -99,7 +99,7 @@
         <b-col sm="6" md="4" xl="3" class="d-flex justify-content-md-center">
           <div class="position-relative d-flex align-items-center">
             <div class="icon-lg bg-body rounded-circle flex-shrink-0 flex-centered">
-              <BIconGeoAlt class="heading-color" />
+              <BIconGeoAlt class="heading-color" :role="null" aria-hidden="true" />
             </div>
             <div class="nav flex-column ps-3">
               <div class="small text-body-secondary">Visit us at</div>

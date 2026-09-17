@@ -31,5 +31,5 @@ export async function loadSeoRoutes() {
     throw new Error('seo-routes.ts produced no routes')
   }
 
-  return { routes: mod.seoRoutes, siteUrl: mod.SITE_URL, root }
+  return { routes: mod.seoRoutes, siteUrl: mod.SITE_URL, siteName: mod.SITE_NAME, root }
 }
