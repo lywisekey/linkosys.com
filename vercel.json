@@ -1,5 +1,11 @@
 {
-  "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/spa-fallback.html" }
-  ]
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.linkosys.com" }],
+      "destination": "https://linkosys.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/spa-fallback.html" }]
 }
