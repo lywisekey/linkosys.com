@@ -86,7 +86,37 @@
     }
     </script>
 
-    
+    <!-- Analytics.
+
+         The queue and the config run immediately so nothing measured before the
+         tag arrives is lost, but the tag itself is only fetched on the load
+         event. This site defers everything non-visual past the first paint to
+         hold mobile LCP under 2.5s, and measuring showed the cost is bandwidth
+         contention during the paint rather than blocking, so a third-party
+         script in the head would undo that work whether or not it is async.
+
+         Production only: local runs and preview deployments would otherwise
+         write into the same property as real visitors.
+
+         send_page_view is off because this is a single-page app. After the
+         first load every link is a client-side navigation with no document load
+         behind it, so the automatic page_view would report one view per session
+         however many pages someone read. src/helpers/analytics.ts sends them
+         from the router instead, first view included. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L81Y5QMP4Y', { send_page_view: false });
+      if (location.hostname === 'linkosys.com') {
+        addEventListener('load', function () {
+          var tag = document.createElement('script');
+          tag.async = true;
+          tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-L81Y5QMP4Y';
+          document.head.appendChild(tag);
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>

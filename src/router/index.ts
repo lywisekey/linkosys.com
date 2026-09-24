@@ -1,6 +1,7 @@
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { linkosysRoutes } from '@/router/linkosys'
 import { applySeo } from '@/helpers/seo'
+import { trackPageView } from '@/helpers/analytics'
 
 const router = createRouter({
   // Prerendering runs this module in Node, where there is no browser history.
@@ -20,6 +21,9 @@ const router = createRouter({
 // route resolves so per-route beforeEnter hooks can populate meta first.
 router.afterEach((to) => {
   applySeo(to)
+  // After applySeo, so the view is reported against the title this route set
+  // rather than the one the previous route left behind.
+  trackPageView()
 })
 
 export default router
