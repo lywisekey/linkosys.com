@@ -89,11 +89,17 @@
     <!-- Analytics.
 
          The queue and the config run immediately so nothing measured before the
-         tag arrives is lost, but the tag itself is only fetched on the load
-         event. This site defers everything non-visual past the first paint to
-         hold mobile LCP under 2.5s, and measuring showed the cost is bandwidth
-         contention during the paint rather than blocking, so a third-party
-         script in the head would undo that work whether or not it is async.
+         tag arrives is lost, but the tag itself waits for the main thread to go
+         idle after the load event.
+
+         The load event alone was not late enough. Interleaved Lighthouse runs
+         against production, four with the tag blocked and four without, put
+         median mobile LCP at 3.85s blocked and 4.79s live, with identical FCP
+         in both groups — so the cost was real and not network drift. The LCP
+         element is a paragraph already present in the prerendered HTML, with
+         load delay and load time both zero, so none of that was spent fetching
+         anything: it was all render delay, from the tag competing with
+         hydration, which this site also runs on the load event.
 
          Production only: local runs and preview deployments would otherwise
          write into the same property as real visitors.
@@ -110,10 +116,14 @@
       gtag('config', 'G-L81Y5QMP4Y', { send_page_view: false });
       if (location.hostname === 'linkosys.com') {
         addEventListener('load', function () {
-          var tag = document.createElement('script');
-          tag.async = true;
-          tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-L81Y5QMP4Y';
-          document.head.appendChild(tag);
+          var load = function () {
+            var tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-L81Y5QMP4Y';
+            document.head.appendChild(tag);
+          };
+          if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 4000 });
+          else setTimeout(load, 2000);
         });
       }
     </script>
