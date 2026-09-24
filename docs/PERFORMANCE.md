@@ -110,6 +110,38 @@ chunk from 208 KB to 168 KB gzipped. That also surfaced a real bug: the
 `<v-icon>` on the sign-up page had been rendering nothing, silently, because
 production Vue does not warn about unresolved components.
 
+## Analytics, and how its cost was measured
+
+GA4 was added after the work above. A third party on a page tuned this hard
+needs measuring, not assuming, so it was measured twice — once with the tag on
+the load event, once waiting for `requestIdleCallback` after it.
+
+Method: Lighthouse against production, mobile, four runs with
+`--blocked-url-patterns` for googletagmanager and google-analytics and four
+without, **alternated** so both groups met the same network.
+
+| Render delay (LCP element) | Tag blocked | Tag live | Cost |
+|---|---|---|---|
+| Tag on `load` | 3,237 ms | 4,318 ms | **+1,081 ms** |
+| Tag on idle after `load` | 3,266 ms | 3,124 ms | −142 ms |
+
+The LCP element is a paragraph already in the prerendered HTML — load delay and
+load time are both zero — so none of that was spent fetching anything. The tag
+on `load` was competing with hydration, which starts on the same event, and
+pushing back the frame that finished the page. Waiting for idle puts it after
+hydration and the cost disappears. TBT still rises by roughly 60–70 ms with the
+tag live, which is the tag's own execution and is well inside the 200 ms budget.
+
+**Do not compare these runs by median.** LCP here is bimodal in a way that has
+nothing to do with analytics: FCP lands either at ~1.39 s or at ~2.31 s, and the
+whole of LCP shifts with it. Both clusters appear with the tag blocked, and FCP
+happens long before the tag is even requested, so the split is upstream of it.
+With four runs per group the median just reports how many runs fell in which
+cluster — measured that way, the second round appeared to show analytics making
+the site *faster* by 1.19 s, which is not a thing. The numbers above compare
+render delay within the slow cluster only, where every run saw the same TTFB
+(~635 ms) and the same FCP (~2.31 s).
+
 ## Core Web Vitals status
 
 Thresholds are LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms.
