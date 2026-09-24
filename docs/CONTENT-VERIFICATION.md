@@ -119,8 +119,18 @@ Those dead entries have been removed rather than linked to fabricated legal text
 
 Still required:
 
-- Privacy policy — the contact form collects name, email, phone and company, so
-  this is a genuine obligation, not a formality
+- ~~Privacy policy~~ — published at `/privacy`. Written from what the site
+  actually does, verified by loading production and listing every domain it
+  contacts and every cookie it sets, not from a template. **It has not been
+  reviewed by a lawyer.** Two decisions are the client's, not the site's:
+  - How long contact enquiries are kept. The page says we keep them as long as
+    we need them to answer you and hold the correspondence, then delete them,
+    which is true but not a period. If Linkosys adopts a retention period, put
+    the number in the page.
+  - Whether EEA and UK visitors should be asked for consent before Google
+    Analytics loads. The tag currently loads for everyone. Under GDPR analytics
+    cookies generally need consent; under US law they generally do not. The site
+    has no consent mechanism, so this is a build decision, not a wording one.
 - Terms of use
 - Accessibility statement — government buyers look for this
 

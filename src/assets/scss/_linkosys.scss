@@ -740,3 +740,81 @@ nav[aria-label='Breadcrumb'] a {
   overflow: visible;
   vertical-align: -0.125em;
 }
+
+// --- Long-form legal and policy text ------------------------------------------
+// Used by pages that are mostly prose. The rest of the site is built from cards
+// and sections with their own spacing, so there was nowhere that simply set a
+// comfortable measure and rhythm for several screens of running text.
+
+.lk-prose {
+  color: var(--lk-ink-muted);
+
+  h2 {
+    color: var(--lk-ink);
+    font-size: 1.375rem;
+    margin-top: 2.75rem;
+    margin-bottom: 0.875rem;
+  }
+
+  h2:first-child {
+    margin-top: 0;
+  }
+
+  p,
+  ul {
+    margin-bottom: 1.125rem;
+    line-height: 1.75;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+  }
+
+  li {
+    margin-bottom: 0.375rem;
+  }
+
+  a {
+    color: var(--lk-accent-text);
+    text-underline-offset: 0.2em;
+  }
+
+  code {
+    background: rgb(0 0 0 / 5%);
+    border-radius: 0.25rem;
+    color: var(--lk-ink);
+    font-size: 0.875em;
+    padding: 0.1em 0.35em;
+  }
+
+  th,
+  td {
+    color: var(--lk-ink-muted);
+    vertical-align: top;
+  }
+
+  thead th {
+    color: var(--lk-ink);
+  }
+}
+
+// A three-column table of service providers was unreadable inside a prose
+// column: it overflowed and .table-responsive hid the last column behind a
+// scrollbar. A description list carries the same three facts and wraps.
+.lk-processors {
+  dt {
+    color: var(--lk-ink);
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  dt:first-child {
+    margin-top: 0;
+  }
+
+  dd {
+    margin-bottom: 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--lk-line, rgb(0 0 0 / 8%));
+  }
+}

@@ -65,6 +65,12 @@ const coreRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/Linkosys/contact.vue')
   },
   {
+    path: '/privacy',
+    name: 'privacy',
+    meta: metaFor('/privacy'),
+    component: () => import('@/views/Linkosys/privacy.vue')
+  },
+  {
     path: '/projects',
     name: 'projects',
     meta: metaFor('/projects'),

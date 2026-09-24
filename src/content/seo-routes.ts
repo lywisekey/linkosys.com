@@ -148,6 +148,14 @@ export const seoRoutes: SeoRoute[] = [
     priority: '0.4'
   },
   {
+    path: '/privacy',
+    title: title('Privacy Policy'),
+    description:
+      'What the Linkosys website collects, why, which service providers handle it, how long it is kept and how to ask us to correct or delete it.',
+    priority: '0.3',
+    changefreq: 'yearly'
+  },
+  {
     path: '/contact',
     title: 'Contact Linkosys | Talk to an Expert',
     description:

@@ -29,7 +29,8 @@ const SECTIONS = [
   ['Industries', (path) => path === '/industries' || path.startsWith('/industries/')],
   ['Work', (path) => path === '/case-studies' || path === '/projects'],
   ['Company', (path) => path.startsWith('/company/')],
-  ['Contact', (path) => path === '/contact']
+  ['Contact', (path) => path === '/contact'],
+  ['Legal', (path) => path === '/privacy']
 ]
 
 /**

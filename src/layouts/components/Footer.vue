@@ -118,6 +118,14 @@
           Copyright © {{ currentYear }} Linkosys. All Rights Reserved.
         </div>
 
+        <ul class="list-inline mb-0 small">
+          <li class="list-inline-item">
+            <router-link :to="{ name: 'privacy' }" class="text-body text-primary-hover">
+              Privacy Policy
+            </router-link>
+          </li>
+        </ul>
+
         <!-- <ul class="list-inline mb-0 icons-center justify-content-center gap-1">
           <li class="list-inline-item" v-for="(item, idx) in followOnIcons" :key="idx">
             <router-link class="btn btn-xs btn-icon btn-light" to="">

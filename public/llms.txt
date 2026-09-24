@@ -44,3 +44,7 @@
 ## Contact
 
 - [Contact Linkosys](https://linkosys.com/contact): Talk to a Linkosys expert about software engineering, data and AI, cloud, cybersecurity, technology staffing or a government requirement.
+
+## Legal
+
+- [Privacy Policy](https://linkosys.com/privacy): What the Linkosys website collects, why, which service providers handle it, how long it is kept and how to ask us to correct or delete it.
