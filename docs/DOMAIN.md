@@ -35,51 +35,49 @@ nameservers: no name now points at 159.89.206.122 or 143.198.147.118, TLS fails
 for `chat` and `cryptoket` because there is no certificate to serve, HTTP returns
 404 from Vercel, and no new certificate has been issued for any subdomain.
 
-## The wildcard is still there
+## The wildcard is gone — and it took www with it
+
+The wildcard has been deleted, along with every stale subdomain record. Verified
+against both Hover nameservers: `chat`, `cryptoket`, `realestate`, `api` and
+`cpanel` no longer resolve, and an invented name returns NXDOMAIN instead of a
+Vercel address. That closes the unbounded subdomain surface.
+
+**`www.linkosys.com` now returns NXDOMAIN.** It had no A record of its own — it
+was resolving through the wildcard the whole time, which is why a DNS answer for
+it looked identical to an explicit record from outside. With the wildcard gone,
+anyone typing `www.linkosys.com` gets a name-resolution failure, not a redirect:
 
 ```
-*.linkosys.com.   300   IN   A   216.198.79.1
+www.linkosys.com   A   -> NXDOMAIN   (ns1.hover.com, ns2.hover.com, 1.1.1.1, 8.8.8.8)
+https://www.linkosys.com/   -> connection fails
+https://linkosys.com/       -> 200
 ```
 
-This is now the only reason the old names resolve at all: `chat`,
-`cryptoket`, `realestate`, `api`, `cpanel`, `webmail` and an invented name like
-`zzz-17780.linkosys.com` all return the same Vercel address, because the
-wildcard answers for everything.
+This is worse for a www visitor than the state that started this whole
+investigation. It needs an explicit record in Hover:
 
-Nothing is served — Vercel has no certificate for names it does not know, so TLS
-fails, and plain HTTP returns 404. The remaining cost is that the domain
-presents an unbounded subdomain surface to anything enumerating it.
+| Type | Name | Value |
+|---|---|---|
+| A | `www` | `216.198.79.1` |
 
-Before deleting it, check in the Hover panel that `linkosys.com` and
-`www.linkosys.com` have their **own** A records. A wildcard answer is
-indistinguishable from an explicit one in a DNS response, so this cannot be
-settled from outside — and if `www` is only resolving through the wildcard,
-removing it takes the site's second hostname down.
+That is the address the apex uses and the one `www` resolved to from
+2026-09-17 to 2026-09-30, during which Vercel issued it a certificate and served
+the 308 redirect correctly, so it is proven on this domain. `vercel domains
+inspect` reports `76.76.21.21` instead; both are Vercel anycast addresses and
+either satisfies the check, but the proven one is the safer choice.
 
-## DMARC was deleted in the cleanup — restore it
+The `www` → apex redirect in `vercel.json` is unaffected and starts working
+again as soon as the name resolves.
 
-On 2026-09-24 the domain published:
+## DMARC is still missing
 
-```
-v=DMARC1; p=quarantine; rua=mailto:dong@linkosys.com; pct=100; adkim=s; aspf=s
-```
+Re-checked on both Hover nameservers and two public resolvers: `TXT
+_dmarc.linkosys.com` returns an empty answer. SPF, the five MX records and the
+Google site verification all survived both cleanups; only DMARC did not.
 
-On 2026-09-30 it publishes nothing. Both Hover nameservers and three public
-resolvers return NOERROR with an empty answer for
-`TXT _dmarc.linkosys.com`. The name still resolves — the wildcard gives it an A
-record — but the policy is gone.
-
-`_dmarc` is a subdomain name, so it was most likely swept up with the others.
-SPF, the MX records and the Google site verification all survived; only DMARC
-went.
-
-This matters more than usual right now. Without a DMARC policy nothing tells a
-receiving server what to do with mail that fails authentication while claiming
-to be from linkosys.com, and mail authentication posture is an input to the same
-domain reputation systems that produced the block in the first place. The
-cleanup removed one adverse signal and added another.
-
-Re-add it as a TXT record on `_dmarc`, exactly as above.
+| Type | Name | Value |
+|---|---|---|
+| TXT | `_dmarc` | `v=DMARC1; p=quarantine; rua=mailto:dong@linkosys.com; pct=100; adkim=s; aspf=s` |
 
 ## Email authentication — unresolved
 
