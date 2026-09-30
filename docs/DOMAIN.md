@@ -20,45 +20,66 @@ The site itself came back clean. What did not is everything else on the domain.
 | Domain registration | Created 2016-06-18, expires 2027-06-18, Tucows |
 | Contact form endpoint | Alive; validation, honeypot and a real send all behave correctly |
 
-## The subdomains are the problem
+## The subdomains — cleaned up 2026-09-30
 
-Certificate Transparency lists 18 names under `linkosys.com`. Four still have
-DNS pointing somewhere, and none of the four works:
+Certificate Transparency lists 18 names under `linkosys.com`. Four of them used
+to point at DigitalOcean hosts and none of the four worked: `chat` and
+`cryptoket` failed TLS outright with certificates that expired on 2026-09-07 and
+2026-08-24, and `realestate` and `api` answered nothing at all. To an automated
+reputation scanner that reads as expired certificates, dead hosts and a
+crypto-named subdomain — close to the signature of a domain that has been
+abandoned or compromised, and the likeliest reason the Spectrum filter fired.
 
-| Name | Points at | State |
-|---|---|---|
-| `chat.linkosys.com` | 159.89.206.122 (DigitalOcean) | TLS handshake fails — certificate expired 2026-09-07. HTTP returns 403. |
-| `cryptoket.linkosys.com` | 159.89.206.122 (DigitalOcean) | TLS handshake fails — certificate expired 2026-08-24. HTTP returns 403. |
-| `realestate.linkosys.com` | 143.198.147.118 (DigitalOcean) | No response at all |
-| `api.linkosys.com` | 143.198.147.118 (DigitalOcean) | No response at all |
+**Those A records have since been deleted.** Verified against both authoritative
+nameservers: no name now points at 159.89.206.122 or 143.198.147.118, TLS fails
+for `chat` and `cryptoket` because there is no certificate to serve, HTTP returns
+404 from Vercel, and no new certificate has been issued for any subdomain.
 
-The 403s return `{"error": "Yêu cầu không được phép."}` from nginx with a strict
-security header set, so that host is ours and is refusing unauthenticated
-requests rather than having been taken over. That is the reassuring part.
+## The wildcard is still there
 
-The rest is not. To an automated reputation scanner this domain presents as:
-several subdomains with **expired certificates**, two more that **resolve but
-answer nothing**, and one of them named `cryptoket` — crypto and NFT naming is
-a category most threat feeds weight as high risk on its own. Expired TLS plus
-dead hosts plus crypto naming is close to the signature of a domain that has
-been abandoned or compromised, which is the likeliest reason the filter fired.
+```
+*.linkosys.com.   300   IN   A   216.198.79.1
+```
 
-There is also a **wildcard DNS record**: `*.linkosys.com` resolves to
-216.198.79.1, so any invented name answers. Nothing is actually served — the TLS
-handshake fails for hostnames Vercel does not know — but it makes the domain
-look larger and less managed than it is.
+This is now the only reason the old names resolve at all: `chat`,
+`cryptoket`, `realestate`, `api`, `cpanel`, `webmail` and an invented name like
+`zzz-17780.linkosys.com` all return the same Vercel address, because the
+wildcard answers for everything.
 
-None of this is fixed here, because it is DNS and infrastructure rather than
-code. The options, in order of how much they help:
+Nothing is served — Vercel has no certificate for names it does not know, so TLS
+fails, and plain HTTP returns 404. The remaining cost is that the domain
+presents an unbounded subdomain surface to anything enumerating it.
 
-1. Delete the DNS records for `realestate` and `api`. They point at a host that
-   answers nothing.
-2. Renew the certificates on `chat` and `cryptoket`, or delete their records
-   too if those services are retired. A subdomain that only ever fails TLS is
-   worse than one that does not exist.
-3. Remove the wildcard record and declare subdomains explicitly.
-4. Ask Spectrum to re-review the domain under Security Shield, after the above,
-   so the reclassification is assessed against a clean domain.
+Before deleting it, check in the Hover panel that `linkosys.com` and
+`www.linkosys.com` have their **own** A records. A wildcard answer is
+indistinguishable from an explicit one in a DNS response, so this cannot be
+settled from outside — and if `www` is only resolving through the wildcard,
+removing it takes the site's second hostname down.
+
+## DMARC was deleted in the cleanup — restore it
+
+On 2026-09-24 the domain published:
+
+```
+v=DMARC1; p=quarantine; rua=mailto:dong@linkosys.com; pct=100; adkim=s; aspf=s
+```
+
+On 2026-09-30 it publishes nothing. Both Hover nameservers and three public
+resolvers return NOERROR with an empty answer for
+`TXT _dmarc.linkosys.com`. The name still resolves — the wildcard gives it an A
+record — but the policy is gone.
+
+`_dmarc` is a subdomain name, so it was most likely swept up with the others.
+SPF, the MX records and the Google site verification all survived; only DMARC
+went.
+
+This matters more than usual right now. Without a DMARC policy nothing tells a
+receiving server what to do with mail that fails authentication while claiming
+to be from linkosys.com, and mail authentication posture is an input to the same
+domain reputation systems that produced the block in the first place. The
+cleanup removed one adverse signal and added another.
+
+Re-add it as a TXT record on `_dmarc`, exactly as above.
 
 ## Email authentication — unresolved
 
