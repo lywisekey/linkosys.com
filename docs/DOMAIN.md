@@ -35,49 +35,68 @@ nameservers: no name now points at 159.89.206.122 or 143.198.147.118, TLS fails
 for `chat` and `cryptoket` because there is no certificate to serve, HTTP returns
 404 from Vercel, and no new certificate has been issued for any subdomain.
 
-## The wildcard is gone — and it took www with it
+## The wildcard is gone, and www is back — resolved 2026-09-30
 
-The wildcard has been deleted, along with every stale subdomain record. Verified
-against both Hover nameservers: `chat`, `cryptoket`, `realestate`, `api` and
-`cpanel` no longer resolve, and an invented name returns NXDOMAIN instead of a
-Vercel address. That closes the unbounded subdomain surface.
+The wildcard and every stale subdomain record have been deleted. `chat`,
+`cryptoket`, `realestate`, `api`, `dev`, `m`, `chemical`, `mail`, `webmail`,
+`cpanel` and any invented name all return NXDOMAIN on both Hover nameservers.
 
-**`www.linkosys.com` now returns NXDOMAIN.** It had no A record of its own — it
-was resolving through the wildcard the whole time, which is why a DNS answer for
-it looked identical to an explicit record from outside. With the wildcard gone,
-anyone typing `www.linkosys.com` gets a name-resolution failure, not a redirect:
+Removing the wildcard took `www.linkosys.com` down with it, because `www` had no
+record of its own — it had been answered by the wildcard the whole time, which is
+why its DNS answer was indistinguishable from an explicit record when checked
+from outside. For a while it was NXDOMAIN, then briefly a CNAME whose value was
+an IP address, which Hover expanded to `216.198.79.1.linkosys.com` — a name that
+does not exist. A CNAME target has to be a hostname; that is a DNS rule, not a
+Hover limitation.
+
+It now reads:
 
 ```
-www.linkosys.com   A   -> NXDOMAIN   (ns1.hover.com, ns2.hover.com, 1.1.1.1, 8.8.8.8)
-https://www.linkosys.com/   -> connection fails
-https://linkosys.com/       -> 200
+www.linkosys.com.   300   IN   CNAME   linkosys.com.
+linkosys.com.       300   IN   A       216.198.79.1
 ```
 
-This is worse for a www visitor than the state that started this whole
-investigation. It needs an explicit record in Hover:
+A CNAME to the apex, which resolves correctly and has the advantage of following
+the apex automatically if that address ever changes. Verified end to end: the
+certificate covers `www.linkosys.com` and runs to 2026-12-16, the first hop is a
+308, and path and query survive it.
 
-| Type | Name | Value |
-|---|---|---|
-| A | `www` | `216.198.79.1` |
+| Entry point | Ends at |
+|---|---|
+| `https://www.linkosys.com/` | `https://linkosys.com/` |
+| `https://www.linkosys.com/services/cybersecurity` | same path on the apex |
+| `https://www.linkosys.com/contact?utm_source=card` | query preserved |
+| `http://www.linkosys.com/government` | `https://linkosys.com/government` |
 
-That is the address the apex uses and the one `www` resolved to from
-2026-09-17 to 2026-09-30, during which Vercel issued it a certificate and served
-the 308 redirect correctly, so it is proven on this domain. `vercel domains
-inspect` reports `76.76.21.21` instead; both are Vercel anycast addresses and
-either satisfies the check, but the proven one is the safer choice.
+The apex is untouched: `/`, `/privacy`, `/services`, `/llms.txt` and
+`/sitemap.xml` all answer 200 with zero redirects.
 
-The `www` → apex redirect in `vercel.json` is unaffected and starts working
-again as soon as the name resolves.
+## DMARC — restored
 
-## DMARC is still missing
+```
+v=DMARC1; p=quarantine; rua=mailto:dong@linkosys.com; pct=100; adkim=s; aspf=s
+```
 
-Re-checked on both Hover nameservers and two public resolvers: `TXT
-_dmarc.linkosys.com` returns an empty answer. SPF, the five MX records and the
-Google site verification all survived both cleanups; only DMARC did not.
+Confirmed on both Hover nameservers and on 1.1.1.1, 8.8.8.8 and 9.9.9.9. SPF and
+the five Google MX records were never lost.
 
-| Type | Name | Value |
-|---|---|---|
-| TXT | `_dmarc` | `v=DMARC1; p=quarantine; rua=mailto:dong@linkosys.com; pct=100; adkim=s; aspf=s` |
+## State at the point of appealing to Spectrum
+
+| | |
+|---|---|
+| Stale subdomains | none resolve |
+| Wildcard | removed |
+| `www` | CNAME to apex, valid certificate, 308 |
+| SPF / DMARC / MX | all present |
+| Google Safe Browsing | clean |
+| Spamhaus DBL, SURBL | not listed |
+| Site | 11 routes OK, no console errors |
+| Security headers | 6 of 6 |
+| Third-party origins | two, both expected |
+
+Every adverse signal found in this investigation is gone. What remains is the
+classification itself, which only Spectrum can change — see the request form in
+the section below.
 
 ## Email authentication — unresolved
 
