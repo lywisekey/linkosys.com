@@ -11,24 +11,22 @@
     </a>
 
     <div class="dropdown-menu p-3" :class="section.columns ? 'dropdown-menu-size-lg' : ''">
-      <b-row>
-        <b-col v-for="(chunk, index) in columns" :key="index" :sm="section.columns ? 6 : 12">
-          <ul class="list-unstyled mb-0">
-            <li v-for="link in chunk" :key="link.label">
-              <router-link class="dropdown-item" :to="link.to">
-                {{ link.label }}
-              </router-link>
-            </li>
-          </ul>
-        </b-col>
+      <div class="lk-nav-cols" :style="{ '--lk-nav-columns': section.columns ?? 1 }">
+        <ul v-for="(chunk, index) in columns" :key="index" class="list-unstyled mb-0">
+          <li v-for="link in chunk" :key="link.label">
+            <router-link class="dropdown-item" :to="link.to">
+              {{ link.label }}
+            </router-link>
+          </li>
+        </ul>
+      </div>
 
-        <b-col v-if="section.footer" cols="12">
-          <hr class="mt-2 mb-2" />
-          <router-link class="dropdown-item fw-semibold" :to="section.footer.to">
-            {{ section.footer.label }} &rarr;
-          </router-link>
-        </b-col>
-      </b-row>
+      <template v-if="section.footer">
+        <hr class="mt-2 mb-2" />
+        <router-link class="dropdown-item fw-semibold" :to="section.footer.to">
+          {{ section.footer.label }} &rarr;
+        </router-link>
+      </template>
     </div>
   </li>
 </template>

@@ -818,3 +818,29 @@ nav[aria-label='Breadcrumb'] a {
     border-left: 2px solid var(--lk-line, rgb(0 0 0 / 8%));
   }
 }
+
+// --- Mega menu columns --------------------------------------------------------
+// The two-column dropdowns used Bootstrap's grid, whose columns are a percentage
+// of the panel. A dropdown is absolutely positioned, so its width is shrink-to-fit
+// — but percentage columns cannot report how wide their content is, so the panel
+// settled on its min-width (35rem) and the longest label, which Bootstrap sets to
+// white-space: nowrap, simply ran 67px past the panel's edge. "Modernize
+// manufacturing operations" was hanging outside the dark background.
+//
+// Columns sized to max-content do report their width, so the panel grows to fit
+// whatever the longest label happens to be. min-width stays as a floor for
+// balance; this only ever makes the panel wider.
+
+.lk-nav-cols {
+  display: grid;
+  grid-template-columns: repeat(var(--lk-nav-columns, 1), max-content);
+  column-gap: 2rem;
+}
+
+// Below the navbar's expand breakpoint the menu is a full-width collapsed panel,
+// where max-content columns would overflow the viewport instead.
+@media (max-width: 1199.98px) {
+  .lk-nav-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

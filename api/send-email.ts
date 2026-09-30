@@ -3,7 +3,15 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'info@linkosys.com'
+/**
+ * Recipients, comma-separated in CONTACT_TO_EMAIL so the list can change without
+ * a deploy. Resend takes an array directly; sending one message addressed to
+ * everyone keeps a single thread rather than splitting replies across copies.
+ */
+const TO_EMAILS = (process.env.CONTACT_TO_EMAIL || 'info@linkosys.com')
+  .split(',')
+  .map((address) => address.trim())
+  .filter(Boolean)
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'no-reply@linkosys.com'
 
 /** Longest value accepted per field, to bound payload size and abuse. */
@@ -84,7 +92,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     await resend.emails.send({
       from: FROM_EMAIL,
-      to: TO_EMAIL,
+      to: TO_EMAILS,
       replyTo: cleanEmail,
       subject: `New contact from ${cleanName} — ${cleanCompany || 'No company'}`,
       html: `
