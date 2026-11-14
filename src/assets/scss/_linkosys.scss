@@ -844,3 +844,59 @@ nav[aria-label='Breadcrumb'] a {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+// Desktop navigation uses the Linkosys navy palette rather than the generic
+// dark theme's charcoal surface. Keep the collapsed mobile menu unchanged.
+@media (min-width: 1200px) {
+  .navbar .lk-primary-nav {
+    > .nav-item > .nav-link {
+      color: #e2eaf3;
+
+      &:hover,
+      &:focus-visible,
+      &.active {
+        color: var(--lk-accent-on-dark);
+      }
+    }
+
+    > .dropdown > .dropdown-menu {
+      --bs-dropdown-bg: var(--lk-navy-700);
+      --bs-dropdown-color: #e2eaf3;
+      --bs-dropdown-link-color: #e2eaf3;
+      --bs-dropdown-link-hover-color: #ffffff;
+      --bs-dropdown-link-hover-bg: var(--lk-navy-600);
+      --bs-dropdown-link-active-color: #ffffff;
+      --bs-dropdown-link-active-bg: var(--lk-navy-600);
+      background-color: var(--bs-dropdown-bg);
+      border: 1px solid var(--lk-line-dark);
+      border-top: 2px solid var(--lk-accent-on-dark);
+      border-radius: 6px;
+      box-shadow: 0 16px 40px rgb(0 0 0 / 28%);
+
+      .dropdown-item {
+        padding: 0.65rem 1rem;
+        border-radius: var(--lk-radius);
+        transition: color 0.15s ease, background-color 0.15s ease;
+
+        &:focus-visible {
+          outline: 2px solid var(--lk-accent-on-dark);
+          outline-offset: -2px;
+        }
+
+        &.fw-semibold {
+          color: var(--lk-accent-on-dark);
+
+          &:hover,
+          &:focus-visible {
+            color: #ffffff;
+          }
+        }
+      }
+
+      hr {
+        border-color: var(--lk-line-dark);
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <b-collapse id="topbar-appmenu-collapse" class="navbar-collapse">
-    <ul class="navbar-nav navbar-nav-scroll dropdown-hover" :class="ulClass">
+    <ul class="navbar-nav navbar-nav-scroll dropdown-hover lk-primary-nav" :class="ulClass">
       <NavDropdown v-for="section in navSections" :key="section.label" :section="section" />
 
       <li v-for="link in primaryLinks" :key="link.label" class="nav-item">
