@@ -100,7 +100,7 @@ export function applySeo(route: RouteLocationNormalized) {
 
   const title = meta.title ?? `${SITE_NAME} | Technology Consulting and Engineering`
   const description = meta.description ?? ORG.description
-  const canonical = `${SITE_URL}${route.path === '/' ? '' : route.path.replace(/\/$/, '')}`
+  const canonical = `${SITE_URL}${route.path === '/' ? '/' : route.path.replace(/\/$/, '')}`
   const image = `${SITE_URL}${meta.ogImage ?? '/images/og-default.png'}`
 
   document.title = title
@@ -118,6 +118,8 @@ export function applySeo(route: RouteLocationNormalized) {
   upsertMeta({ key: 'og:description', attr: 'property', content: description })
   upsertMeta({ key: 'og:url', attr: 'property', content: canonical })
   upsertMeta({ key: 'og:image', attr: 'property', content: image })
+  upsertMeta({ key: 'og:image:secure_url', attr: 'property', content: image })
+  upsertMeta({ key: 'og:image:alt', attr: 'property', content: `${title} — Linkosys` })
 
   upsertMeta({ key: 'twitter:card', attr: 'name', content: 'summary_large_image' })
   upsertMeta({ key: 'twitter:title', attr: 'name', content: title })

@@ -1,8 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 /**
  * Recipients, comma-separated in CONTACT_TO_EMAIL so the list can change without
  * a deploy. Resend takes an array directly; sending one message addressed to
@@ -53,7 +51,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ success: false, message: 'Method not allowed' })
   }
 
-  const body = (req.body ?? {}) as Record<string, unknown>
+  if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
+    return res.status(400).json({ success: false, message: 'Invalid request body' })
+  }
+  const body = req.body as Record<string, unknown>
   const { name, email, phone, company, message, interest } = body
 
   // Honeypot: a hidden field no human fills in. Bots that submit every input
@@ -62,8 +63,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ success: true, message: 'Your message has been sent successfully.' })
   }
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ success: false, message: 'Missing required fields' })
+  const required = ['name', 'email', 'company', 'interest', 'message']
+  if (required.some((field) => typeof body[field] !== 'string' || !(body[field] as string).trim())) {
+    return res.status(400).json({ success: false, message: 'Please complete all required fields' })
+  }
+  if (phone != null && typeof phone !== 'string') {
+    return res.status(400).json({ success: false, message: 'Please provide a valid phone number' })
   }
 
   const cleanEmail = sanitizeHeader(email, LIMITS.email)
@@ -90,7 +95,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   ]
 
   try {
-    await resend.emails.send({
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAILS,
       replyTo: cleanEmail,
@@ -111,6 +117,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         </table>
       `
     })
+
+    if (error) throw error
 
     return res
       .status(200)

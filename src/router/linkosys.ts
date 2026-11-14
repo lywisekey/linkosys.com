@@ -89,33 +89,14 @@ const serviceDetailRoute: RouteRecordRaw = {
   path: '/services/:slug',
   name: 'services.detail',
   meta: { title: title('Services') },
-  component: () => import('@/views/Linkosys/ServiceDetail.vue'),
-  beforeEnter: (to) => {
-    const entry = seoRouteByPath(`/services/${to.params.slug}`)
-    if (!entry) return { name: 'not-found', params: { pathMatch: ['services', String(to.params.slug)] } }
-
-    to.meta.title = entry.title
-    to.meta.description = entry.description
-    to.meta.jsonLd = entry.jsonLd
-    to.meta.ogImage = entry.ogImage
-    return true
-  }
+  component: () => import('@/views/Linkosys/ServiceDetail.vue')
 }
 
 const industryDetailRoute: RouteRecordRaw = {
   path: '/industries/:slug',
   name: 'industry.detail',
   meta: { title: title('Industries') },
-  component: () => import('@/views/Linkosys/IndustryDetail.vue'),
-  beforeEnter: (to) => {
-    const entry = seoRouteByPath(`/industries/${to.params.slug}`)
-    if (!entry) return { name: 'not-found', params: { pathMatch: ['industries', String(to.params.slug)] } }
-
-    to.meta.title = entry.title
-    to.meta.description = entry.description
-    to.meta.ogImage = entry.ogImage
-    return true
-  }
+  component: () => import('@/views/Linkosys/IndustryDetail.vue')
 }
 
 /**

@@ -2,6 +2,7 @@ import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { linkosysRoutes } from '@/router/linkosys'
 import { applySeo } from '@/helpers/seo'
 import { trackPageView } from '@/helpers/analytics'
+import { seoRouteByPath } from '@/content/seo-routes'
 
 const router = createRouter({
   // Prerendering runs this module in Node, where there is no browser history.
@@ -17,8 +18,28 @@ const router = createRouter({
   }
 })
 
+// A slug-only change reuses its route record, so beforeEnter would not run.
+router.beforeEach((to) => {
+  if (to.name !== 'services.detail' && to.name !== 'industry.detail') return
+  const entry = seoRouteByPath(to.path)
+  if (!entry) {
+    return {
+      name: 'not-found',
+      params: { pathMatch: to.path.split('/').filter(Boolean) },
+      query: to.query,
+      hash: to.hash
+    }
+  }
+  Object.assign(to.meta, {
+    title: entry.title,
+    description: entry.description,
+    jsonLd: entry.jsonLd,
+    ogImage: entry.ogImage
+  })
+})
+
 // Title, description, canonical, Open Graph and JSON-LD are applied after the
-// route resolves so per-route beforeEnter hooks can populate meta first.
+// route resolves, after the detail-route guard has populated metadata.
 router.afterEach((to) => {
   applySeo(to)
   // After applySeo, so the view is reported against the title this route set

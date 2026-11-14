@@ -97,7 +97,7 @@
       <!-- Experience -->
       <section class="lk-section">
         <b-container>
-          <SectionHeader eyebrow="Experience" title="Relevant experience" />
+          <SectionHeader eyebrow="Experience" :title="hasSectorStudies ? 'Relevant experience' : 'Selected delivery experience'" />
           <b-row class="g-4">
             <b-col v-for="study in relevantStudies" :key="study.slug" md="4">
               <CaseStudyCard :study="study" />
@@ -141,10 +141,11 @@ const ctaBody = computed(() =>
     : 'Describe the problem and the constraint. We will tell you how we would approach it.'
 )
 
-const relevantStudies = computed(() => {
-  const matching = caseStudies.filter(
-    (study) => study.sector.toLowerCase() === industry.value?.name.toLowerCase()
-  )
-  return matching.length ? matching : caseStudies.slice(0, 3)
-})
+const sectorStudies = computed(() => caseStudies.filter(
+  (study) => study.sector.toLowerCase() === industry.value?.name.toLowerCase()
+))
+const hasSectorStudies = computed(() => sectorStudies.value.length > 0)
+const relevantStudies = computed(() =>
+  hasSectorStudies.value ? sectorStudies.value : caseStudies.slice(0, 3)
+)
 </script>

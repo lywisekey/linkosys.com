@@ -82,7 +82,7 @@
       <!-- Related case study -->
       <section class="lk-section pt-0">
         <b-container>
-          <SectionHeader eyebrow="Experience" title="Relevant experience" />
+          <SectionHeader eyebrow="Experience" title="Selected delivery experience" />
           <b-row class="g-4">
             <b-col v-for="study in caseStudies.slice(0, 3)" :key="study.slug" md="4">
               <CaseStudyCard :study="study" />

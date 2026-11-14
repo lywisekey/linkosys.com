@@ -5,19 +5,19 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 type StickyHeaderProps = {
   className?: string
 }
 
-let isSticky = ref<boolean>(false)
-
+const isSticky = ref(false)
+const updateSticky = () => { isSticky.value = window.scrollY >= 200 }
 onMounted(() => {
-  window.addEventListener('scroll', () => {
-    isSticky.value = window.scrollY >= 200
-  })
+  updateSticky()
+  window.addEventListener('scroll', updateSticky, { passive: true })
 })
+onBeforeUnmount(() => window.removeEventListener('scroll', updateSticky))
 
 defineProps<StickyHeaderProps>()
 </script>

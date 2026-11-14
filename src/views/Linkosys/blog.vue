@@ -11,19 +11,14 @@
     <section class="lk-section">
       <b-container>
         <div class="lk-card p-4 p-lg-5" style="border-left: 3px solid var(--lk-accent)">
-          <h2 class="h4 mb-3">No articles published yet</h2>
+          <h2 class="h4 mb-3">Engineering insights are on the way</h2>
           <p class="mb-4" style="color: var(--lk-ink-muted); max-width: 60ch">
-            This page previously displayed technology news pulled from an external publisher's feed
-            under a heading that presented it as Linkosys content. That has been removed: republishing
-            another outlet's consumer technology coverage does not demonstrate engineering capability,
-            and it sent every click away from this site.
+            We are preparing practical articles on application modernization, connected manufacturing,
+            data and security. In the meantime, explore our delivered work and service capabilities.
           </p>
-          <p class="mb-4" style="color: var(--lk-ink-muted); max-width: 60ch">
-            Insights will publish here once Linkosys supplies its own material. The strongest
-            starting points are the topics buyers already search for: application modernization,
-            IT/OT convergence on the plant floor, and preparing for a security assessment.
-          </p>
-          <VerifyTag label="Article content required" />
+          <router-link :to="{ name: 'contact' }" class="lk-link-accent">
+            Discuss a topic with our team &rarr;
+          </router-link>
         </div>
 
         <div class="mt-5">
@@ -60,5 +55,4 @@
 import DefaultLayout from '@/layouts/Default.vue'
 import PageHero from '@/components/linkosys/PageHero.vue'
 import CtaBand from '@/components/linkosys/CtaBand.vue'
-import VerifyTag from '@/components/linkosys/VerifyTag.vue'
 </script>

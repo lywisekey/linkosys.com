@@ -76,8 +76,8 @@
               lead="Registration and contract information, as published in our own filings."
             />
             <p class="small" style="color: var(--lk-ink-muted)">
-              Entries marked for verification have not been confirmed against SAM.gov. They are shown
-              as open items rather than presented as fact.
+              For current registration identifiers, contract terms and procurement documentation,
+              contact our team directly.
             </p>
           </b-col>
           <b-col lg="6" class="ms-auto">

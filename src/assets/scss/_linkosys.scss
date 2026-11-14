@@ -902,23 +902,26 @@ nav[aria-label='Breadcrumb'] a {
 }
 
 // The chat launcher is 60px wide, 20px from the bottom/right. Center the
-// smaller scroll control above it with a 16px gap, outside its hit area.
+// smaller scroll control to its left with a 16px gap and aligned centers.
 #back-to-top.back-top {
-  right: 28px;
-  bottom: 96px;
+  right: 96px;
+  bottom: 28px;
   width: 44px;
   height: 44px;
   line-height: 1;
   padding: 0;
-  border: 1px solid var(--lk-line-dark);
+  border: 1px solid rgb(10 25 40 / 18%);
   border-radius: 50%;
-  background: var(--lk-navy-800);
-  color: #ffffff;
-  box-shadow: 0 4px 16px rgb(6 15 26 / 18%);
+  background: rgb(241 245 249 / 94%);
+  color: var(--lk-ink-muted);
+  box-shadow: 0 2px 8px rgb(6 15 26 / 8%);
 
-  &:hover {
-    background: var(--lk-navy-600);
-    color: #ffffff;
+  &:hover,
+  &:focus-visible {
+    background: #ffffff;
+    color: var(--lk-navy-800);
+    border-color: rgb(10 25 40 / 35%);
+    box-shadow: 0 3px 12px rgb(6 15 26 / 12%);
   }
 
   &:focus-visible {
@@ -929,5 +932,34 @@ nav[aria-label='Breadcrumb'] a {
   .svg-inline--fa {
     height: 1rem;
     vertical-align: middle;
+  }
+}
+
+// Keep dropdown state consistent for mouse, touch and keyboard input.
+.navbar .lk-primary-nav > .lk-nav-section {
+  > button.nav-link {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+  }
+
+  > .dropdown-menu {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.lk-nav-open > .dropdown-menu {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .navbar .lk-primary-nav .dropdown-item {
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 }

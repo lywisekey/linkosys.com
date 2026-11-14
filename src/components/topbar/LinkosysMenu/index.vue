@@ -1,5 +1,5 @@
 <template>
-  <b-collapse id="topbar-appmenu-collapse" class="navbar-collapse">
+  <b-collapse v-model="expanded" id="topbar-appmenu-collapse" class="navbar-collapse">
     <ul class="navbar-nav navbar-nav-scroll dropdown-hover lk-primary-nav" :class="ulClass">
       <NavDropdown v-for="section in navSections" :key="section.label" :section="section" />
 
@@ -19,8 +19,14 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import NavDropdown from './NavDropdown.vue'
 import { navSections, primaryLinks } from './menu'
 
 defineProps<{ ulClass?: string }>()
+
+const expanded = ref(false)
+const route = useRoute()
+watch(() => route.fullPath, () => { expanded.value = false })
 </script>

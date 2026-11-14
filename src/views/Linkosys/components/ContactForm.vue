@@ -1,7 +1,7 @@
 <template>
   <section class="pt-0 bg-dark">
     <b-container>
-      <div class="position-relative overflow-hidden p-5 p-md-7" data-bs-theme="dark">
+      <div class="position-relative overflow-hidden p-3 p-sm-5 p-md-7" data-bs-theme="dark">
         <b-row class="position-relative">
           <b-col lg="5" class="order-1">
             <p class="lk-eyebrow">Send an enquiry</p>
@@ -31,41 +31,41 @@
           </b-col>
 
           <b-col lg="6" class="ms-auto mb-6 mb-lg-0 order-lg-2">
-            <form v-if="!sent" @submit.prevent="handleSubmit" class="row g-4">
+            <form v-if="!sent" @submit.prevent="handleSubmit" :aria-busy="loading" class="row g-4">
               <b-col md="6">
-                <b-form-group label="Your name *" label-class="heading-color">
-                  <b-form-input v-model="form.name" size="lg" placeholder="Full name" required />
+                <b-form-group label="Your name *" label-for="lk-name" label-class="heading-color">
+                  <b-form-input id="lk-name" v-model="form.name" autocomplete="name" :maxlength="120" size="lg" placeholder="Full name" required />
                 </b-form-group>
               </b-col>
 
               <b-col md="6">
-                <b-form-group label="Work email *" label-class="heading-color">
-                  <b-form-input v-model="form.email" type="email" size="lg" autocomplete="email" placeholder="name@company.com" required />
+                <b-form-group label="Work email *" label-for="lk-email" label-class="heading-color">
+                  <b-form-input id="lk-email" v-model="form.email" :maxlength="200" type="email" size="lg" autocomplete="email" placeholder="name@company.com" required />
                 </b-form-group>
               </b-col>
 
               <b-col md="6">
-                <b-form-group label="Phone number" label-class="heading-color">
-                  <b-form-input v-model="form.phone" type="tel" size="lg" autocomplete="tel" placeholder="Optional" />
+                <b-form-group label="Phone number" label-for="lk-phone" label-class="heading-color">
+                  <b-form-input id="lk-phone" v-model="form.phone" :maxlength="40" type="tel" size="lg" autocomplete="tel" placeholder="Optional" />
                 </b-form-group>
               </b-col>
 
               <b-col md="6">
-                <b-form-group label="Company / agency *" label-class="heading-color">
-                  <b-form-input v-model="form.company" size="lg" autocomplete="organization" placeholder="Organization name" required />
+                <b-form-group label="Company / agency *" label-for="lk-company" label-class="heading-color">
+                  <b-form-input id="lk-company" v-model="form.company" :maxlength="160" size="lg" autocomplete="organization" placeholder="Organization name" required />
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
-                <b-form-group label="Area of interest *" label-class="heading-color">
-                  <b-form-select v-model="form.interest" size="lg" :options="interestOptions" required />
+                <b-form-group label="Area of interest *" label-for="lk-interest" label-class="heading-color">
+                  <b-form-select id="lk-interest" v-model="form.interest" size="lg" :options="interestOptions" required />
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
-                <b-form-group label="Project or requirement *" label-class="heading-color">
+                <b-form-group label="Project or requirement *" label-for="lk-message" label-class="heading-color">
                   <b-form-textarea
-                    v-model="form.message"
+                    id="lk-message" v-model="form.message" :maxlength="5000"
                     style="height: 150px"
                     placeholder="What are you trying to achieve, and what is in the way?"
                     required
@@ -74,8 +74,8 @@
               </b-col>
 
               <b-col md="12">
-                <b-form-group :label="`What is ${captcha.a} + ${captcha.b}? *`" label-class="heading-color">
-                  <b-form-input v-model="form.captchaAnswer" size="lg" placeholder="Enter result" required />
+                <b-form-group :label="`What is ${captcha.a} + ${captcha.b}? *`" label-for="lk-captcha" label-class="heading-color">
+                  <b-form-input id="lk-captcha" v-model="form.captchaAnswer" inputmode="numeric" pattern="[0-9]+" size="lg" placeholder="Enter result" required />
                 </b-form-group>
               </b-col>
 
@@ -85,6 +85,18 @@
                 <input id="lk-website" v-model="form.website" type="text" tabindex="-1" autocomplete="off" />
               </div>
 
+              <b-col v-if="toast.show" cols="12">
+                <p role="status" aria-live="polite" class="mb-0 p-3 rounded text-white"
+                  :class="toast.type === 'success' ? 'bg-success' : 'bg-danger'">{{ toast.message }}</p>
+              </b-col>
+
+              <b-col cols="12">
+                <p class="small mb-0" style="color: var(--lk-ink-invert-muted)">
+                  We use your details to respond to your enquiry. Read our
+                  <router-link :to="{ name: 'privacy' }" class="text-white text-decoration-underline">Privacy Policy</router-link>.
+                </p>
+              </b-col>
+
               <b-col cols="12" class="d-grid">
                 <b-button
                   variant="primary"
@@ -93,11 +105,11 @@
                   :disabled="loading || sent"
                 >
                   <b-spinner v-if="loading" small class="me-2" />
-                  {{ sent ? 'Sent' : 'Send a message' }}
+                  {{ loading ? 'Sending…' : 'Send a message' }}
                 </b-button>
               </b-col>
             </form>
-            <div v-else class="text-center text-white py-5">
+            <div v-else role="status" aria-live="polite" class="text-center text-white py-5">
               <h4 class="mb-3">Thank you!</h4>
               <p>Your message has been successfully sent. We’ll get back to you soon.</p>
             </div>
@@ -105,19 +117,6 @@
         </b-row>
       </div>
     </b-container>
-
-    <!-- Screen readers get the same success/failure feedback as the toast. -->
-    <p class="visually-hidden" role="status" aria-live="polite">{{ toast.show ? toast.message : '' }}</p>
-
-    <!-- Toast Notification -->
-    <transition name="fade">
-      <div
-        v-if="toast.show"
-        :class="['toast-custom', toast.type === 'success' ? 'bg-success' : 'bg-danger']"
-      >
-        {{ toast.message }}
-      </div>
-    </transition>
   </section>
 </template>
 
@@ -171,9 +170,6 @@ const showToast = (message: string, type: 'success' | 'danger' = 'success') => {
   toast.message = message
   toast.type = type
   toast.show = true
-  setTimeout(() => {
-    toast.show = false
-  }, 5000)
 }
 
 const generateCaptcha = () => {
@@ -184,7 +180,8 @@ const generateCaptcha = () => {
 onMounted(generateCaptcha)
 
 const handleSubmit = async () => {
-  const result = parseInt(form.captchaAnswer)
+  if (loading.value) return
+  const result = Number(form.captchaAnswer)
   if (result !== captcha.a + captcha.b) {
     showToast('Captcha answer is incorrect. Please try again.', 'danger')
     generateCaptcha()
@@ -196,8 +193,9 @@ const handleSubmit = async () => {
 
   try {
     const postData = {
-      ...form,
-      captcha_expected: captcha.a + captcha.b
+      name: form.name, email: form.email, phone: form.phone,
+      company: form.company, interest: form.interest,
+      message: form.message, website: form.website
     }
 
     const response = await fetch('/api/send-email', {
@@ -208,7 +206,7 @@ const handleSubmit = async () => {
 
     const data = await response.json()
 
-    if (data.success) {
+    if (response.ok && data.success) {
       showToast(data.message || 'Your message has been sent successfully.', 'success')
       sent.value = true
       Object.assign(form, {
@@ -235,30 +233,3 @@ const handleSubmit = async () => {
   loading.value = false
 }
 </script>
-
-<style scoped>
-.toast-custom {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 14px 20px;
-  color: #fff;
-  border-radius: 4px;
-  z-index: 9999;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  max-width: 90%;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-.bg-success {
-  background-color: #28a745 !important;
-}
-.bg-danger {
-  background-color: #dc3545 !important;
-}
-</style>

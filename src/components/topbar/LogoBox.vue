@@ -5,16 +5,16 @@
       class="light-mode-item navbar-brand-item"
       :class="imageClass"
       :src="logo"
-      alt="logo"
+      alt="Linkosys home"
     />
     <img
       v-if="!smallLogo"
       class="dark-mode-item navbar-brand-item"
       :src="logoLight"
       :class="imageClass"
-      alt="logo"
+      alt="Linkosys home"
     />
-    <img v-if="smallLogo" :src="logoIcon" class="h-50px mb-4" alt="logo" />
+    <img v-if="smallLogo" :src="logoIcon" class="h-50px mb-4" alt="Linkosys home" />
   </router-link>
 </template>
 

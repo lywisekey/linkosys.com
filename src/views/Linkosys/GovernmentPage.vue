@@ -117,7 +117,7 @@
         <SectionHeader
           eyebrow="Past performance"
           title="Past performance"
-          lead="Past performance is the first thing a contracting officer looks for and the easiest thing to overstate. These entries are structured and will be published once Linkosys supplies approved detail."
+          lead="Selected delivery experience across manufacturing, operations, applied AI and public-facing services. Contact us for references relevant to your solicitation or teaming requirement."
         />
         <b-row class="g-4">
           <b-col v-for="study in caseStudies" :key="study.slug" md="4">

@@ -1,5 +1,6 @@
 <template>
   <button
+    ref="button"
     id="back-to-top"
     type="button"
     class="back-top arrow-none"
@@ -7,31 +8,28 @@
     title="Back to top"
     @click="backToTop"
   >
-    <font-awesome-icon :icon="faArrowUpLong" />
+    <font-awesome-icon :icon="faArrowUp" />
   </button>
 </template>
 
 <script setup lang="ts">
-import { faArrowUpLong } from '@fortawesome/free-solid-svg-icons'
-import { onMounted } from 'vue'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
+const button = ref<HTMLButtonElement | null>(null)
+const updateVisibility = () => {
+  button.value?.classList.toggle('back-top-show', window.scrollY >= 800)
+}
 onMounted(() => {
-  const backBtn = document.getElementById('back-to-top')
-  if (backBtn) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY >= 800) {
-        backBtn.classList.add('back-top-show')
-      } else {
-        backBtn.classList.remove('back-top-show')
-      }
-    })
-  }
+  updateVisibility()
+  window.addEventListener('scroll', updateVisibility, { passive: true })
 })
+onBeforeUnmount(() => window.removeEventListener('scroll', updateVisibility))
 
 const backToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
   })
 }
 </script>

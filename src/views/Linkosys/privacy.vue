@@ -29,8 +29,7 @@
 
               <h2>Information you give us</h2>
               <p>
-                The contact form on this site is the only place where we ask you for information
-                about yourself. It collects:
+                You can contact us through the form or the chat widget. The contact form collects:
               </p>
               <ul>
                 <li>your name;</li>
@@ -53,6 +52,14 @@
                 account for you to create.
               </p>
 
+              <h2>Website chat</h2>
+              <p>
+                The chat widget is provided by Ringo at ringo.dxvn.tech. Loading the widget
+                connects your browser to that service. Messages and any contact details you
+                choose to enter in chat are sent to the chat service to handle your enquiry.
+                You can also contact us directly by email or phone.
+              </p>
+
               <h2>Information collected automatically</h2>
               <p>
                 Like any website, this one is served by a web host that records requests. Those
@@ -73,7 +80,8 @@
                 Google Analytics sets two cookies in your browser,
                 <code>_ga</code> and <code>_ga_L81Y5QMP4Y</code>. They distinguish one visitor from
                 another and one visit from the next, so that ten pages read by one person are not
-                counted as ten people. They are the only cookies this site sets.
+                counted as ten people. These are the analytics cookies; the embedded chat is
+                provided separately by Ringo as described above.
               </p>
               <p>
                 You can refuse or delete them in your browser settings, and the site will continue
@@ -193,14 +201,14 @@ import { contact } from '@/content/company'
  * Shown at the top of the policy. Change it whenever the policy text changes —
  * a privacy policy that has silently moved on is worse than one that is dated.
  */
-const LAST_UPDATED = 'September 24, 2026'
+const LAST_UPDATED = 'November 14, 2026'
 
 /**
  * The companies that see data because of how this site is built, taken from what
  * the site actually does rather than from a template: the contact form posts to
  * an API route that sends mail through Resend, the pages and that route run on
  * Vercel, the analytics tag is Google's, and one script is served from Cloudflare's
- * public CDN. Nothing else third-party loads on any page.
+ * public CDN. Ringo supplies the embedded chat widget.
  */
 const processors = [
   {
@@ -217,6 +225,11 @@ const processors = [
     name: 'Google',
     role: 'Google Analytics 4, for site usage statistics',
     data: 'pages viewed, referrer, device and browser, IP address'
+  },
+  {
+    name: 'Ringo (ringo.dxvn.tech)',
+    role: 'Provides the website chat widget',
+    data: 'widget request information, chat messages and contact details you enter in chat'
   },
   {
     name: 'Cloudflare',

@@ -84,7 +84,7 @@ import { contact } from '@/content/company'
 
 const nextSteps = [
   {
-    title: 'We read it, not a bot',
+    title: 'Reviewed by our team',
     description:
       'Enquiries go to the team who would do the work, not to a general marketing inbox.'
   },
