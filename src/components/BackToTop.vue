@@ -1,7 +1,14 @@
 <template>
-  <div id="back-to-top" class="back-top arrow-none" @click="backToTop">
+  <button
+    id="back-to-top"
+    type="button"
+    class="back-top arrow-none"
+    aria-label="Back to top"
+    title="Back to top"
+    @click="backToTop"
+  >
     <font-awesome-icon :icon="faArrowUpLong" />
-  </div>
+  </button>
 </template>
 
 <script setup lang="ts">

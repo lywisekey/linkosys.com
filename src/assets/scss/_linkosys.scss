@@ -900,3 +900,34 @@ nav[aria-label='Breadcrumb'] a {
     }
   }
 }
+
+// The chat launcher is 60px wide, 20px from the bottom/right. Center the
+// smaller scroll control above it with a 16px gap, outside its hit area.
+#back-to-top.back-top {
+  right: 28px;
+  bottom: 96px;
+  width: 44px;
+  height: 44px;
+  line-height: 1;
+  padding: 0;
+  border: 1px solid var(--lk-line-dark);
+  border-radius: 50%;
+  background: var(--lk-navy-800);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgb(6 15 26 / 18%);
+
+  &:hover {
+    background: var(--lk-navy-600);
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lk-accent-text);
+    outline-offset: 3px;
+  }
+
+  .svg-inline--fa {
+    height: 1rem;
+    vertical-align: middle;
+  }
+}
