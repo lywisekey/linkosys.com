@@ -30,7 +30,7 @@
               specific skill rather than ownership.
             </p>
             <p style="color: var(--lk-ink-muted)">
-              Both routes draw on the same six practices: software development, AI and data, cloud
+              Both routes draw on technology consulting and six engineering and delivery practices: software development, AI and data, cloud
               and infrastructure, cybersecurity, IT staffing, and project and program management.
               Clients include government organizations, prime contractors, manufacturers and
               established commercial companies.

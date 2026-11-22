@@ -14,7 +14,7 @@
         </b-col>
 
         <b-col cols="12" md="4" lg="5" xl="3">
-          <h6 class="mb-2 mb-md-4">Find Services</h6>
+          <p class="h6 mb-2 mb-md-4">Find Services</p>
           <b-row class="g-0">
             <b-col lg="12">
               <ul class="nav flex-column">
@@ -30,7 +30,7 @@
         </b-col>
 
         <b-col cols="12" md="4" lg="3" xl="3">
-          <h6 class="mb-2 mb-md-4">Quick links</h6>
+          <p class="h6 mb-2 mb-md-4">Quick links</p>
           <ul class="nav flex-column">
             <li class="nav-item" v-for="(item, idx) in quickLinks" :key="idx">
               <router-link class="nav-link" :class="!idx && 'pt-0'" :to="item.to"
@@ -41,7 +41,7 @@
         </b-col>
 
         <b-col sm="6" md="4" lg="4" xl="3">
-          <h6 class="mb-2 mb-md-4">Explore</h6>
+          <p class="h6 mb-2 mb-md-4">Explore</p>
           <ul class="nav flex-column">
             <li class="nav-item" v-for="(item, idx) in communityLinks" :key="idx">
               <router-link class="nav-link" :class="!idx && 'pt-0'" :to="item.to">{{
@@ -56,7 +56,7 @@
 
       <b-row class="g-4 align-items-center">
         <b-col xl="3" class="text-lg-center text-xl-start mb-4 mb-xl-0">
-          <h5 class="mb-1">Get in touch</h5>
+          <p class="h5 mb-1">Get in touch</p>
           <p class="mb-0">Head office, California</p>
         </b-col>
 
@@ -69,7 +69,7 @@
               <div class="small text-body-secondary">Give us a call</div>
               <p class="fw-semibold mt-1 mb-0">
                 <a 
-                :href="'tel:' + contactDetails.number"
+                :href="contact.phoneHref"
                 class="heading-color text-primary-hover stretched-link p-0">{{
                   contactDetails.number
                 }}</a>
@@ -87,7 +87,7 @@
               <div class="small text-body-secondary">Send us an email</div>
               <p class="fw-semibold mt-1 mb-0">
                 <a 
-                :href="'mailto:' + contactDetails.email"
+                :href="contact.emailHref"
                 class="heading-color text-primary-hover stretched-link p-0">{{
                   contactDetails.email
                 }}</a>
@@ -139,6 +139,7 @@
 </template>
 
 <script lang="ts" setup>
+import { contact } from '@/content/company'
 import LogoBox from '@/components/topbar/LogoBox.vue'
 import {
   footerServices3,

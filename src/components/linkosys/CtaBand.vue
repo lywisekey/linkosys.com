@@ -7,7 +7,7 @@
           <p class="mb-0" style="color: var(--lk-ink-invert-muted)">{{ body }}</p>
         </div>
         <div class="d-flex flex-wrap gap-3 flex-shrink-0">
-          <router-link :to="{ name: 'contact' }" class="btn btn-primary mb-0">{{ action }}</router-link>
+          <router-link :to="{ name: 'contact', query: service ? { service } : {} }" class="btn btn-primary mb-0">{{ action }}</router-link>
           <router-link v-if="secondaryTo" :to="secondaryTo" class="btn btn-outline-light mb-0">
             {{ secondaryLabel }}
           </router-link>
@@ -25,6 +25,7 @@ withDefaults(
     title?: string
     body?: string
     action?: string
+    service?: string
     secondaryLabel?: string
     secondaryTo?: RouteLocationRaw
   }>(),

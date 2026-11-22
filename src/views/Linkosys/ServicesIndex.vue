@@ -4,7 +4,7 @@
       art="arch"
       eyebrow="Services"
       title="Technology services built around delivery"
-      lead="Six practices covering engineering, data, infrastructure, security, people and the management structure that holds a program together."
+      lead="Technology consulting, software engineering, AI, cloud, security and staffing for mid-sized and enterprise businesses in California and across the United States."
       :crumbs="[{ label: 'Services' }]"
     >
       <template #actions>
@@ -14,7 +14,7 @@
 
     <section class="lk-section">
       <b-container>
-        <SectionHeader eyebrow="Services" title="Six core practices" size="sm" />
+        <SectionHeader eyebrow="Services" title="Consulting and engineering capabilities" size="sm" />
         <b-row class="g-4">
           <b-col v-for="service in services" :key="service.slug" md="6" xl="4">
             <ServiceCard :service="service" />

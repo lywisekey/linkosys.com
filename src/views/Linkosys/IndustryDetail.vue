@@ -9,7 +9,7 @@
         :crumbs="[{ label: 'Industries', to: { name: 'industries' } }, { label: industry.name }]"
       >
         <template #actions>
-          <router-link :to="{ name: 'contact' }" class="btn btn-primary mb-0">{{ ctaLabel }}</router-link>
+          <router-link :to="{ name: 'contact', query: isManufacturing ? { service: 'Manufacturing / MES' } : {} }" class="btn btn-primary mb-0">{{ ctaLabel }}</router-link>
         </template>
       </PageHero>
 
@@ -106,13 +106,17 @@
         </b-container>
       </section>
 
-      <CtaBand :title="ctaLabel" :body="ctaBody" :action="ctaLabel" />
+      <AnswerSection v-if="isManufacturing" :items="manufacturingAnswers" title="Manufacturing technology: common questions" />
+
+      <CtaBand :service="isManufacturing ? 'Manufacturing / MES' : undefined" :title="ctaLabel" :body="ctaBody" :action="ctaLabel" />
     </template>
   </DefaultLayout>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import AnswerSection from '@/components/linkosys/AnswerSection.vue'
+import { manufacturingAnswers } from '@/content/faqs'
 import { useRoute } from 'vue-router'
 
 import DefaultLayout from '@/layouts/Default.vue'

@@ -12,7 +12,6 @@ import { loadSeoRoutes } from './load-seo-routes.mjs'
 const { routes, siteUrl, root } = await loadSeoRoutes()
 
 const indexable = routes.filter((route) => !route.noindex)
-const today = new Date().toISOString().slice(0, 10)
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -20,7 +19,6 @@ ${indexable
   .map(
     (route) => `  <url>
     <loc>${siteUrl}${route.path}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${route.changefreq ?? 'yearly'}</changefreq>
     <priority>${route.priority ?? '0.5'}</priority>
   </url>`

@@ -10,16 +10,15 @@
 
     <section class="lk-section">
       <b-container>
-        <div class="lk-card p-4 p-lg-5" style="border-left: 3px solid var(--lk-accent)">
-          <h2 class="h4 mb-3">Engineering insights are on the way</h2>
-          <p class="mb-4" style="color: var(--lk-ink-muted); max-width: 60ch">
-            We are preparing practical articles on application modernization, connected manufacturing,
-            data and security. In the meantime, explore our delivered work and service capabilities.
-          </p>
-          <router-link :to="{ name: 'contact' }" class="lk-link-accent">
-            Discuss a topic with our team &rarr;
-          </router-link>
-        </div>
+        <b-row class="g-4">
+          <b-col v-for="insight in insights" :key="insight.slug" md="6">
+            <article class="lk-card h-100">
+              <p class="small text-body-secondary">By Linkosys · <time :datetime="insight.date">{{ insight.date }}</time></p>
+              <h2 class="h4"><router-link :to="`/company/blog/${insight.slug}`">{{ insight.title }}</router-link></h2>
+              <p class="mb-0">{{ insight.description }}</p>
+            </article>
+          </b-col>
+        </b-row>
 
         <div class="mt-5">
           <p class="fw-semibold heading-color mb-3">In the meantime</p>
@@ -33,7 +32,7 @@
             <b-col md="4">
               <router-link :to="{ name: 'services' }" class="lk-card h-100 text-decoration-none">
                 <h3 class="h6 heading-color">Services</h3>
-                <p class="mb-0">The six practices and what each one actually covers.</p>
+                <p class="mb-0">Consulting and engineering capabilities and what each one covers.</p>
               </router-link>
             </b-col>
             <b-col md="4">
@@ -52,6 +51,7 @@
 </template>
 
 <script lang="ts" setup>
+import { insights } from '@/content/insights'
 import DefaultLayout from '@/layouts/Default.vue'
 import PageHero from '@/components/linkosys/PageHero.vue'
 import CtaBand from '@/components/linkosys/CtaBand.vue'

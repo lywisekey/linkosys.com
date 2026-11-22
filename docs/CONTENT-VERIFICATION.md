@@ -142,12 +142,16 @@ Grow With Our Insightful Content". That has been removed: it was another
 publisher's content, it sent every click off-site, and it depended on a
 third-party service at page load.
 
-`/company/blog` now states plainly that nothing is published yet. Suggested first
-articles, based on what the target buyers search for:
+`/company/blog` now lists two company-attributed educational guides: choosing an
+enterprise IT consulting partner in California, and custom software versus
+packaged applications. Content lives in `src/content/insights.ts`; each guide has
+its own prerendered page, visible date, Article schema, relevant service links
+and consultation CTA. There are no invented individual author biographies or
+client results. Confirm company authorship and technical review before release;
+adjust preparation dates to the real publication date if release is delayed.
 
-1. Modernizing an application that cannot be taken offline
-2. Connecting shop floor systems to ERP without replacing either
-3. What a security assessment actually asks for
+The six-topic 90-day calendar and additional review requirements are in
+`docs/SEO-GROWTH-ROADMAP.md`.
 
 ## 8. Open Graph image — done, review requested
 

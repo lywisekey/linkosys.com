@@ -37,12 +37,46 @@
       ],
       "destination": "https://:apex/$1",
       "permanent": true
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/((?!api/).*)",
-      "destination": "/spa-fallback.html"
+      "source": "/services/custom-development",
+      "destination": "/services/software-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/web-development",
+      "destination": "/services/software-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/mobile-development",
+      "destination": "/services/software-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/blockchain",
+      "destination": "/services/software-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai",
+      "destination": "/services/ai-and-data",
+      "permanent": true
+    },
+    {
+      "source": "/services/data",
+      "destination": "/services/ai-and-data",
+      "permanent": true
+    },
+    {
+      "source": "/manufacturing",
+      "destination": "/industries/manufacturing",
+      "permanent": true
+    },
+    {
+      "source": "/industries/government",
+      "destination": "/government",
+      "permanent": true
     }
   ]
 }

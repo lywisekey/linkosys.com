@@ -1,11 +1,12 @@
 # Linkosys
 
-> Linkosys delivers software engineering, AI and data, cloud, cybersecurity, IT staffing and program management for U.S. government and enterprise organizations. GSA Schedule 47QTCA21D004X.
+> Irvine-based Linkosys helps California and U.S. enterprises with IT consulting, custom software, AI, cloud, cybersecurity and manufacturing systems.
 
 ## Services
 
 - [Technology Services](https://linkosys.com/services): Software development, AI and data, cloud and infrastructure, cybersecurity, IT staffing and program management services for government and enterprise organizations.
-- [Software Development Services](https://linkosys.com/services/software-development): Enterprise software development and application modernization for government and commercial organizations. Custom applications, API integration, mobile and quality engineering.
+- [Enterprise IT Consulting California](https://linkosys.com/services/it-consulting): IT consulting for mid-sized and enterprise businesses in California and across the U.S. Assess systems, plan modernization and connect strategy to engineering.
+- [Custom Software Development California](https://linkosys.com/services/software-development): Enterprise software development and application modernization for government and commercial organizations. Custom applications, API integration, mobile and quality engineering.
 - [AI and Data Analytics Consulting](https://linkosys.com/services/ai-and-data): Data engineering, analytics, applied AI and process automation for government and enterprise organizations. Governed pipelines, production models and measurable outcomes.
 - [Cloud and Infrastructure Consulting](https://linkosys.com/services/cloud-infrastructure): Cloud migration, infrastructure as code, DevOps and reliability engineering for government and enterprise workloads on AWS, Azure and Google Cloud.
 - [Cybersecurity Consulting Services](https://linkosys.com/services/cybersecurity): Application, cloud and identity security, vulnerability management, compliance support and incident readiness for government and enterprise organizations.
@@ -40,6 +41,8 @@
 - [Leadership and Team](https://linkosys.com/company/team): The engineers, delivery leads and consultants who staff Linkosys engagements across government, manufacturing and enterprise clients.
 - [Partners and Clients](https://linkosys.com/company/partners): Technology partners and client organizations Linkosys works with across government, manufacturing, financial services, media and commercial sectors.
 - [Insights](https://linkosys.com/company/blog): Notes from the Linkosys engineering and delivery team on modernization, data, security and getting technology programs delivered.
+- [How to choose an enterprise IT consulting partner in California](https://linkosys.com/company/blog/choose-enterprise-it-consulting-partner-california): A practical buying checklist for California businesses comparing IT consulting partners: discovery, technical fit, delivery ownership, security and handover.
+- [Custom software vs. off-the-shelf: how to decide](https://linkosys.com/company/blog/custom-software-vs-off-the-shelf): Compare workflow fit, integration, ownership cost, delivery risk and support before choosing custom software or an off-the-shelf business application.
 
 ## Contact
 
