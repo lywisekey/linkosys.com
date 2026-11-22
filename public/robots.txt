@@ -4,6 +4,6 @@ Allow: /
 
 # No customer portal sits behind these; keep them out of the index.
 Disallow: /auth/
-Disallow: /commingsoon
+# /commingsoon stays crawlable so crawlers can read its noindex directive.
 
 Sitemap: https://linkosys.com/sitemap.xml

@@ -1,3 +1,4 @@
+import itConsulting from '@/assets/images/illus/it-consulting.svg'
 import softwareDevelopment from '@/assets/images/illus/software-development.svg'
 import aiAndData from '@/assets/images/illus/ai-and-data.svg'
 import cloudInfrastructure from '@/assets/images/illus/cloud-infrastructure.svg'
@@ -11,6 +12,7 @@ import programManagement from '@/assets/images/illus/program-management.svg'
  * silently showing the wrong scene.
  */
 export const serviceIllustrations: Record<string, string> = {
+  'it-consulting': itConsulting,
   'software-development': softwareDevelopment,
   'ai-and-data': aiAndData,
   'cloud-infrastructure': cloudInfrastructure,

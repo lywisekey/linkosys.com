@@ -9,7 +9,7 @@
         :crumbs="[{ label: 'Services', to: { name: 'services' } }, { label: service.name }]"
       >
         <template #actions>
-          <router-link :to="{ name: 'contact' }" class="btn btn-primary mb-0">
+          <router-link :to="{ name: 'contact', query: { service: service.name } }" class="btn btn-primary mb-0">
             {{ service.cta.label }}
           </router-link>
         </template>
@@ -32,6 +32,15 @@
         <b-container>
           <SectionHeader eyebrow="Capabilities" :title="`${service.name} capabilities`" />
           <CapabilityGrid :items="service.capabilities" />
+        </b-container>
+      </section>
+
+      <section class="lk-section pt-0">
+        <b-container>
+          <SectionHeader eyebrow="Business value" title="What this work is designed to improve" />
+          <ul class="mb-0">
+            <li v-for="benefit in serviceBenefits[service.slug] ?? []" :key="benefit" class="mb-2">{{ benefit }}</li>
+          </ul>
         </b-container>
       </section>
 
@@ -91,6 +100,8 @@
         </b-container>
       </section>
 
+      <AnswerSection :items="serviceAnswers[service.slug] ?? []" :title="`${service.name}: common questions`" />
+
       <!-- Other services -->
       <section class="lk-section pt-0">
         <b-container>
@@ -103,13 +114,15 @@
         </b-container>
       </section>
 
-      <CtaBand :title="service.cta.label" :body="service.cta.sub" :action="service.cta.label" />
+      <CtaBand :service="service.name" :title="service.cta.label" :body="service.cta.sub" :action="service.cta.label" />
     </template>
   </DefaultLayout>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import AnswerSection from '@/components/linkosys/AnswerSection.vue'
+import { serviceAnswers, serviceBenefits } from '@/content/faqs'
 import { useRoute } from 'vue-router'
 
 import DefaultLayout from '@/layouts/Default.vue'

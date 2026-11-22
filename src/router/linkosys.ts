@@ -17,7 +17,8 @@ const metaFor = (path: string) => {
     title: entry.title,
     description: entry.description,
     jsonLd: entry.jsonLd,
-    ogImage: entry.ogImage
+    ogImage: entry.ogImage,
+    noindex: entry.noindex
   }
 }
 
@@ -79,7 +80,7 @@ const coreRoutes: RouteRecordRaw[] = [
   {
     path: '/commingsoon',
     name: 'commingsoon',
-    meta: { title: title('Coming Soon'), noindex: true },
+    meta: metaFor('/commingsoon'),
     component: () => import('@/views/Linkosys/commingsoon.vue')
   }
 ]
@@ -115,6 +116,11 @@ const legacyRedirects: RouteRecordRaw[] = [
 ]
 
 const companyRoutes: RouteRecordRaw[] = [
+  {
+    path: '/company/blog/:slug',
+    name: 'insights.detail',
+    component: () => import('@/views/Linkosys/InsightDetail.vue')
+  },
   {
     path: '/company/aboutus',
     name: 'company.aboutus',

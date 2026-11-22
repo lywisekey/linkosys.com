@@ -38,7 +38,7 @@ export const industries: IndustryEntry[] = [
   {
     slug: 'manufacturing',
     name: 'Manufacturing',
-    headline: 'Your factory. Connected.',
+    headline: 'Manufacturing software and MES integration',
     summary:
       'Connect production systems, machines, people and data so what happens on the floor is visible everywhere it matters.',
     needs: [

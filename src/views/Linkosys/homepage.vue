@@ -5,10 +5,11 @@
       <b-container>
         <div style="max-width: 56rem">
           <p class="lk-eyebrow">Technology consulting &amp; engineering</p>
-          <h1 class="lk-display display-4 mb-4">Technology that solves business problems.</h1>
+          <h1 class="lk-display display-4 mb-4">Enterprise IT consulting and software engineering.</h1>
           <p class="lk-lead mb-0" style="font-size: 1.25rem; max-width: 52rem">
-            Linkosys delivers software engineering, AI and data, cloud, cybersecurity, IT consulting
-            and technology staffing for government and enterprise organizations.
+            Based in Irvine, California, Linkosys helps mid-sized businesses, enterprises and manufacturers
+            modernize software, apply AI, connect systems and strengthen cloud and security operations.
+            We serve organizations across the United States, including government agencies.
           </p>
 
           <div class="d-flex flex-wrap gap-3 mt-5">
@@ -42,7 +43,7 @@
           <SectionHeader
             eyebrow="Services"
             title="What we do"
-            lead="Six practices that cover the work end to end — from the engineering itself to the people and management structure that deliver it."
+            lead="Consulting and engineering that cover the work end to end — from the engineering itself to the people and management structure that deliver it."
           />
         </Reveal>
 
@@ -80,6 +81,17 @@
             </Reveal>
           </b-col>
         </b-row>
+      </b-container>
+    </section>
+
+    <section class="lk-section pt-0">
+      <b-container>
+        <SectionHeader eyebrow="California enterprise consulting" title="Where should your technology investment start?"
+          lead="Start with the business process that is constrained, the systems it depends on and the risk of changing it. An assessment should produce priorities, a delivery sequence and acceptance criteria your team can review." />
+        <div class="d-flex flex-wrap gap-3">
+          <router-link to="/services/it-consulting" class="btn btn-primary mb-0">Explore Enterprise IT Consulting</router-link>
+          <router-link to="/contact" class="btn btn-outline-primary mb-0">Request a Consultation</router-link>
+        </div>
       </b-container>
     </section>
 

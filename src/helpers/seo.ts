@@ -1,5 +1,5 @@
 import type { RouteLocationNormalized } from 'vue-router'
-import { SITE_NAME, SITE_URL } from '@/content/seo-routes'
+import { SITE_NAME, SITE_URL, seoRoutes, buildPageGraph } from '@/content/seo-routes'
 
 export { SITE_NAME, SITE_URL }
 
@@ -50,35 +50,6 @@ function setJsonLd(blocks: object[]) {
   document.head.appendChild(script)
 }
 
-function breadcrumbLd(route: RouteLocationNormalized, title: string) {
-  const segments = route.path.split('/').filter(Boolean)
-  if (!segments.length) return null
-
-  const items = [{ name: 'Home', item: SITE_URL }]
-  let path = ''
-  segments.forEach((segment, index) => {
-    path += `/${segment}`
-    items.push({
-      name:
-        index === segments.length - 1
-          ? title
-          : segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-      item: `${SITE_URL}${path}`
-    })
-  })
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((entry, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: entry.name,
-      item: entry.item
-    }))
-  }
-}
-
 /**
  * Applies title, description, canonical, Open Graph, Twitter and JSON-LD for a
  * route. Called from a router afterEach hook so every page gets unique metadata
@@ -112,7 +83,12 @@ export function applySeo(route: RouteLocationNormalized) {
     content: meta.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'
   })
 
-  upsertMeta({ key: 'og:type', attr: 'property', content: 'website' })
+  upsertMeta({
+    key: 'og:type',
+    attr: 'property',
+    content:
+      (meta.jsonLd as Record<string, unknown>)?.['@type'] === 'Article' ? 'article' : 'website'
+  })
   upsertMeta({ key: 'og:site_name', attr: 'property', content: SITE_NAME })
   upsertMeta({ key: 'og:title', attr: 'property', content: title })
   upsertMeta({ key: 'og:description', attr: 'property', content: description })
@@ -128,9 +104,22 @@ export function applySeo(route: RouteLocationNormalized) {
 
   upsertLink('canonical', canonical)
 
-  // The Organization node is declared once, statically, in index.html. Route
-  // blocks reference it by @id instead of redeclaring it on every navigation.
-  const extra = meta.jsonLd ? (Array.isArray(meta.jsonLd) ? meta.jsonLd : [meta.jsonLd]) : []
-  const crumbs = breadcrumbLd(route, title)
-  setJsonLd([...(crumbs ? [crumbs] : []), ...extra])
+  if (meta.noindex) {
+    document.head.querySelector('link[rel="canonical"]')?.remove()
+    document.head.querySelector('meta[property="og:url"]')?.remove()
+    setJsonLd([])
+    return
+  }
+  setJsonLd(
+    buildPageGraph(
+      {
+        path: route.path.replace(/\/+$/, '') || '/',
+        title,
+        description,
+        jsonLd: meta.jsonLd as object | undefined
+      },
+      seoRoutes,
+      SITE_URL
+    )
+  )
 }

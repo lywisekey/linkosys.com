@@ -20,7 +20,7 @@ const router = createRouter({
 
 // A slug-only change reuses its route record, so beforeEnter would not run.
 router.beforeEach((to) => {
-  if (to.name !== 'services.detail' && to.name !== 'industry.detail') return
+  if (!['services.detail', 'industry.detail', 'insights.detail'].includes(String(to.name))) return
   const entry = seoRouteByPath(to.path)
   if (!entry) {
     return {
@@ -34,7 +34,8 @@ router.beforeEach((to) => {
     title: entry.title,
     description: entry.description,
     jsonLd: entry.jsonLd,
-    ogImage: entry.ogImage
+    ogImage: entry.ogImage,
+    noindex: entry.noindex
   })
 })
 

@@ -13,10 +13,8 @@
  * content itself rather than an empty <div id="app">, and the first paint no
  * longer waits on the JavaScript bundle.
  *
- * Vercel checks the filesystem before applying the SPA rewrite in vercel.json,
- * so these files win for exact paths and the rewrite still handles everything
- * else. The app hydrates over the markup and applySeo() keeps the head right on
- * client-side navigation.
+ * Vercel serves the generated files for known paths and 404.html for unknown
+ * URLs. applySeo() keeps the head consistent on client-side navigation.
  *
  * It also inlines the critical CSS for each page and defers the rest. The
  * stylesheet is ~450KB of mostly unused Bootstrap and was render-blocking:
@@ -75,7 +73,8 @@ function deferBundle(html) {
 function renderRoute(template, route, siteUrl) {
   const canonical = `${siteUrl}${route.path === '/' ? '/' : route.path}`
   const image = `${siteUrl}${route.ogImage ?? '/images/og-default.png'}`
-  let html = template
+  let html = template.replace(/<meta property="og:type" content="[^"]*">/,
+    `<meta property="og:type" content="${route.jsonLd?.['@type'] === 'Article' ? 'article' : 'website'}">`)
 
   html = replaceMeta(html, /<title>[\s\S]*?<\/title>/, `<title>${escapeText(route.title)}</title>`, 'title')
   html = replaceMeta(
@@ -148,20 +147,24 @@ function renderRoute(template, route, siteUrl) {
     'twitter:description'
   )
 
-  if (route.jsonLd) {
+  if (!route.noindex) {
     // Carries the id applySeo() manages, so hydration replaces this block
     // instead of adding a second copy of the same Service node. It sits
     // alongside the static Organization node, which it references by @id.
     html = html.replace(
       '</head>',
-      `  <script id="lk-jsonld" type="application/ld+json">\n${JSON.stringify(route.jsonLd, null, 2)}\n  </script>\n</head>`
+      `  <script id="lk-jsonld" type="application/ld+json">\n${JSON.stringify(buildPageGraph(route, seoRoutes, SITE_URL), null, 2).replace(/</g, '\\u003c')}\n  </script>\n</head>`
     )
   }
 
+  if (route.noindex) {
+    html = html.replace(/\s*<link rel="canonical" href="[^"]*">/, '')
+      .replace(/\s*<meta property="og:url" content="[^"]*">/, '')
+  }
   return html
 }
 
-const { routes: seoRoutes, siteUrl: SITE_URL, root } = await loadSeoRoutes()
+const { routes: seoRoutes, siteUrl: SITE_URL, buildPageGraph, root } = await loadSeoRoutes()
 const dist = join(root, 'dist')
 const ssrDir = join(root, 'node_modules/.cache/ssr')
 
@@ -219,18 +222,19 @@ if (inlined !== written) {
   throw new Error(`prerender: critical CSS inlined for only ${inlined}/${written} routes`)
 }
 
-rmSync(ssrDir, { recursive: true, force: true })
-
-// Anything not matching a known route falls through to the SPA rewrite. Pointing
-// that at index.html made every unknown URL claim `canonical: /` and advertise
-// itself as indexable, so the fallback gets its own noindex copy with no
-// canonical at all.
+// All supported routes, including the non-indexable coming-soon page, are
+// prerendered. With no catch-all rewrite, Vercel can return an actual 404 status.
+const notFoundBody = await render('/page-not-found')
 const fallback = template
   .replace(/<title>[\s\S]*?<\/title>/, '<title>Page Not Found | Linkosys</title>')
+  .replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="The page you requested could not be found.">')
   .replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, nofollow">')
   .replace(/\s*<link rel="canonical" href="[^"]*">/, '')
   .replace(/\s*<meta property="og:url" content="[^"]*">/, '')
-
-writeFileSync(join(dist, 'spa-fallback.html'), fallback)
-
-console.log(`prerendered: ${written} routes + SPA fallback, critical CSS inlined`)
+  .replace('<div id="app"></div>', `<div id="app">${notFoundBody}</div>`)
+const notFoundHtml = deferBundle(await beasties.process(fallback))
+writeFileSync(join(dist, '404.html'), notFoundHtml)
+// Retain the old asset URL for any existing external references, also noindex.
+writeFileSync(join(dist, 'spa-fallback.html'), notFoundHtml)
+rmSync(ssrDir, { recursive: true, force: true })
+console.log(`prerendered: ${written} routes + branded 404, critical CSS inlined`)

@@ -1,16 +1,106 @@
 import type { ServicePage } from './types'
 
 /**
- * Six core services. The previous site sold "web design", "mobile apps" and
+ * Core consulting and engineering services. The previous site sold "web design", "mobile apps" and
  * "blockchain" as peers, which reads as a web agency to an enterprise or
  * government buyer. Those disciplines still exist here — they are folded into
  * Software Development, where they belong — and the old URLs redirect in.
  */
 export const services: ServicePage[] = [
   {
+    slug: 'it-consulting',
+    name: 'Enterprise IT Consulting',
+    headline: 'Enterprise IT consulting in California',
+    summary: 'Align technology decisions, architecture and delivery with your business priorities.',
+    intro:
+      'Linkosys is a California-incorporated technology consulting and engineering company with a published office in Irvine. We help mid-sized and enterprise organizations assess existing systems, define modernization priorities and turn a technology roadmap into deliverable work across the United States.',
+    problems: [
+      {
+        problem: 'Technology priorities compete for the same budget',
+        response:
+          'Map the business constraint, technical dependencies and delivery risk before sequencing investments.'
+      },
+      {
+        problem: 'A modernization initiative has no clear starting point',
+        response:
+          'Assess the current applications and infrastructure, then define an incremental path with acceptance criteria.'
+      },
+      {
+        problem: 'Business and engineering teams disagree on scope',
+        response:
+          'Translate requirements into a shared baseline with clear decision owners and milestones.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Technology assessment',
+        description:
+          'Review current applications, integrations and infrastructure against business requirements.'
+      },
+      {
+        title: 'Modernization roadmap',
+        description: 'Sequence system changes around operational constraints and dependencies.'
+      },
+      {
+        title: 'Architecture and integration planning',
+        description:
+          'Define boundaries and interfaces across existing platforms and new applications.'
+      },
+      {
+        title: 'Delivery planning',
+        description: 'Connect scope, technical risk, team capability and program governance.'
+      }
+    ],
+    approach: [
+      {
+        title: 'Understand',
+        description:
+          'Identify the workflow, business owner and constraint that makes change necessary.'
+      },
+      {
+        title: 'Assess',
+        description: 'Review the current systems, dependencies and risks with your team.'
+      },
+      {
+        title: 'Prioritize',
+        description: 'Agree a staged roadmap, decision points and acceptance criteria.'
+      },
+      {
+        title: 'Deliver',
+        description:
+          'Connect the plan to engineering, staffing and program management as the scope requires.'
+      }
+    ],
+    technology: [
+      {
+        group: 'Applications',
+        items: ['Enterprise software', 'APIs', 'Legacy modernization']
+      },
+      {
+        group: 'Platforms',
+        items: ['Cloud infrastructure', 'Data systems', 'Manufacturing systems']
+      },
+      {
+        group: 'Controls',
+        items: ['Access design', 'Security review', 'Change control']
+      },
+      {
+        group: 'Delivery',
+        items: ['Business analysis', 'Roadmaps', 'Program governance']
+      }
+    ],
+    cta: {
+      label: 'Discuss Your Technology Roadmap',
+      sub: 'Tell us which business outcome is blocked and what your systems look like today.'
+    },
+    seoTitle: 'Enterprise IT Consulting California | Linkosys',
+    seoDescription:
+      'IT consulting for mid-sized and enterprise businesses in California and across the U.S. Assess systems, plan modernization and connect strategy to engineering.'
+  },
+  {
     slug: 'software-development',
     name: 'Software Development',
-    headline: 'Software engineering for systems people depend on',
+    headline: 'Custom software development for enterprise systems',
     summary: 'Build and modernize scalable enterprise applications.',
     intro:
       'We design, build and modernize applications that carry real operational load — internal platforms, customer-facing systems, integrations and the services behind them. Work is delivered by engineers who stay with the system through release and support, not handed to a separate team at the end.',
@@ -94,20 +184,23 @@ export const services: ServicePage[] = [
       { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Java', 'C#', 'PHP'] },
       { group: 'Frameworks', items: ['Vue', 'React', 'Node.js', '.NET', 'Spring', 'Laravel'] },
       { group: 'Data', items: ['PostgreSQL', 'SQL Server', 'MySQL', 'MongoDB', 'Redis'] },
-      { group: 'Delivery', items: ['Docker', 'Kubernetes', 'GitHub Actions', 'GitLab CI', 'Terraform'] }
+      {
+        group: 'Delivery',
+        items: ['Docker', 'Kubernetes', 'GitHub Actions', 'GitLab CI', 'Terraform']
+      }
     ],
     cta: {
       label: 'Talk to an Engineer',
       sub: 'Describe the system and the constraint. We will tell you how we would approach it.'
     },
-    seoTitle: 'Software Development Services | Linkosys',
+    seoTitle: 'Custom Software Development California | Linkosys',
     seoDescription:
       'Enterprise software development and application modernization for government and commercial organizations. Custom applications, API integration, mobile and quality engineering.'
   },
   {
     slug: 'ai-and-data',
     name: 'AI & Data',
-    headline: 'Data your organization can act on',
+    headline: 'Enterprise AI implementation and data engineering',
     summary: 'Turn data into decisions, automation and measurable operational insight.',
     intro:
       'Most organizations do not have a data shortage; they have data spread across systems that were never designed to be read together. We build the pipelines, models and interfaces that make that data usable, and apply AI where it changes an outcome rather than where it demonstrates well.',
@@ -168,7 +261,8 @@ export const services: ServicePage[] = [
     approach: [
       {
         title: 'Locate',
-        description: 'Identify the decision or workflow the work must improve, and how it is measured today.'
+        description:
+          'Identify the decision or workflow the work must improve, and how it is measured today.'
       },
       {
         title: 'Prove',
@@ -200,7 +294,7 @@ export const services: ServicePage[] = [
   {
     slug: 'cloud-infrastructure',
     name: 'Cloud & Infrastructure',
-    headline: 'Infrastructure that scales and stays accountable',
+    headline: 'Enterprise cloud consulting and infrastructure services',
     summary: 'Modernize infrastructure for scalability, resilience and cost control.',
     intro:
       'Cloud work is only worth doing when it improves something specific: release speed, resilience, cost, or the ability to meet a control requirement. We plan and execute migrations and platform work against those outcomes, and leave behind infrastructure your team can operate.',
@@ -234,15 +328,18 @@ export const services: ServicePage[] = [
       },
       {
         title: 'Infrastructure as code',
-        description: 'Version-controlled, reviewable environment definitions and repeatable provisioning.'
+        description:
+          'Version-controlled, reviewable environment definitions and repeatable provisioning.'
       },
       {
         title: 'DevOps and release engineering',
-        description: 'Build and deployment pipelines, environment parity and automated release gates.'
+        description:
+          'Build and deployment pipelines, environment parity and automated release gates.'
       },
       {
         title: 'Containers and orchestration',
-        description: 'Containerized workloads and Kubernetes platforms sized to the team that will run them.'
+        description:
+          'Containerized workloads and Kubernetes platforms sized to the team that will run them.'
       },
       {
         title: 'Reliability engineering',
@@ -250,14 +347,27 @@ export const services: ServicePage[] = [
       },
       {
         title: 'Cost engineering',
-        description: 'Spend attribution, rightsizing and commitment planning tied to workload owners.'
+        description:
+          'Spend attribution, rightsizing and commitment planning tied to workload owners.'
       }
     ],
     approach: [
-      { title: 'Inventory', description: 'Catalogue workloads, dependencies and current operating cost.' },
-      { title: 'Target', description: 'Agree the architecture and the outcome each move has to deliver.' },
-      { title: 'Migrate', description: 'Execute in stages, each independently verifiable and reversible.' },
-      { title: 'Operate', description: 'Hand over monitoring, runbooks and cost controls to your team.' }
+      {
+        title: 'Inventory',
+        description: 'Catalogue workloads, dependencies and current operating cost.'
+      },
+      {
+        title: 'Target',
+        description: 'Agree the architecture and the outcome each move has to deliver.'
+      },
+      {
+        title: 'Migrate',
+        description: 'Execute in stages, each independently verifiable and reversible.'
+      },
+      {
+        title: 'Operate',
+        description: 'Hand over monitoring, runbooks and cost controls to your team.'
+      }
     ],
     technology: [
       { group: 'Cloud', items: ['AWS', 'Microsoft Azure', 'Google Cloud'] },
@@ -276,7 +386,7 @@ export const services: ServicePage[] = [
   {
     slug: 'cybersecurity',
     name: 'Cybersecurity',
-    headline: 'Security built into how systems are delivered',
+    headline: 'Enterprise cybersecurity consulting and engineering',
     summary: 'Build security into applications, infrastructure and operations.',
     intro:
       'Security added at the end of a project is expensive and rarely holds. We build it into architecture, delivery pipelines and operations, and document it so it can be evidenced during an assessment rather than reconstructed under pressure.',
@@ -305,7 +415,8 @@ export const services: ServicePage[] = [
     capabilities: [
       {
         title: 'Application security',
-        description: 'Secure design review, code review, dependency and secrets management in the pipeline.'
+        description:
+          'Secure design review, code review, dependency and secrets management in the pipeline.'
       },
       {
         title: 'Cloud and infrastructure security',
@@ -313,7 +424,8 @@ export const services: ServicePage[] = [
       },
       {
         title: 'Identity and access management',
-        description: 'Authentication, authorization, privileged access and periodic entitlement review.'
+        description:
+          'Authentication, authorization, privileged access and periodic entitlement review.'
       },
       {
         title: 'Compliance support',
@@ -330,9 +442,18 @@ export const services: ServicePage[] = [
       }
     ],
     approach: [
-      { title: 'Establish', description: 'Determine which frameworks and obligations actually apply.' },
-      { title: 'Assess', description: 'Measure the current state against those controls and rank the gaps.' },
-      { title: 'Remediate', description: 'Fix by risk, and build the control into the delivery process.' },
+      {
+        title: 'Establish',
+        description: 'Determine which frameworks and obligations actually apply.'
+      },
+      {
+        title: 'Assess',
+        description: 'Measure the current state against those controls and rank the gaps.'
+      },
+      {
+        title: 'Remediate',
+        description: 'Fix by risk, and build the control into the delivery process.'
+      },
       { title: 'Evidence', description: 'Produce documentation that stands up to external review.' }
     ],
     technology: [
@@ -352,7 +473,7 @@ export const services: ServicePage[] = [
   {
     slug: 'it-staffing',
     name: 'IT Staffing',
-    headline: 'Technology talent, screened by engineers',
+    headline: 'IT staffing and technology team augmentation',
     summary: 'Add specialized technology talent when and where you need it.',
     intro:
       'We place technology professionals into client teams for contract, contract-to-hire and direct placement. Candidates are screened against the actual work by people who have done it, because a resume keyword match is not a qualification.',
@@ -379,12 +500,18 @@ export const services: ServicePage[] = [
       }
     ],
     capabilities: [
-      { title: 'Contract staffing', description: 'Specialized engineers for a defined scope or period.' },
+      {
+        title: 'Contract staffing',
+        description: 'Specialized engineers for a defined scope or period.'
+      },
       {
         title: 'Contract to hire',
         description: 'Evaluate fit on real work before converting to a permanent role.'
       },
-      { title: 'Direct placement', description: 'Permanent hiring for technical and leadership positions.' },
+      {
+        title: 'Direct placement',
+        description: 'Permanent hiring for technical and leadership positions.'
+      },
       {
         title: 'Team augmentation',
         description: 'Engineers embedded in your process, tooling and reporting line.'
@@ -399,16 +526,28 @@ export const services: ServicePage[] = [
       }
     ],
     approach: [
-      { title: 'Define', description: 'Agree the real requirement, seniority and evaluation criteria.' },
+      {
+        title: 'Define',
+        description: 'Agree the real requirement, seniority and evaluation criteria.'
+      },
       { title: 'Source', description: 'Search against that definition, not against keywords.' },
-      { title: 'Screen', description: 'Technical and situational evaluation before you spend interview time.' },
+      {
+        title: 'Screen',
+        description: 'Technical and situational evaluation before you spend interview time.'
+      },
       { title: 'Support', description: 'Onboarding and ongoing check-ins through the engagement.' }
     ],
     technology: [
       { group: 'Engineering', items: ['Software', 'Data', 'Cloud', 'DevOps', 'QA', 'Security'] },
       { group: 'Delivery', items: ['Business analysis', 'Project management', 'Scrum leadership'] },
-      { group: 'Infrastructure', items: ['Systems administration', 'Networking', 'Support engineering'] },
-      { group: 'Models', items: ['Contract', 'Contract to hire', 'Direct placement', 'Subcontract'] }
+      {
+        group: 'Infrastructure',
+        items: ['Systems administration', 'Networking', 'Support engineering']
+      },
+      {
+        group: 'Models',
+        items: ['Contract', 'Contract to hire', 'Direct placement', 'Subcontract']
+      }
     ],
     cta: {
       label: 'Request Technology Talent',
@@ -421,7 +560,7 @@ export const services: ServicePage[] = [
   {
     slug: 'program-management',
     name: 'Project & Program Management',
-    headline: 'Complex initiatives, delivered in a structure that holds',
+    headline: 'Technology project and program management',
     summary: 'Turn complex technology initiatives into structured, accountable delivery.',
     intro:
       'Large technology programs fail on coordination more often than on engineering. We provide the management layer that keeps scope, dependencies, risk and reporting under control — and that tells you early when something is off track.',
@@ -448,27 +587,52 @@ export const services: ServicePage[] = [
       }
     ],
     capabilities: [
-      { title: 'Program management', description: 'Governance, planning and reporting across related projects.' },
-      { title: 'Project delivery', description: 'Day-to-day management of scope, schedule, budget and quality.' },
-      { title: 'Agile delivery leadership', description: 'Scrum and Kanban leadership, including scaled delivery.' },
-      { title: 'Vendor coordination', description: 'Integrated planning across multiple delivery organizations.' },
-      { title: 'Risk and issue management', description: 'Identification, ownership, mitigation and closure.' },
+      {
+        title: 'Program management',
+        description: 'Governance, planning and reporting across related projects.'
+      },
+      {
+        title: 'Project delivery',
+        description: 'Day-to-day management of scope, schedule, budget and quality.'
+      },
+      {
+        title: 'Agile delivery leadership',
+        description: 'Scrum and Kanban leadership, including scaled delivery.'
+      },
+      {
+        title: 'Vendor coordination',
+        description: 'Integrated planning across multiple delivery organizations.'
+      },
+      {
+        title: 'Risk and issue management',
+        description: 'Identification, ownership, mitigation and closure.'
+      },
       {
         title: 'Business analysis',
-        description: 'Requirements, process mapping and acceptance criteria that survive contact with delivery.'
+        description:
+          'Requirements, process mapping and acceptance criteria that survive contact with delivery.'
       }
     ],
     approach: [
-      { title: 'Baseline', description: 'Establish scope, schedule, budget and the definition of done.' },
+      {
+        title: 'Baseline',
+        description: 'Establish scope, schedule, budget and the definition of done.'
+      },
       { title: 'Govern', description: 'Set the cadence, decision rights and escalation path.' },
       { title: 'Deliver', description: 'Track against evidence and manage dependencies actively.' },
-      { title: 'Close', description: 'Verify acceptance, transition to operations and capture what was learned.' }
+      {
+        title: 'Close',
+        description: 'Verify acceptance, transition to operations and capture what was learned.'
+      }
     ],
     technology: [
       { group: 'Methods', items: ['Agile', 'Scrum', 'Kanban', 'Hybrid', 'Waterfall'] },
       { group: 'Tooling', items: ['Jira', 'Azure DevOps', 'Microsoft Project', 'Confluence'] },
       { group: 'Governance', items: ['Risk register', 'Change control', 'Earned value reporting'] },
-      { group: 'Roles', items: ['Program manager', 'Project manager', 'Scrum leader', 'Business analyst'] }
+      {
+        group: 'Roles',
+        items: ['Program manager', 'Project manager', 'Scrum leader', 'Business analyst']
+      }
     ],
     cta: {
       label: 'Discuss Your Program',

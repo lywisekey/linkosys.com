@@ -1,5 +1,8 @@
 import { services } from './services'
 import { industries } from './industries'
+import { insights } from './insights'
+
+export { buildPageGraph } from './structured-data'
 
 export const SITE_URL = 'https://linkosys.com'
 export const SITE_NAME = 'Linkosys'
@@ -19,7 +22,7 @@ export type SeoRoute = {
 }
 
 /**
- * Every indexable route with its own title, description and structured data.
+ * Every supported route with its own title, description and indexability.
  *
  * This is the single source: the router reads it for client-side head updates,
  * scripts/prerender-html.mjs bakes it into per-route HTML at build time, and
@@ -33,6 +36,7 @@ const serviceLd = (name: string, description: string, path: string) => ({
   description,
   serviceType: name,
   provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: { '@type': 'Country', name: 'United States' },
   url: `${SITE_URL}${path}`
 })
 
@@ -40,10 +44,16 @@ const title = (value: string) => `${value} | ${SITE_NAME}`
 
 export const seoRoutes: SeoRoute[] = [
   {
+    path: '/commingsoon',
+    title: 'Coming Soon | Linkosys',
+    description: 'This Linkosys page is being prepared. Explore our services or contact the team.',
+    noindex: true
+  },
+  {
     path: '/',
-    title: 'Linkosys | Enterprise & Government Technology Consulting',
+    title: 'Enterprise IT Consulting & Software Development California | Linkosys',
     description:
-      'Linkosys delivers software engineering, AI and data, cloud, cybersecurity, IT staffing and program management for U.S. government and enterprise organizations. GSA Schedule 47QTCA21D004X.',
+      'Irvine-based Linkosys helps California and U.S. enterprises with IT consulting, custom software, AI, cloud, cybersecurity and manufacturing systems.',
     priority: '1.0',
     changefreq: 'monthly'
   },
@@ -147,6 +157,24 @@ export const seoRoutes: SeoRoute[] = [
       'Notes from the Linkosys engineering and delivery team on modernization, data, security and getting technology programs delivered.',
     priority: '0.4'
   },
+  ...insights.map((insight) => ({
+    path: `/company/blog/${insight.slug}`,
+    title: title(insight.title),
+    description: insight.description,
+    priority: '0.6',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      '@id': `${SITE_URL}/company/blog/${insight.slug}#article`,
+      headline: insight.title,
+      description: insight.description,
+      datePublished: insight.date,
+      author: { '@id': `${SITE_URL}/#organization` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      image: `${SITE_URL}/images/og-default.png`,
+      mainEntityOfPage: { '@id': `${SITE_URL}/company/blog/${insight.slug}#webpage` }
+    }
+  })),
   {
     path: '/privacy',
     title: title('Privacy Policy'),

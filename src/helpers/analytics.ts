@@ -22,7 +22,47 @@ export function trackPageView() {
   if (typeof window === 'undefined' || typeof window.gtag !== 'function') return
 
   window.gtag('event', 'page_view', {
-    page_location: window.location.href,
+    page_location: window.location.origin + window.location.pathname,
     page_title: document.title
   })
+}
+
+/** Fixed event names and labels only; never send form values or link text. */
+export function trackConversion(
+  event:
+    | 'generate_lead'
+    | 'consultation_request'
+    | 'business_email_click'
+    | 'phone_click'
+    | 'cta_click',
+  params: Record<string, string> = {}
+) {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return
+  window.gtag('event', event, { page_path: window.location.pathname, ...params })
+}
+
+let trackingInstalled = false
+export function installConversionTracking() {
+  if (typeof document === 'undefined' || trackingInstalled) return
+  trackingInstalled = true
+  // Delegation covers router navigation and newly rendered service cards.
+  document.addEventListener(
+    'click',
+    (event) => {
+      const link = event.target instanceof Element ? event.target.closest('a[href]') : null
+      if (!(link instanceof HTMLAnchorElement)) return
+      const href = link.getAttribute('href') ?? ''
+      if (href.startsWith('mailto:')) trackConversion('business_email_click')
+      else if (href.startsWith('tel:')) trackConversion('phone_click')
+      else if (link.origin === window.location.origin) {
+        if (link.pathname === '/contact')
+          trackConversion('consultation_request', {
+            placement: link.closest('main') ? 'content' : 'navigation'
+          })
+        else if (link.classList.contains('btn'))
+          trackConversion('cta_click', { destination: link.pathname })
+      }
+    },
+    { capture: true }
+  )
 }
